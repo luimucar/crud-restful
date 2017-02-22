@@ -93,11 +93,11 @@ class View_CrudComponent1 extends import1.AppView<any> {
   }
   createInternal(rootSelector:string):import7.ComponentRef<any> {
     this._el_0 = import3.createRenderElement(this.renderer,(null as any),'div',new import3.InlineArray2(2,'style','width: 100%;'),(null as any));
-    this._text_1 = this.renderer.createText(this._el_0,'\n    ',(null as any));
+    this._text_1 = this.renderer.createText(this._el_0,'\n            ',(null as any));
     this._el_2 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'crud-factory',''),(null as any));
     this._vc_2 = new import8.ViewContainer(2,0,this,this._el_2);
     this._ControlFactoryDirective_2_5 = new import9.Wrapper_ControlFactoryDirective(this._vc_2.vcRef,this.parentView.injectorGet(import10.ComponentFactoryResolver,this.parentIndex));
-    this._text_3 = this.renderer.createText(this._el_0,'\n',(null as any));
+    this._text_3 = this.renderer.createText(this._el_0,'\n        ',(null as any));
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1,
@@ -131,60 +131,66 @@ class View_CrudComponent1 extends import1.AppView<any> {
 }
 var renderType_CrudComponent:import2.RenderComponentType = import3.createRenderComponentType('',0,import4.ViewEncapsulation.None,styles_CrudComponent,{});
 export class View_CrudComponent0 extends import1.AppView<import0.CrudComponent> {
-  _el_0:any;
-  _text_1:any;
-  _anchor_2:any;
-  /*private*/ _vc_2:import8.ViewContainer;
-  _TemplateRef_2_5:any;
-  _NgFor_2_6:import12.Wrapper_NgFor;
-  _text_3:any;
-  _el_4:any;
-  _text_5:any;
+  _text_0:any;
+  _el_1:any;
+  _text_2:any;
+  _anchor_3:any;
+  /*private*/ _vc_3:import8.ViewContainer;
+  _TemplateRef_3_5:any;
+  _NgFor_3_6:import12.Wrapper_NgFor;
+  _text_4:any;
+  _el_5:any;
+  _text_6:any;
+  _text_7:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any) {
     super(View_CrudComponent0,renderType_CrudComponent,import5.ViewType.COMPONENT,viewUtils,parentView,parentIndex,parentElement,import6.ChangeDetectorStatus.CheckAlways);
   }
   createInternal(rootSelector:string):import7.ComponentRef<any> {
     const parentRenderNode:any = this.renderer.createViewRoot(this.parentElement);
-    this._el_0 = import3.createRenderElement(this.renderer,parentRenderNode,'br',import3.EMPTY_INLINE_ARRAY,(null as any));
-    this._text_1 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._anchor_2 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._vc_2 = new import8.ViewContainer(2,(null as any),this,this._anchor_2);
-    this._TemplateRef_2_5 = new import13.TemplateRef_(this,2,this._anchor_2);
-    this._NgFor_2_6 = new import12.Wrapper_NgFor(this._vc_2.vcRef,this._TemplateRef_2_5,this.parentView.injectorGet(import14.IterableDiffers,this.parentIndex),this.ref);
-    this._text_3 = this.renderer.createText(parentRenderNode,'\n\n\n',(null as any));
-    this._el_4 = import3.createRenderElement(this.renderer,parentRenderNode,'button',import3.EMPTY_INLINE_ARRAY,(null as any));
-    this._text_5 = this.renderer.createText(this._el_4,'Save',(null as any));
-    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_4,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_4));
+    this._text_0 = this.renderer.createText(parentRenderNode,'\n        ',(null as any));
+    this._el_1 = import3.createRenderElement(this.renderer,parentRenderNode,'br',import3.EMPTY_INLINE_ARRAY,(null as any));
+    this._text_2 = this.renderer.createText(parentRenderNode,'\n\n        ',(null as any));
+    this._anchor_3 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._vc_3 = new import8.ViewContainer(3,(null as any),this,this._anchor_3);
+    this._TemplateRef_3_5 = new import13.TemplateRef_(this,3,this._anchor_3);
+    this._NgFor_3_6 = new import12.Wrapper_NgFor(this._vc_3.vcRef,this._TemplateRef_3_5,this.parentView.injectorGet(import14.IterableDiffers,this.parentIndex),this.ref);
+    this._text_4 = this.renderer.createText(parentRenderNode,'\n\n\n        ',(null as any));
+    this._el_5 = import3.createRenderElement(this.renderer,parentRenderNode,'button',import3.EMPTY_INLINE_ARRAY,(null as any));
+    this._text_6 = this.renderer.createText(this._el_5,'Save',(null as any));
+    this._text_7 = this.renderer.createText(parentRenderNode,'    \n    ',(null as any));
+    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_5,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_5));
     this.init((null as any),((<any>this.renderer).directRenderer? (null as any): [
-      this._el_0,
-      this._text_1,
-      this._anchor_2,
-      this._text_3,
-      this._el_4,
-      this._text_5
+      this._text_0,
+      this._el_1,
+      this._text_2,
+      this._anchor_3,
+      this._text_4,
+      this._el_5,
+      this._text_6,
+      this._text_7
     ]
     ),[disposable_0]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import13.TemplateRef) && (2 === requestNodeIndex))) { return this._TemplateRef_2_5; }
-    if (((token === import15.NgFor) && (2 === requestNodeIndex))) { return this._NgFor_2_6.context; }
+    if (((token === import13.TemplateRef) && (3 === requestNodeIndex))) { return this._TemplateRef_3_5; }
+    if (((token === import15.NgFor) && (3 === requestNodeIndex))) { return this._NgFor_3_6.context; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_2_0_0:any = this.context.components;
-    this._NgFor_2_6.check_ngForOf(currVal_2_0_0,throwOnChange,false);
-    this._NgFor_2_6.ngDoCheck(this,this._anchor_2,throwOnChange);
-    this._vc_2.detectChangesInNestedViews(throwOnChange);
+    const currVal_3_0_0:any = this.context.components;
+    this._NgFor_3_6.check_ngForOf(currVal_3_0_0,throwOnChange,false);
+    this._NgFor_3_6.ngDoCheck(this,this._anchor_3,throwOnChange);
+    this._vc_3.detectChangesInNestedViews(throwOnChange);
   }
   destroyInternal():void {
-    this._vc_2.destroyNestedViews();
+    this._vc_3.destroyNestedViews();
   }
   createEmbeddedViewInternal(nodeIndex:number):import1.AppView<any> {
-    if ((nodeIndex == 2)) { return new View_CrudComponent1(this.viewUtils,this,2,this._anchor_2,this._vc_2); }
+    if ((nodeIndex == 3)) { return new View_CrudComponent1(this.viewUtils,this,3,this._anchor_3,this._vc_3); }
     return (null as any);
   }
-  handleEvent_4(eventName:string,$event:any):boolean {
+  handleEvent_5(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
     if ((eventName == 'click')) {

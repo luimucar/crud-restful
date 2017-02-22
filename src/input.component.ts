@@ -20,6 +20,7 @@ export class InputTextComponent {
     
     ngOnInit() {
         this.value = CrudComponentObj.components[this.index].value;
+        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1)
     }
     
     setValue(value:string){

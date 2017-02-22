@@ -1,12 +1,15 @@
 {
   "name": "crud-restful",
-  "version": "0.7.0",
+  "version": "0.12.0",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "test": "tsc && karma start",
     "prepublish": "tsc",
     "tsc": "tsc",
-    "clean" : "find . -name '*.ng???????*.*' -exec rm {} \\;"
+    "clean": "rm -rf ./dist/*;find . -name '*.ng???????*.*' -exec rm {} \\;",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "lite": "lite-server",
+    "tsc:w": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -25,24 +28,27 @@
   },
   "main": "./dist/index.js",
   "dependencies": {
+    "jquery": "^3.1.1",
+    "systemjs": "^0.20.9"
   },
   "devDependencies": {
     "@angular/common": "^2.0.0",
     "@angular/compiler": "^2.4.5",
     "@angular/compiler-cli": "^2.4.5",
     "@angular/core": "^2.0.0",
-    "@angular/platform-server": "^2.4.5",
     "@angular/platform-browser": "2.3.0",
     "@angular/platform-browser-dynamic": "2.3.0",
-    "@angular/router": "3.3.0",    
+    "@angular/platform-server": "^2.4.5",
+    "@angular/router": "3.3.0",
+    "@types/es6-shim": "^0.31.32",
+    "@types/jasmine": "^2.5.40",
+    "@types/jquery": "^2.0.40",
+    "@types/protractor": "^4.0.0",
+    "@types/selenium-webdriver": "^2.53.39",
     "codelyzer": "^0.0.28",
     "rxjs": "^5.0.1",
     "typescript": "^2.0.2",
-    "zone.js": "0.7.2",
-    "@types/es6-shim": "^0.31.32",
-    "@types/protractor": "^4.0.0",
-    "@types/jasmine": "^2.5.40",
-    "@types/selenium-webdriver": "^2.53.39"
+    "zone.js": "0.7.2"
   },
   "engines": {
     "node": ">=0.8.0"
