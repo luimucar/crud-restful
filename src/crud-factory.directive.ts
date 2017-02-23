@@ -1,14 +1,18 @@
 import { Directive, OnChanges, Input, ViewContainerRef, ComponentFactoryResolver, SimpleChange } from '@angular/core';
-import { InputTextComponent } from './input.component';
+import { InputTextComponent } from './components/input.component';
+import { MultiSelectComponent } from './components/multiselect.component';
+import { ChipsComponent } from './components/chips.component';
 
 const typeMap = {
-    'text': InputTextComponent
+    'text': InputTextComponent,
+    'MultiSelect' : MultiSelectComponent,
+    'Chips' : ChipsComponent
 }
 
 @Directive({
     selector: '[crud-factory]'
 })
-export class ControlFactoryDirective implements OnChanges {
+export class CrudFactoryDirective implements OnChanges {
     @Input()
     type : string;
     

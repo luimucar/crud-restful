@@ -1,0 +1,10 @@
+<div style="width: 100%;" *ngFor="let comp of components; let i = index" style="padding-top:5px;">
+     <div class="row" crud-factory [type]="comp.type" [name]="comp.name" [index]="i"></div>
+</div>
+
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+        <button pButton type="button" (click)="save()" label="Save"></button>    
+    </div>
+</div>        
+

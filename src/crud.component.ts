@@ -1,26 +1,30 @@
-import {Component} from '@angular/core';
-import {CrudComponentObj, getObject} from './index';
+import {Component, Input} from '@angular/core';
+import {getObject, CrudComponentObj} from './index';
+import {Service} from './services/index';
 
 @Component({
-    selector: 'crud',
-    template: `
-        <br>
-
-        <div style="width: 100%;" *ngFor="let comp of components; let i = index">
-            <div crud-factory [type]="comp.type" [name]="comp.name" [index]="i"></div>
-        </div>
-
-
-        <button (click)="save()">Save</button>    
-    `
+    selector: 'crud',   
+    templateUrl : './src/crud.html',
+    providers : [Service]
 })
-
 export class CrudComponent {
-    components : CrudComponentObj[] = CrudComponentObj.components;
-
+    @Input()
+    clazz : string;
+    
+    components: CrudComponentObj[];
+    
+    constructor(service: Service) {
+    }
+    
+    ngOnInit() {
+        this.components = CrudComponentObj.getComponents(this.clazz);
+    }
+    
     save() {
-        let objs : Object[] = getObject();
-        console.log(objs[0]);
+        if (this.components.length > 0) {
+            let obj = getObject(this.components[0].clazz);
+            console.log(obj);
+        }
     }
 }
 

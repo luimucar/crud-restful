@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { CrudComponentObj } from './index';
+import { CrudComponentObj } from '../index';
 
 @Component({
     selector: 'inputText',
     template: `
-        <label>{{name}}</label>
-        <input type="text" name="{{name}}" [value]="value" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" #myInput>
+        <div class="col-md-4">    
+            <label>{{name}}</label>
+        </div>
+        <div class="col-md-8">    
+            <input pInputText type="text" name="{{name}}" [value]="value" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" #myInput>
+        </div>            
     `
 })
 

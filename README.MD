@@ -1,5 +1,12 @@
 # crud-restful - UNDER DEVELOPMENT
 
+UNDER DEVELOPMENT
+
+## Prerequisite
+
+Install primeng: http://www.primefaces.org/primeng/#/setup
+
+
 ## Installation
 
 To install this library, run:
