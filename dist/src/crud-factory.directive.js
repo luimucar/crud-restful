@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var input_component_1 = require("./components/input.component");
 var multiselect_component_1 = require("./components/multiselect.component");
 var chips_component_1 = require("./components/chips.component");
+var select_component_1 = require("./components/select.component");
 var CrudFactoryDirective = (function () {
     function CrudFactoryDirective(vcRef, resolver) {
         this.vcRef = vcRef;
@@ -42,6 +43,9 @@ var CrudFactoryDirective = (function () {
         }
         else if (this.type == 'Chips') {
             comp = chips_component_1.ChipsComponent;
+        }
+        else if (this.type == 'Select') {
+            comp = select_component_1.SelectComponent;
         }
         if (comp) {
             this.create(comp);

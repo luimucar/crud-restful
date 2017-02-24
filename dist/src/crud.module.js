@@ -16,6 +16,7 @@ var http_1 = require("@angular/http");
 var input_component_1 = require("./components/input.component");
 var multiselect_component_1 = require("./components/multiselect.component");
 var chips_component_1 = require("./components/chips.component");
+var select_component_1 = require("./components/select.component");
 var CrudModule = (function () {
     function CrudModule() {
     }
@@ -23,11 +24,11 @@ var CrudModule = (function () {
 }());
 CrudModule = __decorate([
     core_1.NgModule({
-        declarations: [crud_component_1.CrudComponent, crud_factory_directive_1.CrudFactoryDirective, input_component_1.InputTextComponent, multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent],
+        declarations: [crud_component_1.CrudComponent, crud_factory_directive_1.CrudFactoryDirective, input_component_1.InputTextComponent, multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent, select_component_1.SelectComponent],
         imports: [http_1.HttpModule, platform_browser_1.BrowserModule, router_1.RouterModule, primeng_module_1.PrimeNgModule.forRoot()],
         exports: [crud_component_1.CrudComponent],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
-        entryComponents: [input_component_1.InputTextComponent, multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent]
+        entryComponents: [input_component_1.InputTextComponent, multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent, select_component_1.SelectComponent]
     })
 ], CrudModule);
 exports.CrudModule = CrudModule;

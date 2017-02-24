@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InputType, SaveEndPoint, MultiSelect, Chips } from '../index';
+import { InputType, SaveEndPoint, MultiSelect, Chips, Select } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -33,5 +33,8 @@ export class Scheduling {
     
     @MultiSelect(Scheduling, 'http://www.mocky.io/v2/583ecaf7240000f20383b35d', CarPark, null, 'id', 'name')
     public carParks: CarPark[];
+    
+    @Select(Scheduling, [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}])
+    public period: string;
 }
 

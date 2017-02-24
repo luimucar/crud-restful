@@ -2,6 +2,7 @@ import { Directive, OnChanges, Input, ViewContainerRef, ComponentFactoryResolver
 import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
+import { SelectComponent } from './components/select.component';
 
 @Directive({
     selector: '[crud-factory]'
@@ -48,6 +49,8 @@ export class CrudFactoryDirective implements OnChanges {
             comp = MultiSelectComponent;
         } else if (this.type == 'Chips') {
             comp = ChipsComponent;
+        } else if (this.type == 'Select') {
+            comp = SelectComponent;
         }
         if (comp) {
             this.create(comp);

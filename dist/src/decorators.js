@@ -66,4 +66,11 @@ function Chips(clazz) {
     return actualDecorator;
 }
 exports.Chips = Chips;
+function Select(clazz) {
+    function actualDecorator(target, property) {
+        CrudComponentObj.components.push(new CrudComponentObj(property, 'Select', clazz));
+    }
+    return actualDecorator;
+}
+exports.Select = Select;
 //# sourceMappingURL=decorators.js.map

@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 
 export class CrudComponentObj {
     public static components: CrudComponentObj[] = [];
+    public values: any[] = null;
     public value: any = null;
     public clazzName: string;
     public url : string;
@@ -66,6 +67,15 @@ export function MultiSelect(clazz: any, url : string, selectClazz : any, selectI
 export function Chips(clazz: any) {
     function actualDecorator(target: Object, property: string): void {
         CrudComponentObj.components.push(new CrudComponentObj(property, 'Chips', clazz));
+    }
+    return actualDecorator;
+}
+
+export function Select(clazz: any, values : any[]) {
+    function actualDecorator(target: Object, property: string): void {
+        let crudComponentObj = new CrudComponentObj(property, 'Select', clazz);
+        crudComponentObj.values = values;
+        CrudComponentObj.components.push(crudComponentObj);
     }
     return actualDecorator;
 }
