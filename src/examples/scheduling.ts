@@ -1,6 +1,19 @@
 import { Injectable } from '@angular/core';
 import { InputType, SaveEndPoint, MultiSelect, Chips } from '../index';
 
+export class Report {
+    constructor(public id: string) {
+    }
+}
+
+export class CarPark {
+    public checked : boolean;
+    public id: number;
+    public name: string;
+    constructor () {
+    }
+}
+
 @Injectable()
 @SaveEndPoint('')
 export class Scheduling {
@@ -12,8 +25,8 @@ export class Scheduling {
     @InputType(Scheduling, 'text')
     public name: string;
     
-    //@MultiSelect(Scheduling, 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 'reportList', 'id', 'name', Report)
-    //public reports: Report[];
+    @MultiSelect(Scheduling, 'http://www.mocky.io/v2/58822b002800002d05cbd40d', Report, 'reportList', 'id', 'name')
+    public reports: Report[];
     
     @Chips(Scheduling)
     public mails: string[];
@@ -22,13 +35,3 @@ export class Scheduling {
     public carParks: CarPark[];
 }
 
-export class Report {
-    constructor(public id: string) {
-    }
-}
-
-export class CarPark {
-    public checked : boolean;
-    constructor (public id?: number, public name?: string) {
-    }
-}

@@ -138,7 +138,7 @@ export class Service {
     }
 
 
-    public setBody(body): void {
+    public setBody(body : any): void {
         this.body = JSON.stringify(body);
     }
 

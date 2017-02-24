@@ -9,7 +9,7 @@ export class CrudComponentObj {
     public selectItemLabel: string;
     public selectItemValue : string;
     public selectClazz : any;
-    constructor(public name: string, public type: string, public clazz) {
+    constructor(public name: string, public type: string, public clazz : any) {
         this.clazzName = clazz.name;
     }
     public static getComponents(clazzName: string): CrudComponentObj[] {
@@ -50,13 +50,14 @@ export function SaveEndPoint(url: string) {
 }
 
 export function MultiSelect(clazz: any, url : string, selectClazz : any, selectItemArray : string, selectItemValue : string, selectItemLabel :string) {
+
     function actualDecorator(target: Object, property: string): void {
         let crudComponentObj = new CrudComponentObj(property, 'MultiSelect', clazz)
         crudComponentObj.url = url;
         crudComponentObj.selectItemArray = selectItemArray;
         crudComponentObj.selectItemLabel = selectItemLabel;
         crudComponentObj.selectItemValue = selectItemValue;
-        crudComponentObj.selectClazz = new selectClazz();
+        crudComponentObj.selectClazz = selectClazz;
         CrudComponentObj.components.push(crudComponentObj);
     }
     return actualDecorator;

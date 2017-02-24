@@ -31,9 +31,7 @@ export class MultiSelectComponent {
     
     selectedItem: string[];
     
-    ngOnInit() {
-        CrudComponentObj.components[this.index].value = [];
-        
+    ngOnInit() {       
         let crudComponentObj = CrudComponentObj.components[this.index];
         this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
         this.getMultiSelectValues(crudComponentObj.url)
@@ -42,7 +40,7 @@ export class MultiSelectComponent {
                     if (crudComponentObj.selectItemArray == null) {
                         this.itens.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });
                     } else {
-                        val[crudComponentObj.selectItemArray].forEach(val => {
+                        val[crudComponentObj.selectItemArray].forEach((val:any) => {
                             this.itens.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });                            
                         });
                     }
@@ -59,13 +57,19 @@ export class MultiSelectComponent {
     }
     
        
-    setValue(value:string){
+    setValue(value:string[]){
         let crudComponentObj = CrudComponentObj.components[this.index];
-        let ret = new crudComponentObj.selectClazz();
-        CrudComponentObj.components.forEach(obj => {
-            ret[obj.name] = obj.value;
-        });        
-        CrudComponentObj.components[this.index].value.push(ret);
+        CrudComponentObj.components[this.index].value = [];
+        value.forEach(v => {
+            let selectClazz = new crudComponentObj.selectClazz();
+            selectClazz[crudComponentObj.selectItemValue] = v;
+            this.itens.forEach(item => {
+                if (item.value == v) {
+                    selectClazz[crudComponentObj.selectItemLabel] = item.label;
+                }
+            });
+            CrudComponentObj.components[this.index].value.push(selectClazz);
+        });
     }
 }
 

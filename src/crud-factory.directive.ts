@@ -3,12 +3,6 @@ import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
 
-const typeMap = {
-    'text': InputTextComponent,
-    'MultiSelect' : MultiSelectComponent,
-    'Chips' : ChipsComponent
-}
-
 @Directive({
     selector: '[crud-factory]'
 })
@@ -22,7 +16,7 @@ export class CrudFactoryDirective implements OnChanges {
     @Input()
     name : string;
         
-    componentRef;
+    componentRef : any;
 
     init = false;
 
@@ -30,7 +24,7 @@ export class CrudFactoryDirective implements OnChanges {
         private vcRef: ViewContainerRef,
         private resolver: ComponentFactoryResolver) { }
 
-    create(comp) {
+    create(comp : any) {
         const factory = this.resolver.resolveComponentFactory(comp);
         const compRef = this.vcRef.createComponent(factory);
         (<any>compRef).instance.index = this.index;
@@ -47,7 +41,14 @@ export class CrudFactoryDirective implements OnChanges {
     ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
         if (this.init)
             return;
-        const comp = typeMap[this.type];
+        let comp;
+        if (this.type == 'text') {
+            comp = InputTextComponent;
+        } else if (this.type == 'MultiSelect') {
+            comp = MultiSelectComponent;
+        } else if (this.type == 'Chips') {
+            comp = ChipsComponent;
+        }
         if (comp) {
             this.create(comp);
         }

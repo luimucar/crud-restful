@@ -4,7 +4,7 @@ import {Service} from './services/index';
 
 @Component({
     selector: 'crud',   
-    templateUrl : './src/crud.html',
+    templateUrl : './crud.html',
     providers : [Service]
 })
 export class CrudComponent {
