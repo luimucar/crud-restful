@@ -6,6 +6,7 @@ import { PrimeNgModule } from './primeng.module';
 import { CrudFactoryDirective } from './crud-factory.directive';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
@@ -14,7 +15,7 @@ import { SelectComponent } from './components/select.component';
 
 @NgModule({
     declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent],
-    imports: [FormsModule, HttpModule, BrowserModule, RouterModule, PrimeNgModule.forRoot()],
+    imports: [ReactiveFormsModule, FormsModule, HttpModule, BrowserModule, RouterModule, PrimeNgModule.forRoot()],
     exports : [CrudComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent]

@@ -80,7 +80,7 @@ MultiSelectComponent = __decorate([
     core_1.Component({
         selector: 'inputText',
         providers: [index_2.Service],
-        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <p-multiSelect [options]=\"itens\" [(ngModel)]=\"selectedItem\" (onChange)=\"setValue($event.value)\" (disabled)=\"disabled\"></p-multiSelect>            \n            </div>            \n        </div>\n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <p-multiSelect [options]=\"itens\" [(ngModel)]=\"selectedItem\" (onChange)=\"setValue($event.value)\"></p-multiSelect>            \n            </div>            \n        </div>\n    "
     }),
     __metadata("design:paramtypes", [index_2.Service])
 ], MultiSelectComponent);

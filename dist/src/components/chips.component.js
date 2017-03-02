@@ -52,7 +52,7 @@ __decorate([
 ChipsComponent = __decorate([
     core_1.Component({
         selector: 'inputText',
-        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <p-chips [(ngModel)]=\"values\" (onAdd)=\"add($event.value)\" (onRemove)=\"remove($event.value)\" (disabled)=\"true\"></p-chips>\n            </div>            \n        </div>\n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <p-chips [(ngModel)]=\"values\" (onAdd)=\"add($event.value)\" (onRemove)=\"remove($event.value)\" [disabled]=\"disabled\"></p-chips>\n            </div>            \n        </div>\n    "
     })
 ], ChipsComponent);
 exports.ChipsComponent = ChipsComponent;

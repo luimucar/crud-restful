@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CrudComponentObj = (function () {
-    function CrudComponentObj(name, type, clazz, defaultValue) {
+    function CrudComponentObj(property, name, type, clazz, defaultValue) {
+        this.property = property;
         this.name = name;
         this.type = type;
         this.clazz = clazz;
@@ -28,23 +29,30 @@ exports.CrudComponentObj = CrudComponentObj;
 function getObject(clazz) {
     var ret = new clazz();
     CrudComponentObj.components.forEach(function (obj) {
-        ret[obj.name] = obj.value;
+        if (obj.type != 'EndPoint') {
+            ret[obj.property] = obj.value;
+        }
     });
     return ret;
 }
 exports.getObject = getObject;
-function SaveEndPoint(url) {
+function EndPoint(parameters) {
+    var createEndP = parameters['create'];
+    //let readEndP = parameters['read'];
+    //let updateEndP = parameters['update'];
+    //let deleteEndP = parameters['delete'];    
     function actualDecorator(constructor) {
         Object.seal(constructor);
         Object.seal(constructor.prototype);
+        var component = new CrudComponentObj(createEndP, createEndP, 'EndPoint', constructor);
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
-exports.SaveEndPoint = SaveEndPoint;
+exports.EndPoint = EndPoint;
 function InputType(parameters) {
     var name = parameters['name'];
     var inputType = parameters['type'];
-    var clazz = parameters['model'];
     var defaultValue = parameters['defaultValue'];
     var readOnly = parameters['readOnly'];
     var disabled = parameters['disabled'];
@@ -52,7 +60,7 @@ function InputType(parameters) {
         if (name == undefined) {
             name = property;
         }
-        var component = new CrudComponentObj(name, 'InputType', clazz, defaultValue);
+        var component = new CrudComponentObj(property, name, 'InputType', target.constructor, defaultValue);
         component.inputType = inputType;
         component.readOnly = readOnly;
         component.disabled = disabled;
@@ -63,50 +71,56 @@ function InputType(parameters) {
 exports.InputType = InputType;
 function MultiSelect(parameters) {
     var name = parameters['name'];
-    var clazz = parameters['model'];
     var url = parameters['url'];
     var selectItemArray = parameters['modelSelect'];
     var selectItemLabel = parameters['modelSelectLabel'];
     var selectItemValue = parameters['modelSelectValue'];
     var selectClazz = parameters['modelSelectClazz'];
+    var disabled = parameters['disabled'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
         }
-        var crudComponentObj = new CrudComponentObj(name, 'MultiSelect', clazz);
-        crudComponentObj.url = url;
-        crudComponentObj.selectItemArray = selectItemArray;
-        crudComponentObj.selectItemLabel = selectItemLabel;
-        crudComponentObj.selectItemValue = selectItemValue;
-        crudComponentObj.selectClazz = selectClazz;
-        CrudComponentObj.components.push(crudComponentObj);
+        var component = new CrudComponentObj(property, name, 'MultiSelect', target.constructor);
+        component.url = url;
+        component.selectItemArray = selectItemArray;
+        component.selectItemLabel = selectItemLabel;
+        component.selectItemValue = selectItemValue;
+        component.selectClazz = selectClazz;
+        component.disabled = disabled;
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 exports.MultiSelect = MultiSelect;
 function Chips(parameters) {
     var name = parameters['name'];
-    var clazz = parameters['model'];
+    var disabled = parameters['disabled'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
         }
-        CrudComponentObj.components.push(new CrudComponentObj(name, 'Chips', clazz));
+        var component = new CrudComponentObj(property, name, 'Chips', target.constructor);
+        component.disabled = disabled;
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 exports.Chips = Chips;
 function Select(parameters) {
     var name = parameters['name'];
-    var clazz = parameters['model'];
     var values = parameters['values'];
+    var disabled = parameters['disabled'];
+    var defaultValue = parameters['defaultValue'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
         }
-        var crudComponentObj = new CrudComponentObj(name, 'Select', clazz);
-        crudComponentObj.values = values;
-        CrudComponentObj.components.push(crudComponentObj);
+        var component = new CrudComponentObj(property, name, 'Select', target.constructor);
+        component.values = values;
+        component.disabled = disabled;
+        component.defaultValue = defaultValue;
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }

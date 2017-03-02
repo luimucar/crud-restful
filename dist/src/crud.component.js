@@ -14,6 +14,7 @@ var index_1 = require("./index");
 var index_2 = require("./services/index");
 var CrudComponent = (function () {
     function CrudComponent(service) {
+        this.service = service;
     }
     CrudComponent.prototype.ngOnInit = function () {
         this.components = index_1.CrudComponentObj.getComponents(this.clazz);

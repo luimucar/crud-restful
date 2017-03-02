@@ -1,5 +1,33 @@
 import * as $ from 'jquery';
 
+export class CrudEndPoint {
+    public static endPoints: CrudEndPoint[] = [];
+    public clazz : any;     
+    public createEndP : string;
+    public readEndP : string;
+    public updateEndP : string;
+    public deleteEndP : string;
+    public static getEndPoint(clazzName: string, type : string) : string {
+        let endPoint : string = undefined;
+        if (CrudEndPoint.endPoints.length > 0) {
+            CrudEndPoint.endPoints.forEach(endP => {
+                if (endP.clazz == clazzName) {                    
+                    if (type == 'create') {
+                        endPoint = endP.createEndP;
+                    } else if (type == 'read') {
+                        endPoint = endP.readEndP;
+                    } else if (type == 'update') {
+                        endPoint = endP.updateEndP;
+                    } else if (type == 'delete') {
+                        endPoint = endP.deleteEndP;
+                    }
+                }
+            });
+        }
+        return endPoint;
+    }
+}
+
 export class CrudComponentObj {
     public static components: CrudComponentObj[] = [];
     public values: any[] = null;
@@ -13,6 +41,7 @@ export class CrudComponentObj {
     public readOnly : boolean;
     public disabled : boolean;
     public inputType : string;
+
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
     }
@@ -37,10 +66,29 @@ export function getObject(clazz: any): any {
     return ret;
 }
 
-export function SaveEndPoint(url: string) {
-    function actualDecorator(constructor: Function) {
+export function EndPoint(parameters : any) {
+    let createEndP = parameters['Create'];
+    let readEndP = parameters['Read'];
+    let updateEndP = parameters['Update'];
+    let deleteEndP = parameters['Delete'];    
+    function actualDecorator(constructor: Function) {        
         Object.seal(constructor);
         Object.seal(constructor.prototype);
+        let crudEndPoint : CrudEndPoint = new CrudEndPoint();
+        crudEndPoint.clazz = constructor;
+        crudEndPoint.createEndP = createEndP;
+        crudEndPoint.readEndP = readEndP;
+        crudEndPoint.updateEndP = updateEndP;
+        crudEndPoint.deleteEndP = deleteEndP;
+        CrudEndPoint.endPoints.push(crudEndPoint);
+    }
+    return actualDecorator;
+}
+
+export function Id() {
+    function actualDecorator(target: Object, property: string): void {
+        let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', target.constructor);
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
@@ -48,7 +96,6 @@ export function SaveEndPoint(url: string) {
 export function InputType(parameters : any) {
     let name = parameters['name'];
     let inputType = parameters['type'];
-    let clazz = parameters['model'];
     let defaultValue = parameters['defaultValue'];
     let readOnly = parameters['readOnly'];
     let disabled = parameters['disabled'];
@@ -56,7 +103,7 @@ export function InputType(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let component : CrudComponentObj = new CrudComponentObj(property, name, 'InputType', clazz, defaultValue);
+        let component : CrudComponentObj = new CrudComponentObj(property, name, 'InputType', target.constructor, defaultValue);
         component.inputType = inputType;
         component.readOnly = readOnly;
         component.disabled = disabled;
@@ -67,7 +114,6 @@ export function InputType(parameters : any) {
 
 export function MultiSelect(parameters : any) {
     let name = parameters['name'];
-    let clazz = parameters['model'];
     let url = parameters['url'];
     let selectItemArray = parameters['modelSelect'];
     let selectItemLabel = parameters['modelSelectLabel'];
@@ -78,7 +124,7 @@ export function MultiSelect(parameters : any) {
         if (name == undefined) {
             name = property;
         }        
-        let component = new CrudComponentObj(property, name, 'MultiSelect', clazz)
+        let component = new CrudComponentObj(property, name, 'MultiSelect', target.constructor)
         component.url = url;
         component.selectItemArray = selectItemArray;
         component.selectItemLabel = selectItemLabel;
@@ -92,13 +138,12 @@ export function MultiSelect(parameters : any) {
 
 export function Chips(parameters : any) {
     let name = parameters['name'];
-    let clazz = parameters['model'];  
     let disabled = parameters['disabled'];     
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
         }        
-        let component = new CrudComponentObj(property, name, 'Chips', clazz);
+        let component = new CrudComponentObj(property, name, 'Chips', target.constructor);
         component.disabled = disabled;
         CrudComponentObj.components.push(component);
     }
@@ -107,7 +152,6 @@ export function Chips(parameters : any) {
 
 export function Select(parameters : any) {
     let name = parameters['name'];
-    let clazz = parameters['model'];
     let values = parameters['values'];
     let disabled = parameters['disabled'];
     let defaultValue = parameters['defaultValue'];
@@ -115,7 +159,7 @@ export function Select(parameters : any) {
         if (name == undefined) {
             name = property;
         }        
-        let component = new CrudComponentObj(property, name, 'Select', clazz);
+        let component = new CrudComponentObj(property, name, 'Select', target.constructor);
         component.values = values;
         component.disabled = disabled;
         component.defaultValue = defaultValue;

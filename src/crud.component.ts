@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {getObject, CrudComponentObj} from './index';
+import {getObject, CrudComponentObj, CrudEndPoint} from './index';
 import {Service} from './services/index';
 
 @Component({
@@ -13,7 +13,7 @@ export class CrudComponent {
     
     components: CrudComponentObj[];
     
-    constructor(service: Service) {
+    constructor(public service: Service) {
     }
     
     ngOnInit() {
@@ -24,6 +24,15 @@ export class CrudComponent {
         if (this.components.length > 0) {
             let obj = getObject(this.components[0].clazz);
             console.log(obj);
+            let endP = CrudEndPoint.getEndPoint(this.components[0].clazz, 'create');
+            this.service.setBody(obj);
+            this.service.post(endP)
+                .subscribe(v => {
+                    console.log('ok');
+                },
+                err => {
+                    console.log(err);
+                });            
         }
     }
 }

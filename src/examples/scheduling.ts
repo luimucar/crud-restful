@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InputType, SaveEndPoint, MultiSelect, Chips, Select } from '../index';
+import { Id, InputType, EndPoint, MultiSelect, Chips, Select } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -15,16 +15,22 @@ export class CarPark {
 }
 
 @Injectable()
-@SaveEndPoint('')
+@EndPoint({
+    Create : 'http://requestb.in/10h1r4i1',
+    Read : '',
+    Update : '',
+    Delete : ''
+    
+})
 export class Scheduling {
     constructor() {
     }
     
+    @Id()
     public id: number;
     
     @InputType({
         name : 'User:',
-        model : Scheduling,
         type : 'text',
         defaultValue : 'Cláudio Margulhano',
         readOnly : true
@@ -33,7 +39,6 @@ export class Scheduling {
 
     @InputType({
         name : 'Password:',
-        model : Scheduling,
         type : 'password',
         defaultValue : '123'
     })
@@ -41,7 +46,6 @@ export class Scheduling {
     
     @InputType({
         name : 'Admin:',
-        model : Scheduling,
         type : 'checkbox',
         defaultValue : true
     })
@@ -49,7 +53,6 @@ export class Scheduling {
     
             
     @MultiSelect({
-        model : Scheduling,
         url : 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 
         modelSelect : 'reportList',        
         modelSelectClazz : Report, 
@@ -60,23 +63,19 @@ export class Scheduling {
     public reports: Report[];
     
     @Chips({
-        model : Scheduling,
         disabled : false
     })
     public mails: string[];
     
     @MultiSelect({
-        model : Scheduling,
         url : 'http://www.mocky.io/v2/583ecaf7240000f20383b35d', 
         modelSelectClazz : CarPark, 
         modelSelectValue : 'id', 
         modelSelectLabel : 'name'
     })
-    
     public carParks: CarPark[];
     
     @Select({
-        model : Scheduling, 
         values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
         defaultValue : 2
     })

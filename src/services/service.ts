@@ -1,32 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-
-// Import RxJs required methods
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import * as Rx from "rxjs/Rx"
 
 @Injectable()
 export class Service {
 
-    DEBUG : boolean = false;
     private header: RequestOptions;
     private body: any;
 
 
     constructor(private http: Http) {
-        // Check if is DEBUG
-        if (this.DEBUG) {
-            this.setHeader(null, false);
-        } else {
-            let header = { 'Content-Type': 'application/json' };
-            this.setHeader(header, true);
-        }
-
+        let header = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+        this.setHeader(header, false);
         this.body = '';
     }
 
-    public get(url: string, json: boolean = true): any {
+    public get(url: string, json: boolean = true): Observable<any> {
 
         return this.http.get(url, this.getHeader)
             .map((res: Response) => {
@@ -48,7 +38,7 @@ export class Service {
             });
     }
 
-    public post(url: string, json: boolean = true): any {
+    public post(url: string, json: boolean = true): Observable<any> {
 
         return this.http.post(url, this.getBody, this.getHeader)
             .map((res: Response) => {
@@ -73,7 +63,7 @@ export class Service {
             });
     }
 
-    public put(url: string, json: boolean = true): any {
+    public put(url: string, json: boolean = true): Observable<any> {
 
         return this.http.put(url, this.getBody, this.getHeader)
             .map((res: Response) => {
@@ -98,7 +88,7 @@ export class Service {
             });
     }
 
-    public delete(url: string, json: boolean = true): any {
+    public delete(url: string, json: boolean = true): Observable<any> {
 
         return this.http.delete(url, this.getHeader)
             .map((res: Response) => {

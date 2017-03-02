@@ -35,10 +35,11 @@ export class InputTextComponent extends BaseComponent {
     }
     
     setValue(value:string){
-        if (this.inputType == 'text') {
-            CrudComponentObj.components[this.index].value = value;
+        if (this.inputType == 'checkbox') {
+            CrudComponentObj.components[this.index].value = $('#'+this.id).is(':checked');
         } else {
-            CrudComponentObj.components[this.index].value = $('#'+this.id).is(':checked');           
+            CrudComponentObj.components[this.index].value = value;
+            
         }
     }
 }

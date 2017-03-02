@@ -22,18 +22,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var index_1 = require("../index");
 var base_component_1 = require("./base.component");
+var $ = require("jquery");
 var InputTextComponent = (function (_super) {
     __extends(InputTextComponent, _super);
     function InputTextComponent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     InputTextComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.readCommonsParameters(this.index);
         var crudComponentObj = index_1.CrudComponentObj.components[this.index];
         this.inputType = crudComponentObj.inputType;
+        setTimeout(function () {
+            if (_this.value) {
+                $('#' + _this.id).attr('checked', 'true');
+            }
+        }, 50);
     };
     InputTextComponent.prototype.setValue = function (value) {
-        index_1.CrudComponentObj.components[this.index].value = value;
+        if (this.inputType == 'checkbox') {
+            index_1.CrudComponentObj.components[this.index].value = $('#' + this.id).is(':checked');
+        }
+        else {
+            index_1.CrudComponentObj.components[this.index].value = value;
+        }
     };
     return InputTextComponent;
 }(base_component_1.BaseComponent));
@@ -44,7 +56,7 @@ __decorate([
 InputTextComponent = __decorate([
     core_1.Component({
         selector: 'inputText',
-        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <input pInputText type=\"{{inputType}}\" name=\"{{name}}\" [value]=\"value\" (keypress)=\"setValue(myInput.value)\" (blur)=\"setValue(myInput.value)\" readonly=\"readonly\" disabled=\"disabled\" #myInput>\n            </div>            \n        </div>\n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <input pInputText id=\"{{id}}\" type=\"{{inputType}}\" name=\"{{name}}\" [value]=\"value\" (click)=\"setValue(myInput.value)\" (keypress)=\"setValue(myInput.value)\" (blur)=\"setValue(myInput.value)\" [readonly]=\"readonly\" [disabled]=\"disabled\" #myInput>\n            </div>            \n        </div>\n    "
     })
 ], InputTextComponent);
 exports.InputTextComponent = InputTextComponent;
