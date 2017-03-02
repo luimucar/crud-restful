@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -12,19 +22,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var index_1 = require("../index");
 var index_2 = require("../services/index");
-var MultiSelectComponent = (function () {
+var base_component_1 = require("./base.component");
+var MultiSelectComponent = (function (_super) {
+    __extends(MultiSelectComponent, _super);
     function MultiSelectComponent(service) {
-        this.service = service;
-        this.itens = [];
+        var _this = _super.call(this) || this;
+        _this.service = service;
+        _this.itens = [];
+        return _this;
     }
     MultiSelectComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.readCommonsParameters(this.index);
         var crudComponentObj = index_1.CrudComponentObj.components[this.index];
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
         this.getMultiSelectValues(crudComponentObj.url)
             .subscribe(function (values) {
             values.forEach(function (val) {
-                if (crudComponentObj.selectItemArray == null) {
+                if (crudComponentObj.selectItemArray == undefined) {
                     _this.itens.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });
                 }
                 else {
@@ -57,20 +71,16 @@ var MultiSelectComponent = (function () {
         });
     };
     return MultiSelectComponent;
-}());
+}(base_component_1.BaseComponent));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], MultiSelectComponent.prototype, "index", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MultiSelectComponent.prototype, "name", void 0);
 MultiSelectComponent = __decorate([
     core_1.Component({
         selector: 'inputText',
         providers: [index_2.Service],
-        template: "\n        <div class=\"col-md-4\">    \n            <label>{{name}}</label>\n        </div>\n        <div class=\"col-md-8\">    \n            <p-multiSelect [options]=\"itens\" [(ngModel)]=\"selectedItem\" (onChange)=\"setValue($event.value)\"></p-multiSelect>            \n        </div>            \n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <p-multiSelect [options]=\"itens\" [(ngModel)]=\"selectedItem\" (onChange)=\"setValue($event.value)\" (disabled)=\"disabled\"></p-multiSelect>            \n            </div>            \n        </div>\n    "
     }),
     __metadata("design:paramtypes", [index_2.Service])
 ], MultiSelectComponent);

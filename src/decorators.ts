@@ -10,7 +10,10 @@ export class CrudComponentObj {
     public selectItemLabel: string;
     public selectItemValue : string;
     public selectClazz : any;
-    constructor(public name: string, public type: string, public clazz : any) {
+    public readOnly : boolean;
+    public disabled : boolean;
+    public inputType : string;
+    constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
     }
     public static getComponents(clazzName: string): CrudComponentObj[] {
@@ -29,17 +32,9 @@ export class CrudComponentObj {
 export function getObject(clazz: any): any {
     let ret = new clazz();
     CrudComponentObj.components.forEach(obj => {
-        ret[obj.name] = obj.value;
+        ret[obj.property] = obj.value;
     });
     return ret;
-}
-
-
-export function InputType(clazz: any, inputType: string) {
-    function actualDecorator(target: Object, property: string): void {
-        CrudComponentObj.components.push(new CrudComponentObj(property, inputType, clazz));
-    }
-    return actualDecorator;
 }
 
 export function SaveEndPoint(url: string) {
@@ -50,32 +45,81 @@ export function SaveEndPoint(url: string) {
     return actualDecorator;
 }
 
-export function MultiSelect(clazz: any, url : string, selectClazz : any, selectItemArray : string, selectItemValue : string, selectItemLabel :string) {
-
+export function InputType(parameters : any) {
+    let name = parameters['name'];
+    let inputType = parameters['type'];
+    let clazz = parameters['model'];
+    let defaultValue = parameters['defaultValue'];
+    let readOnly = parameters['readOnly'];
+    let disabled = parameters['disabled'];
     function actualDecorator(target: Object, property: string): void {
-        let crudComponentObj = new CrudComponentObj(property, 'MultiSelect', clazz)
-        crudComponentObj.url = url;
-        crudComponentObj.selectItemArray = selectItemArray;
-        crudComponentObj.selectItemLabel = selectItemLabel;
-        crudComponentObj.selectItemValue = selectItemValue;
-        crudComponentObj.selectClazz = selectClazz;
-        CrudComponentObj.components.push(crudComponentObj);
+        if (name == undefined) {
+            name = property;
+        }
+        let component : CrudComponentObj = new CrudComponentObj(property, name, 'InputType', clazz, defaultValue);
+        component.inputType = inputType;
+        component.readOnly = readOnly;
+        component.disabled = disabled;
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 
-export function Chips(clazz: any) {
+export function MultiSelect(parameters : any) {
+    let name = parameters['name'];
+    let clazz = parameters['model'];
+    let url = parameters['url'];
+    let selectItemArray = parameters['modelSelect'];
+    let selectItemLabel = parameters['modelSelectLabel'];
+    let selectItemValue = parameters['modelSelectValue'];
+    let selectClazz = parameters['modelSelectClazz'];
+    let disabled = parameters['disabled'];    
     function actualDecorator(target: Object, property: string): void {
-        CrudComponentObj.components.push(new CrudComponentObj(property, 'Chips', clazz));
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'MultiSelect', clazz)
+        component.url = url;
+        component.selectItemArray = selectItemArray;
+        component.selectItemLabel = selectItemLabel;
+        component.selectItemValue = selectItemValue;
+        component.selectClazz = selectClazz;
+        component.disabled = disabled;        
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 
-export function Select(clazz: any, values : any[]) {
+export function Chips(parameters : any) {
+    let name = parameters['name'];
+    let clazz = parameters['model'];  
+    let disabled = parameters['disabled'];     
     function actualDecorator(target: Object, property: string): void {
-        let crudComponentObj = new CrudComponentObj(property, 'Select', clazz);
-        crudComponentObj.values = values;
-        CrudComponentObj.components.push(crudComponentObj);
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'Chips', clazz);
+        component.disabled = disabled;
+        CrudComponentObj.components.push(component);
+    }
+    return actualDecorator;
+}
+
+export function Select(parameters : any) {
+    let name = parameters['name'];
+    let clazz = parameters['model'];
+    let values = parameters['values'];
+    let disabled = parameters['disabled'];
+    let defaultValue = parameters['defaultValue'];
+    function actualDecorator(target: Object, property: string): void {
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'Select', clazz);
+        component.values = values;
+        component.disabled = disabled;
+        component.defaultValue = defaultValue;
+        CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }

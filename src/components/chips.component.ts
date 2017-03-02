@@ -1,31 +1,30 @@
 import { Component, Input } from '@angular/core';
 import { CrudComponentObj } from '../index';
+import { BaseComponent } from './base.component';
 
 @Component({
     selector: 'inputText',
     template: `
-        <div class="col-md-4">    
-            <label>{{name}}</label>
+        <div class="row">
+            <div class="col-md-4">    
+                <label>{{name}}</label>
+            </div>
+            <div class="col-md-8">    
+                <p-chips [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
+            </div>            
         </div>
-        <div class="col-md-8">    
-            <p-chips [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)"></p-chips>
-        </div>            
     `
 })
 
-export class ChipsComponent {
+export class ChipsComponent extends BaseComponent {
     @Input()
     index : number;
-    
-    @Input()
-    name : string;
-    
+       
     values: string[];
     
     ngOnInit() {
+        this.readCommonsParameters(this.index);
         CrudComponentObj.components[this.index].value = [];
-        //this.value = CrudComponentObj.components[this.index].value;
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1)
     }
     
     add(value:string) {

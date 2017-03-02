@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CrudComponentObj = (function () {
-    function CrudComponentObj(name, type, clazz) {
+    function CrudComponentObj(name, type, clazz, defaultValue) {
         this.name = name;
         this.type = type;
         this.clazz = clazz;
+        this.defaultValue = defaultValue;
+        this.values = null;
         this.value = null;
         this.clazzName = clazz.name;
     }
@@ -31,13 +33,6 @@ function getObject(clazz) {
     return ret;
 }
 exports.getObject = getObject;
-function InputType(clazz, inputType) {
-    function actualDecorator(target, property) {
-        CrudComponentObj.components.push(new CrudComponentObj(property, inputType, clazz));
-    }
-    return actualDecorator;
-}
-exports.InputType = InputType;
 function SaveEndPoint(url) {
     function actualDecorator(constructor) {
         Object.seal(constructor);
@@ -46,9 +41,39 @@ function SaveEndPoint(url) {
     return actualDecorator;
 }
 exports.SaveEndPoint = SaveEndPoint;
-function MultiSelect(clazz, url, selectClazz, selectItemArray, selectItemValue, selectItemLabel) {
+function InputType(parameters) {
+    var name = parameters['name'];
+    var inputType = parameters['type'];
+    var clazz = parameters['model'];
+    var defaultValue = parameters['defaultValue'];
+    var readOnly = parameters['readOnly'];
+    var disabled = parameters['disabled'];
     function actualDecorator(target, property) {
-        var crudComponentObj = new CrudComponentObj(property, 'MultiSelect', clazz);
+        if (name == undefined) {
+            name = property;
+        }
+        var component = new CrudComponentObj(name, 'InputType', clazz, defaultValue);
+        component.inputType = inputType;
+        component.readOnly = readOnly;
+        component.disabled = disabled;
+        CrudComponentObj.components.push(component);
+    }
+    return actualDecorator;
+}
+exports.InputType = InputType;
+function MultiSelect(parameters) {
+    var name = parameters['name'];
+    var clazz = parameters['model'];
+    var url = parameters['url'];
+    var selectItemArray = parameters['modelSelect'];
+    var selectItemLabel = parameters['modelSelectLabel'];
+    var selectItemValue = parameters['modelSelectValue'];
+    var selectClazz = parameters['modelSelectClazz'];
+    function actualDecorator(target, property) {
+        if (name == undefined) {
+            name = property;
+        }
+        var crudComponentObj = new CrudComponentObj(name, 'MultiSelect', clazz);
         crudComponentObj.url = url;
         crudComponentObj.selectItemArray = selectItemArray;
         crudComponentObj.selectItemLabel = selectItemLabel;
@@ -59,16 +84,29 @@ function MultiSelect(clazz, url, selectClazz, selectItemArray, selectItemValue, 
     return actualDecorator;
 }
 exports.MultiSelect = MultiSelect;
-function Chips(clazz) {
+function Chips(parameters) {
+    var name = parameters['name'];
+    var clazz = parameters['model'];
     function actualDecorator(target, property) {
-        CrudComponentObj.components.push(new CrudComponentObj(property, 'Chips', clazz));
+        if (name == undefined) {
+            name = property;
+        }
+        CrudComponentObj.components.push(new CrudComponentObj(name, 'Chips', clazz));
     }
     return actualDecorator;
 }
 exports.Chips = Chips;
-function Select(clazz) {
+function Select(parameters) {
+    var name = parameters['name'];
+    var clazz = parameters['model'];
+    var values = parameters['values'];
     function actualDecorator(target, property) {
-        CrudComponentObj.components.push(new CrudComponentObj(property, 'Select', clazz));
+        if (name == undefined) {
+            name = property;
+        }
+        var crudComponentObj = new CrudComponentObj(name, 'Select', clazz);
+        crudComponentObj.values = values;
+        CrudComponentObj.components.push(crudComponentObj);
     }
     return actualDecorator;
 }

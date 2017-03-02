@@ -1,42 +1,37 @@
 import { Component, Input } from '@angular/core';
 import { CrudComponentObj } from '../index';
+import { BaseComponent } from './base.component';
 
 @Component({
     selector: 'selectInput',
     template: `
-        <div class="col-md-4">    
-            <label>{{name}}</label>
-        </div>
-        <div class="col-md-8">    
-            <select [ngModel]="selectedObj" (ngModelChange)="onChangeObj($event)">
-                <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
-            </select>
-
+        <div class="row">
+            <div class="col-md-4">    
+                <label>{{name}}</label>
+            </div>
+            <div class="col-md-8">    
+                <select [ngModel]="value" (ngModelChange)="onChangeObj($event)">
+                    <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
+                </select>
+            </div>
         </div>
     `
 })
 
-export class SelectComponent {
+export class SelectComponent extends BaseComponent {
     @Input()
     index : number;
     
-    @Input()
     name : string;
-
-    selectedObj : string;
-    
-    values : any [];
     
     ngOnInit() {
+        this.readCommonsParameters(this.index);
         let crudComponentObj = CrudComponentObj.components[this.index];
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
-        this.values = crudComponentObj.values;
     }
     
     onChangeObj(value:any) {
         let crudComponentObj = CrudComponentObj.components[this.index];
         CrudComponentObj.components[this.index].value = value;
-        this.selectedObj = value;
     }
 }    
 

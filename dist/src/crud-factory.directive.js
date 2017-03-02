@@ -24,7 +24,6 @@ var CrudFactoryDirective = (function () {
         var factory = this.resolver.resolveComponentFactory(comp);
         var compRef = this.vcRef.createComponent(factory);
         compRef.instance.index = this.index;
-        compRef.instance.name = this.name;
         if (this.componentRef) {
             this.componentRef.destroy();
         }
@@ -35,7 +34,7 @@ var CrudFactoryDirective = (function () {
         if (this.init)
             return;
         var comp;
-        if (this.type == 'text') {
+        if (this.type == 'InputType') {
             comp = input_component_1.InputTextComponent;
         }
         else if (this.type == 'MultiSelect') {
@@ -67,10 +66,6 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], CrudFactoryDirective.prototype, "index", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], CrudFactoryDirective.prototype, "name", void 0);
 CrudFactoryDirective = __decorate([
     core_1.Directive({
         selector: '[crud-factory]'

@@ -15,19 +15,15 @@ var SelectComponent = (function () {
     function SelectComponent() {
     }
     SelectComponent.prototype.ngOnInit = function () {
+        var crudComponentObj = index_1.CrudComponentObj.components[this.index];
+        this.name = index_1.CrudComponentObj.components[this.index].name;
         this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+        this.values = crudComponentObj.values;
     };
-    SelectComponent.prototype.add = function (value) {
-        index_1.CrudComponentObj.components[this.index].value.push(value);
-    };
-    SelectComponent.prototype.remove = function (value) {
-        var myArray = index_1.CrudComponentObj.components[this.index].value;
-        for (var i = myArray.length - 1; i >= 0; i--) {
-            if (myArray[i] == value) {
-                myArray.splice(i, 1);
-            }
-        }
-        index_1.CrudComponentObj.components[this.index].value = myArray;
+    SelectComponent.prototype.onChangeObj = function (value) {
+        var crudComponentObj = index_1.CrudComponentObj.components[this.index];
+        index_1.CrudComponentObj.components[this.index].value = value;
+        this.selectedObj = value;
     };
     return SelectComponent;
 }());
@@ -35,14 +31,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], SelectComponent.prototype, "index", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "name", void 0);
 SelectComponent = __decorate([
     core_1.Component({
         selector: 'selectInput',
-        template: "\n        <label>{{name}}</label>\n        <select [(ngModel)]=\"selected\">\n            <option *ngFor=\"let period of periods\" value=\"{{period.value}}\" label=\"{{period.label}}\"></option>\n        </select>    \n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <select [ngModel]=\"selectedObj\" (ngModelChange)=\"onChangeObj($event)\">\n                    <option [ngValue]=\"i.value\" *ngFor=\"let i of values\">{{i.label}}</option>\n                </select>\n            </div>\n        </div>\n    "
     })
 ], SelectComponent);
 exports.SelectComponent = SelectComponent;

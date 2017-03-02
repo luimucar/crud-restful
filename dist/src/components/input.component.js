@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,31 +21,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var index_1 = require("../index");
-var InputTextComponent = (function () {
+var base_component_1 = require("./base.component");
+var InputTextComponent = (function (_super) {
+    __extends(InputTextComponent, _super);
     function InputTextComponent() {
-        this.value = '';
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     InputTextComponent.prototype.ngOnInit = function () {
-        this.value = index_1.CrudComponentObj.components[this.index].value;
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+        this.readCommonsParameters(this.index);
+        var crudComponentObj = index_1.CrudComponentObj.components[this.index];
+        this.inputType = crudComponentObj.inputType;
     };
     InputTextComponent.prototype.setValue = function (value) {
         index_1.CrudComponentObj.components[this.index].value = value;
     };
     return InputTextComponent;
-}());
+}(base_component_1.BaseComponent));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], InputTextComponent.prototype, "index", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputTextComponent.prototype, "name", void 0);
 InputTextComponent = __decorate([
     core_1.Component({
         selector: 'inputText',
-        template: "\n        <div class=\"col-md-4\">    \n            <label>{{name}}</label>\n        </div>\n        <div class=\"col-md-8\">    \n            <input pInputText type=\"text\" name=\"{{name}}\" [value]=\"value\" (keypress)=\"setValue(myInput.value)\" (blur)=\"setValue(myInput.value)\" #myInput>\n        </div>            \n    "
+        template: "\n        <div class=\"row\">\n            <div class=\"col-md-4\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-8\">    \n                <input pInputText type=\"{{inputType}}\" name=\"{{name}}\" [value]=\"value\" (keypress)=\"setValue(myInput.value)\" (blur)=\"setValue(myInput.value)\" readonly=\"readonly\" disabled=\"disabled\" #myInput>\n            </div>            \n        </div>\n    "
     })
 ], InputTextComponent);
 exports.InputTextComponent = InputTextComponent;

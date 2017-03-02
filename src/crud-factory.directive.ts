@@ -14,9 +14,7 @@ export class CrudFactoryDirective implements OnChanges {
     @Input()
     index : number;
 
-    @Input()
-    name : string;
-        
+      
     componentRef : any;
 
     init = false;
@@ -29,7 +27,6 @@ export class CrudFactoryDirective implements OnChanges {
         const factory = this.resolver.resolveComponentFactory(comp);
         const compRef = this.vcRef.createComponent(factory);
         (<any>compRef).instance.index = this.index;
-        (<any>compRef).instance.name = this.name;
 
         if (this.componentRef) {
             this.componentRef.destroy();
@@ -43,7 +40,7 @@ export class CrudFactoryDirective implements OnChanges {
         if (this.init)
             return;
         let comp;
-        if (this.type == 'text') {
+        if (this.type == 'InputType') {
             comp = InputTextComponent;
         } else if (this.type == 'MultiSelect') {
             comp = MultiSelectComponent;
