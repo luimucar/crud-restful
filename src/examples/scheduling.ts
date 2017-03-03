@@ -34,6 +34,7 @@ export class Scheduling {
         type : 'text',
         defaultValue : 'Cláudio Margulhano',
         readOnly : true,
+        autoWidth : true,
         order : 0
     })
     public name: string;
@@ -42,6 +43,7 @@ export class Scheduling {
         name : 'Password:',
         type : 'password',
         defaultValue : '123',
+        autoWidth : true,
         order : 1
     })
     public password: string;
@@ -68,6 +70,7 @@ export class Scheduling {
     
     @Chips({
         disabled : false,
+        autoWidth : true,
         order : 4
     })
     public mails: string[];

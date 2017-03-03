@@ -6,11 +6,11 @@ import { BaseComponent } from './base.component';
     selector: 'inputText',
     template: `
         <div class="row">
-            <div class="col-md-4">    
+            <div class="col-md-2">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-8">    
-                <p-chips [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
+            <div class="col-md-10">    
+                <p-chips [style.width]="width" [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
             </div>            
         </div>
     `

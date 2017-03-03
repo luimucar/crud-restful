@@ -1,12 +1,12 @@
 {
   "name": "crud-restful",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "test": "tsc && karma start",
     "prepublish": "tsc",
     "tsc": "tsc",
-    "clean": "rm -rf ./dist/*;find . -name '*.ng???????*.*' -exec rm {} \\;",
+    "clean": "rm -rf ./dist/*; rm *.log; find . -name '*.ng???????*.*' -exec rm {} \\;",
     "webpack": "webpack",
     "webpack:w": "webpack -w",
     "webpack-dev-server": "webpack-dev-server --port 8080",

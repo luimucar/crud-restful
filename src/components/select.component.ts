@@ -6,11 +6,11 @@ import { BaseComponent } from './base.component';
     selector: 'selectInput',
     template: `
         <div class="row">
-            <div class="col-md-4">    
+            <div class="col-md-2">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-8">    
-                <select [ngModel]="value" (ngModelChange)="onChangeObj($event)">
+            <div class="col-md-10">    
+                <select [style.width]="width" [ngModel]="value" (ngModelChange)="onChangeObj($event)">
                     <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
                 </select>
             </div>

@@ -7,11 +7,11 @@ import * as $ from 'jquery';
     selector: 'inputText',
     template: `
         <div class="row">
-            <div class="col-md-4">    
+            <div class="col-md-2">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-8">    
-                <input pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
+            <div class="col-md-10">    
+                <input [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
             </div>            
         </div>
     `

@@ -15,6 +15,8 @@ export class BaseComponent {
     public disabled : boolean = false;  
     public values : any [];
     public order : number;
+    public autoWidth : boolean;
+    public width : string;
     
     readCommonsParameters(index : number) {
         this.id = CrudComponentObj.getComponents(this.clazzName)[index].property;
@@ -33,6 +35,12 @@ export class BaseComponent {
             this.disabled = false;
         }
         this.order = CrudComponentObj.getComponents(this.clazzName)[index].order;
+        this.autoWidth = CrudComponentObj.getComponents(this.clazzName)[index].autoWidth;
+        if (this.autoWidth) {
+            this.width = "100%";
+        } else {
+            this.width = CrudComponentObj.getComponents(this.clazzName)[index].width;
+        }
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
 }
