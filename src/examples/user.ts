@@ -3,39 +3,30 @@ import { Id, InputType, EndPoint, MultiSelect, Chips, Select } from '../index';
 
 @Injectable()
 export class User {
+    @InputType({
+        name : 'Password:',
+        type : 'password',
+        autoWidth : true,
+        order : 1
+    })
+    public passwordConfirmation;
+
     constructor(
         @InputType({
             name : 'User:',
             type : 'text',
             readOnly : true,
+            disabled : true,            
             autoWidth : true,
-            colMdLeft : 5,
-            colMdRigth: 7,
             order : 0
-        })public name?: string) {
-    }
-    
-    @Id()
-    public id: number;
-    
-
-    @InputType({
-        name : 'Password:',
-        type : 'password',
-        defaultValue : '123',
-        autoWidth : true,
-        order : 1
-    })
-    public password: string;
-    
-    @InputType({
-        name : 'Password confirmation:',
-        type : 'password',
-        defaultValue : '123',
-        autoWidth : true,
-        order : 2
-    })
-    public passwordConfirmation: string; 
-       
+        })
+        public username?: string, 
+        @InputType({
+            name : 'Confirmation:',
+            type : 'password',
+            autoWidth : true,
+            order : 2
+        })        
+        public password?:string, 
+        public token?: string) {}
 }
-

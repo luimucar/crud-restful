@@ -16,7 +16,8 @@ export class App {
     user : User;
     constructor() {
         this.user = new User('Cláudio');
-        this.user.password = 'blblblba';
+        this.user.password = '123';
+        this.user.passwordConfirmation = '123';
     }
     handleOnSave(user : User) {
         console.log(user);
