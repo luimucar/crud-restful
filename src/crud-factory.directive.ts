@@ -13,6 +13,9 @@ export class CrudFactoryDirective implements OnChanges {
     
     @Input()
     index : number;
+    
+    @Input()
+    clazzName : string;
 
       
     componentRef : any;
@@ -27,6 +30,7 @@ export class CrudFactoryDirective implements OnChanges {
         const factory = this.resolver.resolveComponentFactory(comp);
         const compRef = this.vcRef.createComponent(factory);
         (<any>compRef).instance.index = this.index;
+        (<any>compRef).instance.clazzName = this.clazzName;
 
         if (this.componentRef) {
             this.componentRef.destroy();

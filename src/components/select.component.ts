@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 
@@ -18,20 +18,15 @@ import { BaseComponent } from './base.component';
     `
 })
 
-export class SelectComponent extends BaseComponent {
-    @Input()
-    index : number;
-    
-    name : string;
-    
+export class SelectComponent extends BaseComponent {   
     ngOnInit() {
         this.readCommonsParameters(this.index);
-        let crudComponentObj = CrudComponentObj.components[this.index];
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
     }
     
     onChangeObj(value:any) {
-        let crudComponentObj = CrudComponentObj.components[this.index];
-        CrudComponentObj.components[this.index].value = value;
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
     }
 }    
 

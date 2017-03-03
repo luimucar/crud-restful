@@ -12,21 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Rx_1 = require("rxjs/Rx");
-// Import RxJs required methods
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/catch");
 var Service = (function () {
     function Service(http) {
         this.http = http;
-        this.DEBUG = false;
-        // Check if is DEBUG
-        if (this.DEBUG) {
-            this.setHeader(null, false);
-        }
-        else {
-            var header = { 'Content-Type': 'application/json' };
-            this.setHeader(header, true);
-        }
+        var header = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+        this.setHeader(header, false);
         this.body = '';
     }
     Service.prototype.get = function (url, json) {

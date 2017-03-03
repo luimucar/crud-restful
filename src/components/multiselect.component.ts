@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { SelectItem } from 'primeng/primeng';
 import { Service } from '../services/index';
@@ -21,22 +21,17 @@ import { BaseComponent } from './base.component';
 })
 
 export class MultiSelectComponent extends BaseComponent {
-    constructor(public service: Service) {
-        super();
-    }
-    
-    @Input()
-    index : number;
-    
-    name : string;
-       
     itens: SelectItem[] = [];
     
     selectedItem: string[];
     
+    constructor(public service: Service) {
+        super();
+    }
+    
     ngOnInit() {       
         this.readCommonsParameters(this.index);
-        let crudComponentObj = CrudComponentObj.components[this.index];
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         this.getMultiSelectValues(crudComponentObj.url)
             .subscribe(values => {
                 values.forEach(val => {
@@ -61,8 +56,8 @@ export class MultiSelectComponent extends BaseComponent {
     
        
     setValue(value:string[]){
-        let crudComponentObj = CrudComponentObj.components[this.index];
-        CrudComponentObj.components[this.index].value = [];
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
         value.forEach(v => {
             let selectClazz = new crudComponentObj.selectClazz();
             selectClazz[crudComponentObj.selectItemValue] = v;
@@ -71,7 +66,7 @@ export class MultiSelectComponent extends BaseComponent {
                     selectClazz[crudComponentObj.selectItemLabel] = item.label;
                 }
             });
-            CrudComponentObj.components[this.index].value.push(selectClazz);
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value.push(selectClazz);
         });
     }
 }

@@ -23,6 +23,14 @@ var CrudComponent = (function () {
         if (this.components.length > 0) {
             var obj = index_1.getObject(this.components[0].clazz);
             console.log(obj);
+            var endP = index_1.CrudEndPoint.getEndPoint(this.components[0].clazz, 'create');
+            this.service.setBody(obj);
+            this.service.post(endP)
+                .subscribe(function (v) {
+                console.log('ok');
+            }, function (err) {
+                console.log(err);
+            });
         }
     };
     return CrudComponent;

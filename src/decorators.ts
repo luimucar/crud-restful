@@ -58,10 +58,12 @@ export class CrudComponentObj {
     }
 }
 
-export function getObject(clazz: any): any {
-    let ret = new clazz();
+export function getObject(clazzName: any): any {
+    let ret = new clazzName();
     CrudComponentObj.components.forEach(obj => {
-        ret[obj.property] = obj.value;
+        if (obj.clazzName == clazzName.name) {
+            ret[obj.property] = obj.value;
+        }
     });
     return ret;
 }

@@ -1,10 +1,11 @@
 <div style="width: 100%;" *ngFor="let comp of components; let i = index" style="padding-top:5px;">
-     <div crud-factory [type]="comp.type" [index]="i"></div>
+    <div crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [index]="i"></div>
 </div>
 
 <div class="row" style="padding-top:20px;">
     <div class="col-md-12">
         <button pButton type="button" (click)="save()" label="Save"></button>    
+        <button pButton type="button" (click)="cancel()" label="Cancel"></button>
     </div>
 </div>        
 

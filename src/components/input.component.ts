@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 import * as $ from 'jquery';
@@ -18,14 +18,12 @@ import * as $ from 'jquery';
 })
 
 export class InputTextComponent extends BaseComponent {
-    @Input()
-    index : number;
-    
     inputType : string;
     
     ngOnInit() {
+
         this.readCommonsParameters(this.index);
-        let crudComponentObj = CrudComponentObj.components[this.index];
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         this.inputType = crudComponentObj.inputType;        
         setTimeout(() => {
             if (this.value) {
@@ -36,9 +34,9 @@ export class InputTextComponent extends BaseComponent {
     
     setValue(value:string){
         if (this.inputType == 'checkbox') {
-            CrudComponentObj.components[this.index].value = $('#'+this.id).is(':checked');
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = $('#'+this.id).is(':checked');
         } else {
-            CrudComponentObj.components[this.index].value = value;
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
             
         }
     }

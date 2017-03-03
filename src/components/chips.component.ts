@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 
@@ -16,29 +16,24 @@ import { BaseComponent } from './base.component';
     `
 })
 
-export class ChipsComponent extends BaseComponent {
-    @Input()
-    index : number;
-       
-    values: string[];
-    
+export class ChipsComponent extends BaseComponent {   
     ngOnInit() {
         this.readCommonsParameters(this.index);
-        CrudComponentObj.components[this.index].value = [];
+        CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
     }
     
     add(value:string) {
-        CrudComponentObj.components[this.index].value.push(value);
+        CrudComponentObj.getComponents(this.clazzName)[this.index].value.push(value);
     }
     
     remove(value:string) {
-        var myArray: string[] = CrudComponentObj.components[this.index].value;
+        var myArray: string[] = CrudComponentObj.getComponents(this.clazzName)[this.index].value;
         for (var i=myArray.length-1; i>=0; i--) {
             if (myArray[i] == value) {
                 myArray.splice(i, 1);
             }
         }
-        CrudComponentObj.components[this.index].value = myArray;
+        CrudComponentObj.getComponents(this.clazzName)[this.index].value = myArray;
     }
 }
 
