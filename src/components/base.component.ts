@@ -17,6 +17,9 @@ export class BaseComponent {
     public order : number;
     public autoWidth : boolean;
     public width : string;
+    public colMdLeft : number = 4;
+    public colMdRigth : number = 8;      
+    public focus : boolean;
     
     readCommonsParameters(index : number) {
         this.id = CrudComponentObj.getComponents(this.clazzName)[index].property;
@@ -47,6 +50,15 @@ export class BaseComponent {
             this.width = "100%";
         } else {
             this.width = CrudComponentObj.getComponents(this.clazzName)[index].width;
+        }
+        if (CrudComponentObj.getComponents(this.clazzName)[index].colMdLeft != undefined) {
+            this.colMdLeft = CrudComponentObj.getComponents(this.clazzName)[index].colMdLeft;
+        }
+        if (CrudComponentObj.getComponents(this.clazzName)[index].colMdRigth != undefined) {
+            this.colMdRigth = CrudComponentObj.getComponents(this.clazzName)[index].colMdRigth;
+        }
+        if (CrudComponentObj.getComponents(this.clazzName)[index].focus != undefined) {
+            this.focus = CrudComponentObj.getComponents(this.clazzName)[index].focus;
         }
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }

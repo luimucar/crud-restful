@@ -9,6 +9,8 @@ export class User {
             type : 'text',
             readOnly : true,
             autoWidth : true,
+            colMdLeft : 5,
+            colMdRigth: 7,
             order : 0
         })public name?: string) {
     }

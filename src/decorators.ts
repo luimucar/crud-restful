@@ -44,6 +44,9 @@ export class CrudComponentObj {
     public order : number;
     public width : string;
     public autoWidth : boolean;
+    public colMdLeft : number;
+    public colMdRigth : number;
+    public focus : boolean;      
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -89,7 +92,7 @@ export function setObject(clazzName: any, object : any) {
                 if (object[obj.property]) {
                     obj['value'] = object[obj.property];
                 }
-                console.log(obj);
+                //console.log(obj);
             }
         });
     }
@@ -153,6 +156,9 @@ export function InputType(parameters : any) {
     let order = parameters['order'];
     let autoWidth = parameters['autoWidth'];
     let width = parameters['width'];
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];
+    let focus = parameters['focus'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -169,6 +175,9 @@ export function InputType(parameters : any) {
         component.order = order;
         component.autoWidth = autoWidth;
         component.width = width;
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;
+        component.focus = focus;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -184,7 +193,10 @@ export function MultiSelect(parameters : any) {
     let disabled = parameters['disabled'];    
     let order = parameters['order'];
     let autoWidth = parameters['autoWidth'];
-    let width = parameters['width'];    
+    let width = parameters['width'];  
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];
+    let focus = parameters['focus'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -198,7 +210,10 @@ export function MultiSelect(parameters : any) {
         component.disabled = disabled;   
         component.order = order;     
         component.autoWidth = autoWidth;
-        component.width = width;        
+        component.width = width; 
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;
+        component.focus = focus;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -209,7 +224,10 @@ export function Chips(parameters : any) {
     let disabled = parameters['disabled'];
     let order = parameters['order'];   
     let autoWidth = parameters['autoWidth'];
-    let width = parameters['width'];      
+    let width = parameters['width'];     
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];     
+    let focus = parameters['focus'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -218,7 +236,10 @@ export function Chips(parameters : any) {
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
-        component.width = width;        
+        component.width = width; 
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;  
+        component.focus = focus;             
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -231,7 +252,10 @@ export function Select(parameters : any) {
     let defaultValue = parameters['defaultValue'];
     let order = parameters['order'];
     let autoWidth = parameters['autoWidth'];
-    let width = parameters['width'];    
+    let width = parameters['width'];
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];  
+    let focus = parameters['focus'];            
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -242,7 +266,10 @@ export function Select(parameters : any) {
         component.defaultValue = defaultValue;
         component.order = order;
         component.autoWidth = autoWidth;
-        component.width = width;        
+        component.width = width;
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;        
+        component.focus = focus;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

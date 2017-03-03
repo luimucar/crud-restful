@@ -7,10 +7,10 @@ import * as $ from 'jquery';
     selector: 'inputText',
     template: `
         <div class="row">
-            <div class="col-md-2">    
+            <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-10">    
+            <div class="col-md-{{colMdRigth}}">    
                 <input [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
             </div>            
         </div>
@@ -19,7 +19,7 @@ import * as $ from 'jquery';
 
 export class InputTextComponent extends BaseComponent {
     inputType : string;
-    
+        
     ngOnInit() {
 
         this.readCommonsParameters(this.index);
@@ -29,7 +29,7 @@ export class InputTextComponent extends BaseComponent {
             if (this.value) {
                 $('#'+this.id).attr('checked', 'true');
             }
-        }, 50)
+        }, 50);
     }
     
     setValue(value:string){
