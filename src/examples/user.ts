@@ -7,7 +7,6 @@ export class User {
         @InputType({
             name : 'User:',
             type : 'text',
-            defaultValue : 'Cláudio Margulhano',
             readOnly : true,
             autoWidth : true,
             order : 0

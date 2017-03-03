@@ -8,12 +8,15 @@ import { User } from './examples/user'
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-      <crud [clazz]="'Scheduling'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+      <crud [clazz]="'User'" [model]="user" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
     </div>
   `,
 })
 export class App {
+    user : User;
     constructor() {
+        this.user = new User('Cláudio');
+        this.user.password = 'blblblba';
     }
     handleOnSave(user : User) {
         console.log(user);

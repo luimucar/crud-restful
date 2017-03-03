@@ -82,6 +82,19 @@ export class CrudComponentObj {
     }
 }
 
+export function setObject(clazzName: any, object : any) {
+    if (object != undefined) {
+        CrudComponentObj.components.forEach(obj => {
+            if (obj.clazzName == clazzName) {
+                if (object[obj.property]) {
+                    obj['value'] = object[obj.property];
+                }
+                console.log(obj);
+            }
+        });
+    }
+}
+
 export function getObject(clazzName: any): any {
     let ret = new clazzName();
     CrudComponentObj.components.forEach(obj => {

@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {getObject, CrudComponentObj, CrudEndPoint} from './index';
+import {getObject, setObject, CrudComponentObj, CrudEndPoint} from './index';
 import {Service} from './services/index';
 
 @Component({
@@ -11,6 +11,9 @@ export class CrudComponent {
     @Input()
     clazz : string;
     
+    @Input()
+    model : any;
+    
     components: CrudComponentObj[];
     
     @Output() onSave = new EventEmitter();
@@ -20,7 +23,8 @@ export class CrudComponent {
     }
     
     ngOnInit() {
-        this.components = CrudComponentObj.getComponents(this.clazz);
+        this.components = CrudComponentObj.getComponents(this.clazz);        
+        setObject(this.clazz, this.model);
         //console.log(this.components);
     }
     
