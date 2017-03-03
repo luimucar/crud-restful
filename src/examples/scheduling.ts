@@ -33,21 +33,24 @@ export class Scheduling {
         name : 'User:',
         type : 'text',
         defaultValue : 'Cláudio Margulhano',
-        readOnly : true
+        readOnly : true,
+        order : 0
     })
     public name: string;
 
     @InputType({
         name : 'Password:',
         type : 'password',
-        defaultValue : '123'
+        defaultValue : '123',
+        order : 1
     })
     public password: string;
     
     @InputType({
         name : 'Admin:',
         type : 'checkbox',
-        defaultValue : true
+        defaultValue : true,
+        order : 2
     })
     public admin: boolean;
     
@@ -58,12 +61,14 @@ export class Scheduling {
         modelSelectClazz : Report, 
         modelSelectValue : 'id',
         modelSelectLabel : 'name',
-        disabled : true
+        disabled : true,
+        order : 3
     })
     public reports: Report[];
     
     @Chips({
-        disabled : false
+        disabled : false,
+        order : 4
     })
     public mails: string[];
     
@@ -71,13 +76,15 @@ export class Scheduling {
         url : 'http://www.mocky.io/v2/583ecaf7240000f20383b35d', 
         modelSelectClazz : CarPark, 
         modelSelectValue : 'id', 
-        modelSelectLabel : 'name'
+        modelSelectLabel : 'name',
+        order : 6
     })
     public carParks: CarPark[];
     
     @Select({
         values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
-        defaultValue : 2
+        defaultValue : 2,
+        order : 5
     })
     public period: string;
 }

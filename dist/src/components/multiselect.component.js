@@ -34,7 +34,7 @@ var MultiSelectComponent = (function (_super) {
     MultiSelectComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.readCommonsParameters(this.index);
-        var crudComponentObj = index_1.CrudComponentObj.components[this.index];
+        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
         this.getMultiSelectValues(crudComponentObj.url)
             .subscribe(function (values) {
             values.forEach(function (val) {
@@ -57,8 +57,8 @@ var MultiSelectComponent = (function (_super) {
     };
     MultiSelectComponent.prototype.setValue = function (value) {
         var _this = this;
-        var crudComponentObj = index_1.CrudComponentObj.components[this.index];
-        index_1.CrudComponentObj.components[this.index].value = [];
+        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
+        index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
         value.forEach(function (v) {
             var selectClazz = new crudComponentObj.selectClazz();
             selectClazz[crudComponentObj.selectItemValue] = v;
@@ -67,15 +67,11 @@ var MultiSelectComponent = (function (_super) {
                     selectClazz[crudComponentObj.selectItemLabel] = item.label;
                 }
             });
-            index_1.CrudComponentObj.components[_this.index].value.push(selectClazz);
+            index_1.CrudComponentObj.getComponents(_this.clazzName)[_this.index].value.push(selectClazz);
         });
     };
     return MultiSelectComponent;
 }(base_component_1.BaseComponent));
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], MultiSelectComponent.prototype, "index", void 0);
 MultiSelectComponent = __decorate([
     core_1.Component({
         selector: 'inputText',

@@ -40,6 +40,17 @@ var CrudComponentObj = (function () {
         this.value = null;
         this.clazzName = clazz.name;
     }
+    CrudComponentObj.prototype.sort = function () {
+        return function (left, right) {
+            if (left.order < right.order) {
+                return -1;
+            }
+            else if (left.order > right.order) {
+                return 1;
+            }
+            return 0;
+        };
+    };
     CrudComponentObj.getComponents = function (clazzName) {
         var objs = [];
         if (CrudComponentObj.components.length > 0) {
@@ -49,16 +60,27 @@ var CrudComponentObj = (function () {
                 }
             });
         }
+        objs = objs.sort(function (o1, o2) {
+            if (o1.order > o2.order) {
+                return 1;
+            }
+            if (o1.order < o2.order) {
+                return -1;
+            }
+            return 0;
+        });
         return objs;
     };
     return CrudComponentObj;
 }());
 CrudComponentObj.components = [];
 exports.CrudComponentObj = CrudComponentObj;
-function getObject(clazz) {
-    var ret = new clazz();
+function getObject(clazzName) {
+    var ret = new clazzName();
     CrudComponentObj.components.forEach(function (obj) {
-        ret[obj.property] = obj.value;
+        if (obj.clazzName == clazzName.name) {
+            ret[obj.property] = obj.value;
+        }
     });
     return ret;
 }
@@ -90,20 +112,38 @@ function Id() {
     return actualDecorator;
 }
 exports.Id = Id;
+function getProperty(target, parameterIndex) {
+    var parametersConstructor = target.toString();
+    var parametersArray = parametersConstructor.substring(parametersConstructor.indexOf('{') + 1, parametersConstructor.indexOf('}')).trim().replace(/\n/g, '').split(';');
+    var parametersArrayClean = [];
+    parametersArray.forEach(function (p) {
+        if (p != "") {
+            parametersArrayClean.push(p.trim());
+        }
+    });
+    return parametersArrayClean[parameterIndex].substring(parametersArrayClean[parameterIndex].indexOf('=') + 1).trim();
+}
 function InputType(parameters) {
     var name = parameters['name'];
     var inputType = parameters['type'];
     var defaultValue = parameters['defaultValue'];
     var readOnly = parameters['readOnly'];
     var disabled = parameters['disabled'];
-    function actualDecorator(target, property) {
+    var order = parameters['order'];
+    function actualDecorator(target, property, parameterIndex) {
         if (name == undefined) {
             name = property;
         }
-        var component = new CrudComponentObj(property, name, 'InputType', target.constructor, defaultValue);
+        var construct = target.constructor;
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);
+            construct = target;
+        }
+        var component = new CrudComponentObj(property, name, 'InputType', construct, defaultValue);
         component.inputType = inputType;
         component.readOnly = readOnly;
         component.disabled = disabled;
+        component.order = order;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -117,6 +157,7 @@ function MultiSelect(parameters) {
     var selectItemValue = parameters['modelSelectValue'];
     var selectClazz = parameters['modelSelectClazz'];
     var disabled = parameters['disabled'];
+    var order = parameters['order'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
@@ -128,6 +169,7 @@ function MultiSelect(parameters) {
         component.selectItemValue = selectItemValue;
         component.selectClazz = selectClazz;
         component.disabled = disabled;
+        component.order = order;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -136,12 +178,14 @@ exports.MultiSelect = MultiSelect;
 function Chips(parameters) {
     var name = parameters['name'];
     var disabled = parameters['disabled'];
+    var order = parameters['order'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
         }
         var component = new CrudComponentObj(property, name, 'Chips', target.constructor);
         component.disabled = disabled;
+        component.order = order;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -152,6 +196,7 @@ function Select(parameters) {
     var values = parameters['values'];
     var disabled = parameters['disabled'];
     var defaultValue = parameters['defaultValue'];
+    var order = parameters['order'];
     function actualDecorator(target, property) {
         if (name == undefined) {
             name = property;
@@ -160,6 +205,7 @@ function Select(parameters) {
         component.values = values;
         component.disabled = disabled;
         component.defaultValue = defaultValue;
+        component.order = order;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

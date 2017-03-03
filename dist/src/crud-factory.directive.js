@@ -24,6 +24,7 @@ var CrudFactoryDirective = (function () {
         var factory = this.resolver.resolveComponentFactory(comp);
         var compRef = this.vcRef.createComponent(factory);
         compRef.instance.index = this.index;
+        compRef.instance.clazzName = this.clazzName;
         if (this.componentRef) {
             this.componentRef.destroy();
         }
@@ -66,6 +67,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], CrudFactoryDirective.prototype, "index", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], CrudFactoryDirective.prototype, "clazzName", void 0);
 CrudFactoryDirective = __decorate([
     core_1.Directive({
         selector: '[crud-factory]'

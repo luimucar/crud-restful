@@ -8,7 +8,7 @@ import { User } from './examples/user'
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-      <crud [clazz]="'User'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+      <crud [clazz]="'Scheduling'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
     </div>
   `,
 })

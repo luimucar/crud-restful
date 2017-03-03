@@ -15,23 +15,21 @@ var index_2 = require("./services/index");
 var CrudComponent = (function () {
     function CrudComponent(service) {
         this.service = service;
+        this.onSave = new core_1.EventEmitter();
+        this.onCancel = new core_1.EventEmitter();
     }
     CrudComponent.prototype.ngOnInit = function () {
         this.components = index_1.CrudComponentObj.getComponents(this.clazz);
+        //console.log(this.components);
     };
     CrudComponent.prototype.save = function () {
         if (this.components.length > 0) {
             var obj = index_1.getObject(this.components[0].clazz);
-            console.log(obj);
-            var endP = index_1.CrudEndPoint.getEndPoint(this.components[0].clazz, 'create');
-            this.service.setBody(obj);
-            this.service.post(endP)
-                .subscribe(function (v) {
-                console.log('ok');
-            }, function (err) {
-                console.log(err);
-            });
+            this.onSave.emit(obj);
         }
+    };
+    CrudComponent.prototype.cancel = function () {
+        this.onCancel.emit();
     };
     return CrudComponent;
 }());
@@ -39,6 +37,14 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], CrudComponent.prototype, "clazz", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CrudComponent.prototype, "onSave", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CrudComponent.prototype, "onCancel", void 0);
 CrudComponent = __decorate([
     core_1.Component({
         selector: 'crud',

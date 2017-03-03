@@ -17,12 +17,18 @@ var user_1 = require("./examples/user");
 var App = (function () {
     function App() {
     }
+    App.prototype.handleOnSave = function (user) {
+        console.log(user);
+    };
+    App.prototype.handleOnCancel = function () {
+        console.log('Cancel');
+    };
     return App;
 }());
 App = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <div style=\"width: 50%;\">\n      <crud [clazz]=\"'User'\"></crud>\n    </div>\n  ",
+        template: "\n    <div style=\"width: 50%;\">\n      <crud [clazz]=\"'Scheduling'\" (onSave)=\"handleOnSave($event)\" (onCancel)=\"handleOnCancel()\"></crud>\n    </div>\n  ",
     }),
     __metadata("design:paramtypes", [])
 ], App);

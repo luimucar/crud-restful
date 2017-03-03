@@ -21,6 +21,7 @@ export class CrudComponent {
     
     ngOnInit() {
         this.components = CrudComponentObj.getComponents(this.clazz);
+        //console.log(this.components);
     }
     
     save() {

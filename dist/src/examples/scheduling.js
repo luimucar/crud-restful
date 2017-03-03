@@ -38,7 +38,8 @@ __decorate([
         name: 'User:',
         type: 'text',
         defaultValue: 'Cláudio Margulhano',
-        readOnly: true
+        readOnly: true,
+        order: 0
     }),
     __metadata("design:type", String)
 ], Scheduling.prototype, "name", void 0);
@@ -46,7 +47,8 @@ __decorate([
     index_1.InputType({
         name: 'Password:',
         type: 'password',
-        defaultValue: '123'
+        defaultValue: '123',
+        order: 1
     }),
     __metadata("design:type", String)
 ], Scheduling.prototype, "password", void 0);
@@ -54,7 +56,8 @@ __decorate([
     index_1.InputType({
         name: 'Admin:',
         type: 'checkbox',
-        defaultValue: true
+        defaultValue: true,
+        order: 2
     }),
     __metadata("design:type", Boolean)
 ], Scheduling.prototype, "admin", void 0);
@@ -65,13 +68,15 @@ __decorate([
         modelSelectClazz: Report,
         modelSelectValue: 'id',
         modelSelectLabel: 'name',
-        disabled: true
+        disabled: true,
+        order: 3
     }),
     __metadata("design:type", Array)
 ], Scheduling.prototype, "reports", void 0);
 __decorate([
     index_1.Chips({
-        disabled: false
+        disabled: false,
+        order: 4
     }),
     __metadata("design:type", Array)
 ], Scheduling.prototype, "mails", void 0);
@@ -80,14 +85,16 @@ __decorate([
         url: 'http://www.mocky.io/v2/583ecaf7240000f20383b35d',
         modelSelectClazz: CarPark,
         modelSelectValue: 'id',
-        modelSelectLabel: 'name'
+        modelSelectLabel: 'name',
+        order: 6
     }),
     __metadata("design:type", Array)
 ], Scheduling.prototype, "carParks", void 0);
 __decorate([
     index_1.Select({
         values: [{ "value": 1, "label": "Value 1" }, { "value": 2, "label": "Value 2" }, { "value": 3, "label": "Value 3" }],
-        defaultValue: 2
+        defaultValue: 2,
+        order: 5
     }),
     __metadata("design:type", String)
 ], Scheduling.prototype, "period", void 0);

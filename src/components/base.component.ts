@@ -14,6 +14,7 @@ export class BaseComponent {
     public readonly : boolean = false;
     public disabled : boolean = false;  
     public values : any [];
+    public order : number;
     
     readCommonsParameters(index : number) {
         this.id = CrudComponentObj.getComponents(this.clazzName)[index].property;
@@ -31,6 +32,7 @@ export class BaseComponent {
         } else {
             this.disabled = false;
         }
+        this.order = CrudComponentObj.getComponents(this.clazzName)[index].order;
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
 }
