@@ -97,6 +97,14 @@ export class Scheduling {
         order : 7,
         format : 'DD/MM/YYYY'
     })
-    public date : string;
+    public date1 : string;
+    
+    @Calendar({
+        disabled : false,
+        autoWidth : true,
+        order : 7,
+        format : 'DD/MM/YYYY'
+    })
+    public date2 : Date;
 }
 

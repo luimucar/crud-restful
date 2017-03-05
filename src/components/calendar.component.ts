@@ -24,16 +24,27 @@ export class CalendarComponent extends BaseComponent {
     ngOnInit() {
         this.readCommonsParameters(this.index);
         if (this.format.indexOf('YYYY') >= 0) {
-            this.formatComp = this.format.split('YYYY').join('yy').toLowerCase();
-            console.log(this.formatComp);
+            this.formatComp = this.format.split('YYYY').join('YY').toLowerCase();
         }
-        let dateStr = CrudComponentObj.getComponents(this.clazzName)[this.index].value;
-        this.date = moment(dateStr, this.format).toDate();
+        if (typeof CrudComponentObj.getComponents(this.clazzName)[this.index].value == "object") {
+            if (CrudComponentObj.getComponents(this.clazzName)[this.index].value == null) {
+                this.date = new Date();
+            } else {
+                this.date = CrudComponentObj.getComponents(this.clazzName)[this.index].value;
+            }
+        } else {
+            let dateStr = CrudComponentObj.getComponents(this.clazzName)[this.index].value;
+            this.date = moment(dateStr, this.format).toDate();
+        }
     }
     
-    onSelect(value : any) {
-        let dateStr = moment(value).format(this.format);
-        CrudComponentObj.getComponents(this.clazzName)[this.index].value = dateStr;
+    onSelect(newDate : any) {
+        if (typeof CrudComponentObj.getComponents(this.clazzName)[this.index].value == "object") {
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = newDate;
+        } else {
+            let dateStr = moment(newDate).format(this.format);
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = dateStr;
+        }
     }
 }
 

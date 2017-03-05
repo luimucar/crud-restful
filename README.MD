@@ -169,6 +169,8 @@ public period: string;
 
 Example:
 
+Using string object:
+
 ```javascript
 @Calendar({
     disabled : false,
@@ -178,6 +180,24 @@ Example:
 })
 public date : string;
 ```
+
+Or using Date object:
+
+```javascript
+@Calendar({
+    disabled : false,
+    autoWidth : true,
+    order : 7,
+    format : 'DD/MM/YYYY'
+})
+public date : Date;
+```
+
+Posible formats:
+
+1. DD/MM/YYYY
+2. MM/DD/YYYY
+3. YYYY/MM/DD
 
 6. Table (under development)
 7. Scheduling (under development)
