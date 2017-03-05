@@ -12,12 +12,13 @@ import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
+import { CalendarComponent } from './components/calendar.component';
 
 @NgModule({
-    declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent],
+    declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent, CalendarComponent],
     imports: [ReactiveFormsModule, FormsModule, HttpModule, BrowserModule, RouterModule, PrimeNgModule.forRoot()],
     exports : [CrudComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent]
+    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent, CalendarComponent]
 })
 export class CrudModule { }

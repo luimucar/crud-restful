@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { BaseComponent } from './base.component';
 
 @Component({
-    selector: 'inputText',
+    selector: 'multiSelectCrudRestful',
     providers: [Service],
     template: `
         <div class="row">

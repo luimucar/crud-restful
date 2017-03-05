@@ -46,7 +46,8 @@ export class CrudComponentObj {
     public autoWidth : boolean;
     public colMdLeft : number;
     public colMdRigth : number;
-    public focus : boolean;      
+    public focus : boolean;
+    public format : string;      
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -270,6 +271,34 @@ export function Select(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;        
         component.focus = focus;
+        CrudComponentObj.components.push(component);
+    }
+    return actualDecorator;
+}
+
+export function Calendar(parameters : any) {
+    let name = parameters['name'];
+    let disabled = parameters['disabled'];
+    let order = parameters['order'];   
+    let autoWidth = parameters['autoWidth'];
+    let width = parameters['width'];     
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];     
+    let focus = parameters['focus'];
+    let format = parameters['format'];
+    function actualDecorator(target: Object, property: string): void {
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'Calendar', target.constructor);
+        component.disabled = disabled;
+        component.order = order;
+        component.autoWidth = autoWidth;
+        component.width = width; 
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;  
+        component.focus = focus;
+        component.format = format;             
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

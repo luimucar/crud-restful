@@ -8,13 +8,19 @@ import { User } from './examples/user'
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-      <crud [clazz]="'Scheduling'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+      <crud [clazz]="'Scheduling'" [model]="scheduling" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
     </div>
   `,
 })
 export class App {
+    scheduling : Scheduling;
     user : User;
     constructor() {
+        this.scheduling = new Scheduling();
+        this.scheduling.name = 'Teste';
+        this.scheduling.period = '3';
+        this.scheduling.date = '01/01/2017';
+        
         this.user = new User('Cláudio');
         this.user.password = '123';
         this.user.passwordConfirmation = '123';

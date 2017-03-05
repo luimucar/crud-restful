@@ -3,7 +3,7 @@ import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 
 @Component({
-    selector: 'selectInput',
+    selector: 'selectCrudRestful',
     template: `
         <div class="row">
             <div class="col-md-2">    

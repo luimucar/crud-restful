@@ -20,6 +20,7 @@ export class BaseComponent {
     public colMdLeft : number = 4;
     public colMdRigth : number = 8;      
     public focus : boolean;
+    public format : string;
     
     readCommonsParameters(index : number) {
         this.id = CrudComponentObj.getComponents(this.clazzName)[index].property;
@@ -59,6 +60,9 @@ export class BaseComponent {
         }
         if (CrudComponentObj.getComponents(this.clazzName)[index].focus != undefined) {
             this.focus = CrudComponentObj.getComponents(this.clazzName)[index].focus;
+        }
+        if (CrudComponentObj.getComponents(this.clazzName)[index].format != undefined) {
+            this.format = CrudComponentObj.getComponents(this.clazzName)[index].format;
         }
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }

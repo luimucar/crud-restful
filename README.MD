@@ -10,12 +10,13 @@ All components are created at runtime based on Decorators and Metadatas that pro
 
 ## Prerequisite
 
-Installation of depencies:
-    - primeng: http://www.primefaces.org/primeng/#/setup
-    - jquery
+Installation of dependencies:
+
+1. primeng: http://www.primefaces.org/primeng/#/setup
+2. jquery
 
 
-## Installation
+## Library's installation
 
 To install this library, run:
 
@@ -69,9 +70,11 @@ import {User} from 'user';
 
 3. In your HTML template:
 
+```html
 <crud [clazz]="'User'" [model]="user" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+```
 
-4. In your component initialize your object model and handle the events of Save and Cancel:
+4. In the component initialize your object model (if necessary) and handle the events of Save and Cancel:
 
 ```javascript
     .
@@ -109,6 +112,7 @@ npm start
 
 Example:
 
+```javascript
 @InputType({
     name : 'User:',
     type : 'text',
@@ -118,11 +122,13 @@ Example:
     order : 0
 })
 username: string;
+```
 
 2. MultiSelect
 
 Example:
 
+```javascript
 @MultiSelect({
     url : 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 
     modelSelect : 'reportList',        
@@ -133,26 +139,46 @@ Example:
     order : 3
 })
 public reports: Report[];
+```
 
 3. Chips
 
+```javascript
 @Chips({
     disabled : false,
     autoWidth : true,
     order : 4
 })
 public mails: string[];
+```
 
 4. Select
 
+Example:
+
+```javascript
 @Select({
     values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
     defaultValue : 2,
     order : 5
 })
 public period: string;
+```
 
-5. Calendar (under development)
+5. Calendar
+
+Example:
+
+```javascript
+@Calendar({
+    disabled : false,
+    autoWidth : true,
+    order : 7,
+    format : 'DD/MM/YYYY'
+})
+public date : string;
+```
+
 6. Table (under development)
 7. Scheduling (under development)
 8. Dual List Box (under development)

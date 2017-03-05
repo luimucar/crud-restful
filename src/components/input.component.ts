@@ -4,7 +4,7 @@ import { BaseComponent } from './base.component';
 import * as $ from 'jquery';
 
 @Component({
-    selector: 'inputText',
+    selector: 'inputTextCrudRestful',
     template: `
         <div class="row">
             <div class="col-md-{{colMdLeft}}">    

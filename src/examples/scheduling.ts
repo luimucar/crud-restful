@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Id, InputType, EndPoint, MultiSelect, Chips, Select } from '../index';
+import { Id, InputType, EndPoint, MultiSelect, Chips, Select, Calendar } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -85,10 +85,18 @@ export class Scheduling {
     public carParks: CarPark[];
     
     @Select({
-        values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
+        values : [{"value" : '1', "label" : "Value 1"}, {"value" : '2', "label" : "Value 2"}, {"value" : '3', "label" : "Value 3"}],
         defaultValue : 2,
         order : 5
     })
     public period: string;
+    
+    @Calendar({
+        disabled : false,
+        autoWidth : true,
+        order : 7,
+        format : 'DD/MM/YYYY'
+    })
+    public date : string;
 }
 

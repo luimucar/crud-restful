@@ -3,6 +3,7 @@ import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
+import { CalendarComponent } from './components/calendar.component';
 
 @Directive({
     selector: '[crud-factory]'
@@ -57,6 +58,8 @@ export class CrudFactoryDirective implements OnChanges {
             comp = ChipsComponent;
         } else if (this.type == 'Select') {
             comp = SelectComponent;
+        } else if (this.type == 'Calendar') {
+            comp = CalendarComponent;
         }
         if (comp) {
             this.create(comp);
