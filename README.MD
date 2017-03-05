@@ -26,7 +26,7 @@ $ npm install crud-restful --save
 
 ## Ho to use
 
-1. Describe your model with Decorators. Example:
+## Describe your model with Decorators. Example:
 
 ```javascript
 import { InputType } from 'crud-restful/index';
@@ -61,20 +61,20 @@ export class User {
 }
 ```
 
-2. Import in your module:
+## Import in your module:
 
 ```javascript
 import {CrudModule} from 'crud-restful/index';
 import {User} from 'user';
 ```
 
-3. In your HTML template:
+## In your HTML template:
 
 ```html
 <crud [clazz]="'User'" [model]="user" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
 ```
 
-4. In the component initialize your object model (if necessary) and handle the events of Save and Cancel:
+## In the component initialize your object model (if necessary) and handle the events of Save and Cancel:
 
 ```javascript
     .
@@ -108,7 +108,7 @@ npm start
 
 ## Components
 
-1. InputType
+## InputType
 
 Example:
 
@@ -124,7 +124,7 @@ Example:
 username: string;
 ```
 
-2. MultiSelect
+## MultiSelect
 
 Example:
 
@@ -141,7 +141,7 @@ Example:
 public reports: Report[];
 ```
 
-3. Chips
+## Chips
 
 ```javascript
 @Chips({
@@ -152,7 +152,7 @@ public reports: Report[];
 public mails: string[];
 ```
 
-4. Select
+## Select
 
 Example:
 
@@ -165,7 +165,7 @@ Example:
 public period: string;
 ```
 
-5. Calendar
+## Calendar
 
 Example:
 
@@ -199,9 +199,13 @@ Posible formats:
 2. MM/DD/YYYY
 3. YYYY/MM/DD
 
-6. Table (under development)
-7. Scheduling (under development)
-8. Dual List Box (under development)
+
+## Table (under development)
+
+## Scheduling (under development)
+
+## Dual List Box (under development)
+
 
 ## License
 
