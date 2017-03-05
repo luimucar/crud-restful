@@ -7,10 +7,10 @@ import * as moment from 'moment';
     selector: 'calendarCrudRestful',
     template: `
         <div class="row">
-            <div class="col-md-2">    
+            <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-10">    
+            <div class="col-md-{{colMdRigth}}">    
                 <p-calendar [dateFormat]="formatComp" [(ngModel)]="date" [showIcon]="true" (onSelect)="onSelect($event)" [disabled]="disabled" [readonlyInput]="readonly"></p-calendar>
             </div>            
         </div>

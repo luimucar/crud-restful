@@ -13,12 +13,16 @@ import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
 import { CalendarComponent } from './components/calendar.component';
+import { CheckboxesComponent } from './components/checkboxes.component';
 
 @NgModule({
-    declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent, CalendarComponent],
+    declarations: [CrudComponent, CrudFactoryDirective, 
+        InputTextComponent, MultiSelectComponent, ChipsComponent, 
+        SelectComponent, CalendarComponent, CheckboxesComponent],
     imports: [ReactiveFormsModule, FormsModule, HttpModule, BrowserModule, RouterModule, PrimeNgModule.forRoot()],
     exports : [CrudComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent, CalendarComponent]
+    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, 
+        SelectComponent, CalendarComponent, CheckboxesComponent]
 })
 export class CrudModule { }

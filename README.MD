@@ -199,6 +199,20 @@ Posible formats:
 2. MM/DD/YYYY
 3. YYYY/MM/DD
 
+## Checkboxes
+
+Example:
+
+```javascript
+@Checkboxes({
+    disabled : false,
+    autoWidth : true,
+    order : 8,
+    values : [new CarPark(1, 'Value 1', false),
+              new CarPark(2, 'Value 2', false)]
+})
+public allCarParks : CarPark[];
+```
 
 ## Table (under development)
 

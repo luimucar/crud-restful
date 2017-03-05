@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Id, InputType, EndPoint, MultiSelect, Chips, Select, Calendar } from '../index';
+import { Id, InputType, EndPoint, MultiSelect, Chips, Select, Calendar, Checkboxes } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -7,10 +7,7 @@ export class Report {
 }
 
 export class CarPark {
-    public checked : boolean;
-    public id: number;
-    public name: string;
-    constructor () {
+    constructor (public id?: number, public name?: string, public checked? : boolean) {
     }
 }
 
@@ -106,5 +103,14 @@ export class Scheduling {
         format : 'DD/MM/YYYY'
     })
     public date2 : Date;
+
+     @Checkboxes({
+        disabled : false,
+        autoWidth : true,
+        order : 8,
+        values : [new CarPark(1, 'Value 1', false),
+                  new CarPark(2, 'Value 2', false)]
+    })
+    public allCarParks : CarPark[];
 }
 

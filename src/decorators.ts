@@ -303,3 +303,31 @@ export function Calendar(parameters : any) {
     }
     return actualDecorator;
 }
+
+export function Checkboxes(parameters : any) {
+    let name = parameters['name'];
+    let disabled = parameters['disabled'];
+    let order = parameters['order'];   
+    let autoWidth = parameters['autoWidth'];
+    let width = parameters['width'];     
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];     
+    let focus = parameters['focus'];
+    let values = parameters['values'];
+    function actualDecorator(target: Object, property: string): void {
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'Checkboxes', target.constructor);
+        component.disabled = disabled;
+        component.order = order;
+        component.autoWidth = autoWidth;
+        component.width = width; 
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;  
+        component.focus = focus;
+        component.values = values;             
+        CrudComponentObj.components.push(component);
+    }
+    return actualDecorator;
+}

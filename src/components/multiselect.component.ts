@@ -10,10 +10,10 @@ import { BaseComponent } from './base.component';
     providers: [Service],
     template: `
         <div class="row">
-            <div class="col-md-2">    
+            <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-10">    
+            <div class="col-md-{{colMdRigth}}">    
                 <p-multiSelect [options]="itens" [(ngModel)]="selectedItem" (onChange)="setValue($event.value)"></p-multiSelect>            
             </div>            
         </div>
