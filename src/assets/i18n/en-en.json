@@ -1,0 +1,200 @@
+{
+    "COMMON": {
+        "BUTTON": {
+            "ADD": "Add",
+            "EDIT": "Edit",
+            "REMOVE": "Remove",
+            "SAVE": "Save",
+            "SAVE_AS": "Save as",
+            "CANCEL" : "Cancel",
+            "YES" : "Yes",
+            "NO" : "No"
+        },
+        "FIELD": {
+            "NAME": "Name",
+            "DESCRIPTION": "Description",
+            "TITLE": "Title",
+            "ACTION": "Action"
+        }
+    },
+    "MENU": {
+        "MENU_HOME": "Home",
+        "MENU_WEB_REPORTS": "Web Reports",
+        "MENU_PARK_RESERVATION": "Park Reservation",
+        "MENU_MOBILE_PAYMENT": "Mobile Payments",
+        "MENU_ENTERPRISE_SETTINGS": "Enterprise Settings"
+    },
+    "TOPNAVBAR": {
+        "LOGIN": "Login",
+        "LOGOUT": "Logout",
+        "LOGGED_USER": "<LOGGED USER>",
+        "PROFILE" : "Profile",
+        "CHANGE_PASSWD" : "Change password"        
+    },
+    "FILTER": {
+        "NAME": "Report Filter",
+        "FILTER_NAME": "Filter:",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "CAR_PARKS": "Car park",
+        "APPLY": "Apply",
+        "TO" : "to",
+        "COMPARED" : "compared to",
+        "PERIOD": "Period",
+        "TIME_RANGE": "Time Range",
+        "SYNC_TIME_RANGE" : "Syncronize Range",
+        "GROUPS" : "Groups",
+        "SUBGROUPS" : "Subgroup",
+        "COMPARE_TO": "Compare to",
+        "COMPARE_000": "Custom Period",
+        "COMPARE_001": "Previous Period",
+        "COMPARE_002": "Previous Year",
+        "ERROR_001": "Error: Select at least one car parks or subgroup",
+        "ERROR_002": "Error: Start Date is greater than end Date",
+        "ERROR_003": "Error: Initial time should be less than the final time",
+        "ERROR_004": "Error reading groups"
+    },
+    "PERIOD": {
+        "MINUTELY": "Minutely",
+        "HOURLY": "Hourly",
+        "DAILY": "Daily",
+        "WEEKLY": "Weekly",
+        "MONTHLY": "Monthly"
+    },
+    "LOGIN": {
+        "WELCOME": "Welcome to Enterprise",
+        "FORGOT_PASSWORD": "Forgot password?",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "LOGIN": "Login",
+        "ERROR": "Failed to login",
+        "UNAUTHORIZED": "Login unauthorized",
+        "INVALID_TOKEN": "Invalid token"
+    },
+    "GROUP": {
+        "GROUPS": "Groups",
+        "SUBGROUPS": "Subgroups",
+        "NAME": "Name",
+        "ADD_GROUP": "Add Group",
+        "ADD_SUBGROUP": "Add Subgroup",
+        "GROUP_NAME": "Group Name",
+        "SUBGROUP_NAME": "Subgroup Name",
+        "ACTION": "Action",
+        "EDIT": "Edit",
+        "SAVE": "Save",
+        "REMOVE": "Remove",
+        "CANCEL": "Cancel",
+        "CAR_PARK": "Car Park",
+        "ALL_CAR_PARKS": "All Car Parks",
+        "MESSAGE": {
+            "GROUP_ADDED_SUCCESSFULLY": "Group added successfully",
+            "GROUP_EDITED_SUCCESSFULLY": "Group edited successfully",
+            "GROUP_SUCCESSFULLY_REMOVED": "Group successfully removed",
+            "SUBGROUP_ADDED_SUCCESSFULLY": "Subgroup added successfully",
+            "SUBGROUP_EDITED_SUCCESSFULLY": "Subgroup edited successfully",
+            "SUBGROUP_SUCCESSFULLY_REMOVED": "Subgroup successfully removed",
+            "CAR_PARK_SAVED_SUCCESSFULLY": "Car Park saved successfully",
+            "ERROR_REGISTERING_GROUP": "Error registering Group",
+            "ERROR_EDITING_GROUP": "Error editing Group",
+            "ERROR_REMOVING_GROUP": "Error removing Group",
+            "ERROR_REGISTERING_SUBGROUP": "Error registering Subgroup",
+            "ERROR_EDITING_SUBGROUP": "Error editing Subgroup",
+            "ERROR_REMOVING_SUBGROUP": "Error removing Subgroup",
+            "ERROR_SAVING_CAR_PARK": "Error saving Car Park"
+        }
+    },
+    "SETTINGS": {
+        "USERS" : "Users",
+        "SETTINGS": "Settings",
+        "CAR_PARK_GROUPS": "Car Park Groups"
+    },
+    "REPORT": {
+        "CUSTOM": "Custom",
+        "CUSTOM_REPORT": "Custom Report",
+        "CUSTOM_DATA_SOURCE": "Custom Data Source",
+        "WEB_REPORTS": "Web Reports",
+        "REPORT": "Report",
+        "REPORT_NAME": "Name",
+        "REPORT_DESCRIPTION": "Description",
+        "REPORT_TITLE": "Title",
+        "REPORT_TEMPLATE": "Template",
+        "DATA_SOURCE": "Data Source",
+        "MESSAGE": {
+            "TEMPLATE_ADDED_SUCCESSFULLY": "Template added successfully",
+            "TEMPLATE_EDITED_SUCCESSFULLY": "Template edited successfully",
+            "TEMPLATE_SUCCESSFULLY_REMOVED": "Template successfully removed",
+            "ERROR_REGISTERING_TEMPLATE": "Error registering Template",
+            "ERROR_EDITING_TEMPLATE": "Error editing Template",
+            "ERROR_REMOVING_TEMPLATE": "Error removing Template",
+            "DATA_SOURCE_ADDED_SUCCESSFULLY": "Data Source added successfully",
+            "DATA_SOURCE_EDITED_SUCCESSFULLY": "Data Source edited successfully",
+            "DATA_SOURCE_SUCCESSFULLY_REMOVED": "Data Source successfully removed"
+        }
+    },
+    "MESSAGE": {
+        "WAIT": "Please wait ...",
+        "SUCCESS": "Success",
+        "ERROR": "Error",
+        "NO_DATA" : "No data available for the selected period.",
+        "CONFIRM" : "Confirmation",        
+        "CONFIRMATION_MSG" : "Are you sure that you want to perform this action?"
+    },
+    "GRID": {
+        "FIRST_PERIOD": "First Period",
+        "SECOND_PERIOD": "Second Period"
+    },
+    "STRIPED_TABLE": {
+        "TOTAL": "Totals:"
+    },
+    "REPORT_SCHEDULING" : {
+        "TITLE" : "Report Scheduling",
+        "SUBTITLE" : "Report Scheduler - Receiving via e-mail",
+        "BOX_TITLE" : "Schedulings",
+        "NAME" : "Name",
+        "MAILS" : "E-mails",
+        "REPORTS" : "Reports",
+        "PERIOD" : "Period",
+        "ADD" : "Add",
+        "MESSAGE" : {
+            "NO_DATA" : "There are no registered schedules",
+            "ERROR_LOADING" : "Error loading schedules",
+            "SAVED" : "Scheduling successfully saved",
+            "ERROR_SAVE" : "Error saving scheduling",
+            "REMOVED" : "Scheduling successfully removed",
+            "ERROR_REMOVE" : "Error removing scheduling",            
+            "ERROR01" : "Error loading scheduling",
+            "INVALID_EMAIL" : "One of the emails is invalid",
+            "INVALID_REPORT" : "Select at least one report",
+            "INVALID_CARPARK" : "Select at least one car park"
+        },
+        "CARPARKS" : "Car parks",
+        "SCHEDULING" : "Scheduling",
+        "JQCRON" : {
+            "EMPTY": "every",
+            "EMPTY_MINUTES" : "every",
+            "EMPTY_TIME_HOURS": "every hour",
+            "EMPTY_TIME_MINUTES": "every minute",
+            "EMPTY_DAY_OF_WEEK": "every day of the week",
+            "EMPTY_DAY_OF_MONTH": "every day of the month",
+            "EMPTY_MONTH": "every month",
+            "NAME_MINUTE": "minute",
+            "NAME_HOUR": "hour",
+            "NAME_DAY": "day",
+            "NAME_WEEK": "week",
+            "NAME_MONTH": "month",
+            "NAME_YEAR": "year",
+            "TEXT_PERIOD": "Every <b />",
+            "TEXT_MINS": " at <b /> minute(s) past the hour",
+            "TEXT_TIME": " at <b />:<b />",
+            "TEXT_DOW": " on <b />",
+            "TEXT_MONTH": " of <b />",
+            "TEXT_DOM": " on <b />",
+            "ERROR1": "The tag %s is not supported !",
+            "ERROR2": "Bad number of elements",
+            "ERROR3": "The jquery_element should be set into jqCron settings",
+            "ERROR4": "Unrecognized expression",
+            "WEEKDAYS": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+            "MONTHS": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]        
+        }
+    }
+}

@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 var path    = require('path');
 var helpers = require('./helpers');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -34,7 +35,10 @@ var webpackConfig = {
         }),
         new webpack.DefinePlugin({
             "require.specified": "require.resolve"
-        })    
+        }),
+        new CopyWebpackPlugin([
+            { from: 'src/assets', to: 'assets' }
+        ])            
     ],
 
     module: {

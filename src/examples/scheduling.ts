@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Id, InputType, EndPoint, MultiSelect, Chips, Select } from '../index';
+import { Id, InputType, Configure, MultiSelect, Chips, Select } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -15,12 +15,8 @@ export class CarPark {
 }
 
 @Injectable()
-@EndPoint({
-    Create : 'http://requestb.in/10h1r4i1',
-    Read : '',
-    Update : '',
-    Delete : ''
-    
+@Configure({
+    i18nPath : './assets/i18n',
 })
 export class Scheduling {
     constructor() {

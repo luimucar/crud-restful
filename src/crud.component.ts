@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {getObject, setObject, CrudComponentObj, CrudEndPoint} from './index';
+import {getObject, setObject, CrudComponentObj} from './index';
+import {TranslateService} from 'ng2-translate';
 import {Service} from './services/index';
 
 @Component({
@@ -13,6 +14,9 @@ export class CrudComponent {
     
     @Input()
     model : any;
+    
+    @Input()
+    public translate: TranslateService;
     
     components: CrudComponentObj[];
     
@@ -38,17 +42,5 @@ export class CrudComponent {
     cancel() {
         this.onCancel.emit();
     }
-    
-    /*
-    let endP = CrudEndPoint.getEndPoint(this.components[0].clazz, 'create');
-    this.service.setBody(obj);
-    this.service.post(endP)
-        .subscribe(v => {
-            console.log('ok');
-        },
-        err => {
-            console.log(err);
-        });            
-     */
 }
 

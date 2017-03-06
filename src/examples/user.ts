@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Id, InputType, EndPoint, MultiSelect, Chips, Select } from '../index';
+import { Id, InputType, MultiSelect, Chips, Select } from '../index';
 
 @Injectable()
 export class User {

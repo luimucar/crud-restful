@@ -1,31 +1,7 @@
 import * as $ from 'jquery';
 
-export class CrudEndPoint {
-    public static endPoints: CrudEndPoint[] = [];
-    public clazz : any;     
-    public createEndP : string;
-    public readEndP : string;
-    public updateEndP : string;
-    public deleteEndP : string;
-    public static getEndPoint(clazzName: string, type : string) : string {
-        let endPoint : string = undefined;
-        if (CrudEndPoint.endPoints.length > 0) {
-            CrudEndPoint.endPoints.forEach(endP => {
-                if (endP.clazz == clazzName) {                    
-                    if (type == 'create') {
-                        endPoint = endP.createEndP;
-                    } else if (type == 'read') {
-                        endPoint = endP.readEndP;
-                    } else if (type == 'update') {
-                        endPoint = endP.updateEndP;
-                    } else if (type == 'delete') {
-                        endPoint = endP.deleteEndP;
-                    }
-                }
-            });
-        }
-        return endPoint;
-    }
+export class Configuration {
+    public static i18nPath : string = './assets/i18n';
 }
 
 export class CrudComponentObj {
@@ -108,21 +84,16 @@ export function getObject(clazzName: any): any {
     return ret;
 }
 
-export function EndPoint(parameters : any) {
-    let createEndP = parameters['Create'];
-    let readEndP = parameters['Read'];
-    let updateEndP = parameters['Update'];
-    let deleteEndP = parameters['Delete'];    
+export function getI18nPath() : string {
+    return Configuration.i18nPath;
+}
+
+export function Configure(parameters : any) {
+    let i18nPath = parameters['i18nPath'];
     function actualDecorator(constructor: Function) {        
         Object.seal(constructor);
         Object.seal(constructor.prototype);
-        let crudEndPoint : CrudEndPoint = new CrudEndPoint();
-        crudEndPoint.clazz = constructor;
-        crudEndPoint.createEndP = createEndP;
-        crudEndPoint.readEndP = readEndP;
-        crudEndPoint.updateEndP = updateEndP;
-        crudEndPoint.deleteEndP = deleteEndP;
-        CrudEndPoint.endPoints.push(crudEndPoint);
+        Configuration.i18nPath = i18nPath;
     }
     return actualDecorator;
 }
