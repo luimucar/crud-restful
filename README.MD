@@ -14,6 +14,9 @@ Installation of dependencies:
 
 1. primeng: http://www.primefaces.org/primeng/#/setup
 2. jquery
+3. ng2-translate
+4. moment
+5. font-awesome
 
 
 ## Library's installation

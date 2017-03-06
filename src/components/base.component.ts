@@ -1,12 +1,18 @@
 import { Input } from '@angular/core';
 import { CrudComponentObj } from '../index';
+import { TranslateService } from 'ng2-translate';
+import { Observer } from './observer/observer';
+import { ConcreteSubject } from './observer/concrete-subject';
 
-export class BaseComponent {
+export class BaseComponent extends Observer {
     @Input()
     index : number;
     
     @Input()
     clazzName : string;
+    
+    @Input()
+    translate : TranslateService;
     
     public id : string;
     public name : string;
@@ -22,8 +28,15 @@ export class BaseComponent {
     public focus : boolean;
     public format : string;
     
+    concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
+    
+    constructor() {       
+        super("BASE-COMPONENT");
+        this.concreteSubject.register(this);
+    }
+    
     readCommonsParameters(index : number) {
-        this.id = CrudComponentObj.getComponents(this.clazzName)[index].property;
+        this.id = this.clazzName + "_" + CrudComponentObj.getComponents(this.clazzName)[index].property;
         if (CrudComponentObj.getComponents(this.clazzName)[index].value != undefined) {
             this.value = CrudComponentObj.getComponents(this.clazzName)[index].value;
         } else {
@@ -64,6 +77,22 @@ export class BaseComponent {
         if (CrudComponentObj.getComponents(this.clazzName)[index].format != undefined) {
             this.format = CrudComponentObj.getComponents(this.clazzName)[index].format;
         }
+        this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
+    }
+    
+    public notify(): void {        
+        this.translateLabel(this.index);
+    }
+    
+    public translateLabel(index : number): void {        
+        if (this.translate != undefined && 
+            CrudComponentObj.getComponents(this.clazzName)[index].translateKey != undefined &&
+            CrudComponentObj.getComponents(this.clazzName)[index].translateKey != null) {
+            let translateKey = CrudComponentObj.getComponents(this.clazzName)[index].translateKey;
+            setTimeout(() => {
+                this.name = this.translate.instant(translateKey);
+            }, 50);
+        }
     }
 }

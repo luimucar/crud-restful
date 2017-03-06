@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {getObject, setObject, CrudComponentObj} from './index';
-import {TranslateService} from 'ng2-translate';
 import {Service} from './services/index';
+import { ConcreteSubject } from './components/observer/concrete-subject';
 
 @Component({
     selector: 'crud',   
@@ -15,13 +15,12 @@ export class CrudComponent {
     @Input()
     model : any;
     
-    @Input()
-    public translate: TranslateService;
-    
     components: CrudComponentObj[];
     
     @Output() onSave = new EventEmitter();
     @Output() onCancel = new EventEmitter();
+    
+    concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
     constructor(public service: Service) {
     }
@@ -41,6 +40,10 @@ export class CrudComponent {
     
     cancel() {
         this.onCancel.emit();
+    }
+    
+    public notify() {
+        this.concreteSubject.notify("BASE-COMPONENT");
     }
 }
 

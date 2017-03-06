@@ -5,6 +5,7 @@ import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
 import { CalendarComponent } from './components/calendar.component';
 import { CheckboxesComponent } from './components/checkboxes.component';
+import { TranslateService } from 'ng2-translate';
 
 @Directive({
     selector: '[crud-factory]'
@@ -21,20 +22,22 @@ export class CrudFactoryDirective implements OnChanges {
     
     @Input()
     model : any;
-      
+    
     componentRef : any;
 
     init = false;
 
     constructor(
         private vcRef: ViewContainerRef,
-        private resolver: ComponentFactoryResolver) { }
+        private resolver: ComponentFactoryResolver,
+        public translate : TranslateService) { }
 
     create(comp : any) {
         const factory = this.resolver.resolveComponentFactory(comp);
         const compRef = this.vcRef.createComponent(factory);
         (<any>compRef).instance.index = this.index;
         (<any>compRef).instance.clazzName = this.clazzName;
+        (<any>compRef).instance.translate = this.translate;
         if (this.model != undefined) {
             (<any>compRef).instance.model = this.model;
         }

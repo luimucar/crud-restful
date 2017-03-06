@@ -26,6 +26,7 @@ export class Scheduling {
     
     @InputType({
         name : 'User:',
+        translateKey : 'USERNAME',
         type : 'text',
         defaultValue : 'Cláudio Margulhano',
         readOnly : true,

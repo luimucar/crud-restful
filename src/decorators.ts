@@ -17,13 +17,14 @@ export class CrudComponentObj {
     public readOnly : boolean;
     public disabled : boolean;
     public inputType : string;
-    public order : number;
+    public order : number = 0;
     public width : string;
     public autoWidth : boolean;
     public colMdLeft : number;
     public colMdRigth : number;
     public focus : boolean;
-    public format : string;      
+    public format : string;
+    public translateKey: string = undefined;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -133,6 +134,7 @@ export function InputType(parameters : any) {
     let colMdLeft = parameters['colMdLeft'];
     let colMdRigth = parameters['colMdRigth'];
     let focus = parameters['focus'];
+    let translateKey = parameters['translateKey'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -152,6 +154,7 @@ export function InputType(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;
         component.focus = focus;
+        component.translateKey = translateKey;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

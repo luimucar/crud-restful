@@ -7,12 +7,12 @@ import * as $ from 'jquery';
     selector: 'inputTextCrudRestful',
     template: `
         <div class="row">
-            <div class="col-md-{{colMdLeft}}">    
-                <label>{{name}}</label>
+            <div class="col-md-{{colMdLeft}}">
+                <label id="label_{{id}}">{{name}}</label>
             </div>
             <div class="col-md-{{colMdRigth}}">    
                 <input [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
-            </div>            
+            </div>
         </div>
     `
 })
@@ -21,7 +21,6 @@ export class InputTextComponent extends BaseComponent {
     inputType : string;
         
     ngOnInit() {
-
         this.readCommonsParameters(this.index);
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         this.inputType = crudComponentObj.inputType;        
@@ -37,7 +36,6 @@ export class InputTextComponent extends BaseComponent {
             CrudComponentObj.getComponents(this.clazzName)[this.index].value = $('#'+this.id).is(':checked');
         } else {
             CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
-            
         }
     }
 }
