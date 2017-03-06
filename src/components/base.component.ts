@@ -37,14 +37,7 @@ export class BaseComponent extends Observer {
     
     readCommonsParameters(index : number) {
         this.id = this.clazzName + "_" + CrudComponentObj.getComponents(this.clazzName)[index].property;
-        if (CrudComponentObj.getComponents(this.clazzName)[index].value != undefined) {
-            this.value = CrudComponentObj.getComponents(this.clazzName)[index].value;
-        } else {
-            this.value = CrudComponentObj.getComponents(this.clazzName)[index].defaultValue;
-        }
-        if (this.value == undefined) {
-            this.value = null;
-        }
+        this.loadValue(this.index);
         this.values = CrudComponentObj.getComponents(this.clazzName)[index].values;
         this.name = CrudComponentObj.getComponents(this.clazzName)[index].name;
         this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
@@ -79,6 +72,17 @@ export class BaseComponent extends Observer {
         }
         this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
+    }
+    
+    public loadValue(index : number) {
+        if (CrudComponentObj.getComponents(this.clazzName)[index].value != undefined) {
+            this.value = CrudComponentObj.getComponents(this.clazzName)[index].value;
+        } else {
+            this.value = CrudComponentObj.getComponents(this.clazzName)[index].defaultValue;
+        }
+        if (this.value == undefined) {
+            this.value = null;
+        }        
     }
     
     public notify(): void {        

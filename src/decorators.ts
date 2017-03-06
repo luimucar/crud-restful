@@ -25,7 +25,9 @@ export class CrudComponentObj {
     public focus : boolean;
     public format : string;
     public translateKey: string = undefined;
-
+    public tableColumn : number;
+    public sortable : boolean;
+    
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
     }
@@ -100,6 +102,20 @@ export function Configure(parameters : any) {
     return actualDecorator;
 }
 
+export function Table(parameters : any) {
+    let name = parameters['name'];
+    let url = parameters['url'];
+    let order = parameters['order'];
+    function actualDecorator(constructor: Function) {
+        let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
+        component.name = name;
+        component.url = url;
+        component.order = order;
+        CrudComponentObj.components.push(component);        
+    }
+    return actualDecorator;
+}
+
 export function Id(parameters : any) {
     let order = parameters['order'];
     function actualDecorator(target: Object, property: string): void {
@@ -135,6 +151,8 @@ export function InputType(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];
     let focus = parameters['focus'];
     let translateKey = parameters['translateKey'];
+    let tableColumn = parameters['tableColumn'];
+    let sortable = parameters['sortable'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -155,6 +173,8 @@ export function InputType(parameters : any) {
         component.colMdRigth = colMdRigth;
         component.focus = focus;
         component.translateKey = translateKey;
+        component.tableColumn = tableColumn;
+        component.sortable = sortable;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -174,6 +194,7 @@ export function MultiSelect(parameters : any) {
     let colMdLeft = parameters['colMdLeft'];
     let colMdRigth = parameters['colMdRigth'];
     let focus = parameters['focus'];
+    let translateKey = parameters['translateKey'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -191,6 +212,7 @@ export function MultiSelect(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;
         component.focus = focus;
+        component.translateKey = translateKey;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -205,6 +227,7 @@ export function Chips(parameters : any) {
     let colMdLeft = parameters['colMdLeft'];
     let colMdRigth = parameters['colMdRigth'];     
     let focus = parameters['focus'];
+    let translateKey = parameters['translateKey'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -216,7 +239,8 @@ export function Chips(parameters : any) {
         component.width = width; 
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;  
-        component.focus = focus;             
+        component.focus = focus;       
+        component.translateKey = translateKey;      
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -232,7 +256,10 @@ export function Select(parameters : any) {
     let width = parameters['width'];
     let colMdLeft = parameters['colMdLeft'];
     let colMdRigth = parameters['colMdRigth'];  
-    let focus = parameters['focus'];            
+    let focus = parameters['focus'];       
+    let translateKey = parameters['translateKey'];
+    let tableColumn = parameters['tableColumn'];
+    let sortable = parameters['sortable'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -247,6 +274,9 @@ export function Select(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;        
         component.focus = focus;
+        component.translateKey = translateKey;
+        component.tableColumn = tableColumn;
+        component.sortable = sortable;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -262,6 +292,9 @@ export function Calendar(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];     
     let focus = parameters['focus'];
     let format = parameters['format'];
+    let translateKey = parameters['translateKey'];
+    let tableColumn = parameters['tableColumn'];
+    let sortable = parameters['sortable'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -274,7 +307,10 @@ export function Calendar(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;  
         component.focus = focus;
-        component.format = format;             
+        component.format = format;
+        component.translateKey = translateKey;
+        component.tableColumn = tableColumn;
+        component.sortable = sortable;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -290,6 +326,7 @@ export function Checkboxes(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];     
     let focus = parameters['focus'];
     let values = parameters['values'];
+    let translateKey = parameters['translateKey'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -302,7 +339,8 @@ export function Checkboxes(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;  
         component.focus = focus;
-        component.values = values;             
+        component.values = values; 
+        component.translateKey = translateKey;            
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

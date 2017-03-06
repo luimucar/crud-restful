@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes } from '../index';
+import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
 
 export class Report {
     constructor(public id: string) {

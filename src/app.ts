@@ -6,6 +6,7 @@ import { CrudComponent } from './crud.component'
 import {TranslateService} from 'ng2-translate';
 import { Scheduling } from './examples/scheduling'
 import { User } from './examples/user'
+import { Login } from './examples/login'
 import * as moment from 'moment';
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
 import { getI18nPath } from './decorators';
@@ -15,7 +16,7 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-        <crud [clazz]="'Scheduling'" [model]="scheduling" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+        <crud [clazz]="'Login'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
       
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12">
@@ -74,7 +75,7 @@ export function createTranslateLoader(http: Http) {
     ],
     declarations: [App],
     bootstrap: [App],
-    providers: [Scheduling, User]
+    providers: [Scheduling, User, Login]
 })
 export class AppModule {
 }

@@ -5,6 +5,7 @@ import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
 import { CalendarComponent } from './components/calendar.component';
 import { CheckboxesComponent } from './components/checkboxes.component';
+import { TableComponent } from './components/table.component';
 import { TranslateService } from 'ng2-translate';
 
 @Directive({
@@ -66,6 +67,8 @@ export class CrudFactoryDirective implements OnChanges {
             comp = CalendarComponent;
         } else if (this.type == 'Checkboxes') {
             comp = CheckboxesComponent;
+        } else if (this.type == 'Table') {
+            comp = TableComponent;
         }
         if (comp) {
             this.create(comp);
