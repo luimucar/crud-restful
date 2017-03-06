@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Id, InputType, Configure, MultiSelect, Chips, Select } from '../index';
+import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -7,10 +7,7 @@ export class Report {
 }
 
 export class CarPark {
-    public checked : boolean;
-    public id: number;
-    public name: string;
-    constructor () {
+    constructor (public id?: number, public name?: string, public checked? : boolean) {
     }
 }
 
@@ -22,7 +19,9 @@ export class Scheduling {
     constructor() {
     }
     
-    @Id()
+    @Id( {
+        order : 0
+    })
     public id: number;
     
     @InputType({
@@ -31,7 +30,7 @@ export class Scheduling {
         defaultValue : 'Cláudio Margulhano',
         readOnly : true,
         autoWidth : true,
-        order : 0
+        order : 1
     })
     public name: string;
 
@@ -40,7 +39,7 @@ export class Scheduling {
         type : 'password',
         defaultValue : '123',
         autoWidth : true,
-        order : 1
+        order : 2
     })
     public password: string;
     
@@ -48,7 +47,7 @@ export class Scheduling {
         name : 'Admin:',
         type : 'checkbox',
         defaultValue : true,
-        order : 2
+        order : 3
     })
     public admin: boolean;
     
@@ -60,14 +59,14 @@ export class Scheduling {
         modelSelectValue : 'id',
         modelSelectLabel : 'name',
         disabled : true,
-        order : 3
+        order : 4
     })
     public reports: Report[];
     
     @Chips({
         disabled : false,
         autoWidth : true,
-        order : 4
+        order : 5
     })
     public mails: string[];
     
@@ -81,10 +80,35 @@ export class Scheduling {
     public carParks: CarPark[];
     
     @Select({
-        values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
+        values : [{"value" : '1', "label" : "Value 1"}, {"value" : '2', "label" : "Value 2"}, {"value" : '3', "label" : "Value 3"}],
         defaultValue : 2,
-        order : 5
+        order : 7
     })
     public period: string;
+    
+    @Calendar({
+        disabled : false,
+        autoWidth : true,
+        order : 8,
+        format : 'DD/MM/YYYY'
+    })
+    public date1 : string;
+    
+    @Calendar({
+        disabled : false,
+        autoWidth : true,
+        order : 9,
+        format : 'DD/MM/YYYY'
+    })
+    public date2 : Date;
+
+     @Checkboxes({
+        disabled : false,
+        autoWidth : true,
+        order : 10,
+        values : [new CarPark(1, 'Value 1', false),
+                  new CarPark(2, 'Value 2', false)]
+    })
+    public allCarParks : CarPark[];
 }
 

@@ -3,13 +3,13 @@ import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 
 @Component({
-    selector: 'inputText',
+    selector: 'chipsCrudRestful',
     template: `
         <div class="row">
-            <div class="col-md-2">    
+            <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-10">    
+            <div class="col-md-{{colMdRigth}}">    
                 <p-chips [style.width]="width" [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
             </div>            
         </div>

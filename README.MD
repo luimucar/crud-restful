@@ -10,12 +10,13 @@ All components are created at runtime based on Decorators and Metadatas that pro
 
 ## Prerequisite
 
-Installation of depencies:
-    - primeng: http://www.primefaces.org/primeng/#/setup
-    - jquery
+Installation of dependencies:
+
+1. primeng: http://www.primefaces.org/primeng/#/setup
+2. jquery
 
 
-## Installation
+## Library's installation
 
 To install this library, run:
 
@@ -25,7 +26,7 @@ $ npm install crud-restful --save
 
 ## Ho to use
 
-1. Describe your model with Decorators. Example:
+## Describe your model with Decorators. Example:
 
 ```javascript
 import { InputType } from 'crud-restful/index';
@@ -60,18 +61,20 @@ export class User {
 }
 ```
 
-2. Import in your module:
+## Import in your module:
 
 ```javascript
 import {CrudModule} from 'crud-restful/index';
 import {User} from 'user';
 ```
 
-3. In your HTML template:
+## In your HTML template:
 
+```html
 <crud [clazz]="'User'" [model]="user" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+```
 
-4. In your component initialize your object model and handle the events of Save and Cancel:
+## In the component initialize your object model (if necessary) and handle the events of Save and Cancel:
 
 ```javascript
     .
@@ -105,10 +108,11 @@ npm start
 
 ## Components
 
-1. InputType
+## InputType
 
 Example:
 
+```javascript
 @InputType({
     name : 'User:',
     type : 'text',
@@ -118,11 +122,13 @@ Example:
     order : 0
 })
 username: string;
+```
 
-2. MultiSelect
+## MultiSelect
 
 Example:
 
+```javascript
 @MultiSelect({
     url : 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 
     modelSelect : 'reportList',        
@@ -133,29 +139,87 @@ Example:
     order : 3
 })
 public reports: Report[];
+```
 
-3. Chips
+## Chips
 
+```javascript
 @Chips({
     disabled : false,
     autoWidth : true,
     order : 4
 })
 public mails: string[];
+```
 
-4. Select
+## Select
 
+Example:
+
+```javascript
 @Select({
     values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
     defaultValue : 2,
     order : 5
 })
 public period: string;
+```
 
-5. Calendar (under development)
-6. Table (under development)
-7. Scheduling (under development)
-8. Dual List Box (under development)
+## Calendar
+
+Example:
+
+Using string object:
+
+```javascript
+@Calendar({
+    disabled : false,
+    autoWidth : true,
+    order : 7,
+    format : 'DD/MM/YYYY'
+})
+public date : string;
+```
+
+Or using Date object:
+
+```javascript
+@Calendar({
+    disabled : false,
+    autoWidth : true,
+    order : 7,
+    format : 'DD/MM/YYYY'
+})
+public date : Date;
+```
+
+Posible formats:
+
+1. DD/MM/YYYY
+2. MM/DD/YYYY
+3. YYYY/MM/DD
+
+## Checkboxes
+
+Example:
+
+```javascript
+@Checkboxes({
+    disabled : false,
+    autoWidth : true,
+    order : 8,
+    values : [new CarPark(1, 'Value 1', false),
+              new CarPark(2, 'Value 2', false)]
+})
+public allCarParks : CarPark[];
+```
+
+## Table (under development)
+
+## Scheduling (under development)
+
+## Dual List Box (under development)
+
 
 ## License
 

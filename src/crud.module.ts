@@ -11,6 +11,9 @@ import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
 import { SelectComponent } from './components/select.component';
+import { CalendarComponent } from './components/calendar.component';
+import { CheckboxesComponent } from './components/checkboxes.component';
+
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
 import { getI18nPath } from './decorators';
 
@@ -19,7 +22,9 @@ export function createTranslateLoader(http: Http) {
 }
 
 @NgModule({
-    declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent],
+    declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, 
+        MultiSelectComponent, ChipsComponent, SelectComponent,
+        CalendarComponent, CheckboxesComponent],
     imports: [ReactiveFormsModule, FormsModule, HttpModule, BrowserModule, RouterModule, PrimeNgModule.forRoot(),
         TranslateModule.forRoot({
             provide: TranslateLoader,
@@ -29,6 +34,7 @@ export function createTranslateLoader(http: Http) {
     ],
     exports : [CrudComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, SelectComponent]
+    entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, 
+        SelectComponent, CalendarComponent, CheckboxesComponent]
 })
 export class CrudModule { }

@@ -1,6 +1,6 @@
 {
   "name": "crud-restful",
-  "version": "1.0.11",
+  "version": "1.0.16",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "test": "tsc && karma start",
@@ -31,6 +31,7 @@
   "dependencies": {
     "font-awesome": "4.7.0",
     "jquery": "3.1.1",
+    "moment": "^2.17.1",
     "ng2-translate": "4.0.1",
     "primeng": "2.0.1",
     "reflect-metadata": "0.1.10",

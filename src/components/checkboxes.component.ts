@@ -9,26 +9,26 @@ import { BaseComponent } from './base.component';
             <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
-            <div class="col-md-{{colMdRigth}}">    
-                <select [style.width]="width" [ngModel]="value" (ngModelChange)="onChangeObj($event)">
-                    <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
-                </select>
+            <div class="col-md-{{colMdRigth}}">
+                <div *ngFor="let item of values">
+                    <input type='checkbox' [name]="item.value" [value]="item.value" (change)="updateCheckedOptions(item, $event)">
+                    <label>{{item.name}}</label> 
             </div>
         </div>
     `
 })
 
-export class SelectComponent extends BaseComponent {   
+export class CheckboxesComponent extends BaseComponent {
     ngOnInit() {
         this.readCommonsParameters(this.index);
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
     }
-    
-    onChangeObj(value:any) {
+    updateCheckedOptions(item, event) {
+        item['checked'] = event.target.checked;
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-        CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
+        crudComponentObj.value = this.values;
     }
-}    
+}
 
 
 
