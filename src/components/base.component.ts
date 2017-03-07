@@ -33,7 +33,9 @@ export class BaseComponent extends Observer {
     public pageLinks : number;  
     public sortField : string;
     public sortOrder : number;
-    public emptyMessage : string;  
+    public emptyMessage : string; 
+    public fileConfig : string;
+    public fileConfigServerKey : string;     
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -85,6 +87,8 @@ export class BaseComponent extends Observer {
         this.sortField = CrudComponentObj.getComponents(this.clazzName)[index].sortField;
         this.sortOrder = CrudComponentObj.getComponents(this.clazzName)[index].sortOrder;
         this.emptyMessage = CrudComponentObj.getComponents(this.clazzName)[index].emptyMessage;
+        this.fileConfig = CrudComponentObj.getComponents(this.clazzName)[index].fileConfig;
+        this.fileConfigServerKey = CrudComponentObj.getComponents(this.clazzName)[index].fileConfigServerKey;
         this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }

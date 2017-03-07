@@ -37,7 +37,8 @@ var webpackConfig = {
             "require.specified": "require.resolve"
         }),
         new CopyWebpackPlugin([
-            { from: 'src/assets', to: 'assets' }
+            { from: 'src/assets', to: 'assets' },
+            { from: 'config', to: 'config' }
         ])            
     ],
 

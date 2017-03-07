@@ -3,6 +3,7 @@ import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
 import { Service } from '../services/index';
 import { Observable } from 'rxjs/Rx';
+import { Http } from '@angular/http';
 import * as $ from 'jquery';
 
 @Component({
@@ -34,7 +35,7 @@ export class TableComponent extends BaseComponent {
     itens: any[] = [];
     selected : any;
     
-    constructor(public service: Service) {
+    constructor(public service: Service, private http: Http) {
         super();
     }
     
@@ -63,16 +64,40 @@ export class TableComponent extends BaseComponent {
         });
         
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-        setTimeout(() => {
-            this.getItens(crudComponentObj.url)
-                .subscribe(itens => {
-                    itens.forEach(item => {
-                        this.itens.push(item);
-                    });
-                },
-                error => {
-                    console.log(error);
-                });
+        setTimeout(() => {            
+            if (crudComponentObj.fileConfig != undefined) {
+                this.http.get(this.fileConfig).map(res => res.json())
+                    .subscribe(config => {
+                        let keys : string[] = this.fileConfigServerKey.split('.');
+                        let server : any = null;
+                        keys.forEach(key => {
+                            if (server == null) {
+                                server = config[key];
+                            } else {
+                                server = server[key];
+                            }
+                        });
+                        this.getItens(server + crudComponentObj.url)
+                            .subscribe(itens => {
+                                itens.forEach(item => {
+                                    this.itens.push(item);
+                                });
+                            },
+                            error => {
+                                console.log(error);
+                            });                                        
+                    });                
+            } else {
+                this.getItens(crudComponentObj.url)
+                    .subscribe(itens => {
+                        itens.forEach(item => {
+                            this.itens.push(item);
+                        });
+                    },
+                    error => {
+                        console.log(error);
+                    });                
+            }                        
         }, 100);
     }
     

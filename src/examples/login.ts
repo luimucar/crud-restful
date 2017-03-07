@@ -2,7 +2,9 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 
 @Table({
     name : 'tableUser',
-    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    url : '/v2/58bdc0e10f0000c3255c6857',
+    fileConfig : '/config/webapp-config.json',
+    fileConfigServerKey : 'server.enterprises',    
     rows : 10,
     paginator : true,
     pageLinks : 3,

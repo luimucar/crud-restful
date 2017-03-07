@@ -5,7 +5,6 @@ export class Configuration {
     public static confirmMessageKey : string;
     public static confirmTitleMessageKey : string;
     public static tableLess : Map<string,boolean> = new Map<string,boolean>();
-    public static lastClazzConfirm : string;
     public static token : string;
 }
 
@@ -38,6 +37,8 @@ export class CrudComponentObj {
     public sortField : string;
     public sortOrder : number;
     public emptyMessage : string;
+    public fileConfig : string;
+    public fileConfigServerKey : string;
     
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -117,7 +118,9 @@ export function Table(parameters : any) {
     let pageLinks = parameters['pageLinks'];
     let sortField = parameters['sortField'];
     let sortOrder = parameters['sortOrder'];
-    let emptyMessage = parameters['emptyMessageKey'];    
+    let emptyMessage = parameters['emptyMessageKey'];
+    let fileConfig = parameters['fileConfig'];
+    let fileConfigServerKey = parameters['fileConfigServerKey'];
     function actualDecorator(constructor: Function) {
         Configuration.tableLess.set(constructor['name'], false);
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
@@ -130,6 +133,8 @@ export function Table(parameters : any) {
         component.sortField = sortField;
         component.sortOrder = sortOrder;
         component.emptyMessage = emptyMessage;
+        component.fileConfig = fileConfig;
+        component.fileConfigServerKey = fileConfigServerKey;
         CrudComponentObj.components.push(component);        
     }
     return actualDecorator;
