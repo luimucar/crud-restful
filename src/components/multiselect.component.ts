@@ -50,7 +50,6 @@ export class MultiSelectComponent extends BaseComponent {
     }
     
     getMultiSelectValues(url : string): Observable<any[]> {
-        this.service.setHeader(null, false);
         return this.service.get(url);
     }
     

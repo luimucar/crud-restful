@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import * as Rx from "rxjs/Rx"
+import { Configuration } from '../index';
 
 @Injectable()
 export class Service {
@@ -11,8 +12,14 @@ export class Service {
 
 
     constructor(private http: Http) {
-        let header = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-        this.setHeader(header, false);
+        let header = null;
+        if (Configuration.token) {
+            header = { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization' : Configuration.token};
+        } else {
+            header = { 'Content-Type': 'application/json', 'Accept': 'application/json'};
+        }
+        let headers = new Headers(header);
+        this.header = new RequestOptions({ headers: headers });
         this.body = '';
     }
 
@@ -111,16 +118,6 @@ export class Service {
 
                 return Observable.throw(error || 'Server error')
             });
-    }
-
-    public setHeader(header: any = null, authorization: boolean = true): void {
-        // Set Authorization
-        if (authorization) {
-            header.Authorization = localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token');
-        }
-
-        let headers = new Headers(header);
-        this.header = new RequestOptions({ headers: headers });
     }
 
     public get getHeader(): RequestOptions {

@@ -77,7 +77,6 @@ export class TableComponent extends BaseComponent {
     }
     
     getItens(url : string): Observable<any[]> {
-        this.service.setHeader(null, false);
         return this.service.get(url);
     }    
     
