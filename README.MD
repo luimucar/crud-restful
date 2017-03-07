@@ -126,7 +126,30 @@ npm start
 
 ## Components
 
-## InputType
+## Table - class decorator
+
+Example:
+
+```javascript
+@Table({
+    name : 'tableUser',
+    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    rows : 10,
+    paginator : true,
+    pageLinks : 3,
+    sortField : 'id',
+    sortOrder : 1,   
+    order : 0,
+    emptyMessage : 'MSG.EMPTY_MESSAGE'
+})
+export class Login {
+    .
+    .
+    .
+}
+````
+
+## InputType - property decorator
 
 Example:
 
@@ -142,7 +165,7 @@ Example:
 username: string;
 ```
 
-## MultiSelect
+## MultiSelect - property decorator
 
 Example:
 
@@ -159,7 +182,7 @@ Example:
 public reports: Report[];
 ```
 
-## Chips
+## Chips - property decorator
 
 ```javascript
 @Chips({
@@ -170,7 +193,7 @@ public reports: Report[];
 public mails: string[];
 ```
 
-## Select
+## Select - property decorator
 
 Example:
 
@@ -183,7 +206,7 @@ Example:
 public period: string;
 ```
 
-## Calendar
+## Calendar - property decorator
 
 Example:
 
@@ -217,7 +240,7 @@ Posible formats:
 2. MM/DD/YYYY
 3. YYYY/MM/DD
 
-## Checkboxes
+## Checkboxes - property decorator
 
 Example:
 
@@ -231,29 +254,6 @@ Example:
 })
 public allCarParks : CarPark[];
 ```
-
-## Table (under development)
-
-Example:
-
-```javascript
-@Table({
-    name : 'tableUser',
-    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
-    rows : 10,
-    paginator : true,
-    pageLinks : 3,
-    sortField : 'id',
-    sortOrder : 1,   
-    order : 0,
-    emptyMessage : 'MSG.EMPTY_MESSAGE'
-    export class Login {
-        .
-        .
-        .
-    }
-})
-````
 
 ## Scheduling (under development)
 
