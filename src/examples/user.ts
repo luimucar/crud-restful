@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
 
 @Injectable()
-@Table({
-    name : 'tableUser',
-    url : 'http://www.mocky.io/v2/58bdb28e0f000082245c6832',
-    order : 0
+@Configure({
+    i18nPath : './assets/i18n',
+    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
+    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
 })
 export class User {
     @InputType({

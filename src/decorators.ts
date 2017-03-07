@@ -4,6 +4,7 @@ export class Configuration {
     public static i18nPath : string = './assets/i18n';
     public static confirmMessageKey : string;
     public static confirmTitleMessageKey : string;
+    public static tableLess : Map<string,boolean> = new Map<string,boolean>();
 }
 
 export class CrudComponentObj {
@@ -110,6 +111,7 @@ export function Configure(parameters : any) {
         Configuration.i18nPath = i18nPath;
         Configuration.confirmMessageKey = confirmMessageKey;
         Configuration.confirmTitleMessageKey = confirmTitleMessageKey;
+        Configuration.tableLess.set(constructor['name'], true);
     }
     return actualDecorator;
 }
@@ -125,6 +127,7 @@ export function Table(parameters : any) {
     let sortOrder = parameters['sortOrder'];
     let emptyMessage = parameters['emptyMessageKey'];    
     function actualDecorator(constructor: Function) {
+        Configuration.tableLess.set(constructor['name'], false);
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
         component.name = name;
         component.url = url;

@@ -36,17 +36,26 @@ export class CrudComponent extends Observer {
     
     ngOnInit() {
         this.components = CrudComponentObj.getComponents(this.clazz);
-        setObject(this.clazz, this.model);
+        setObject(this.clazz, this.model);        
         setTimeout(() => {
-            BaseComponent.showOrHideComponets(this.clazz, 'none');
-        }, 100);
+            //console.log(Configuration.tableLess);
+            if (!Configuration.tableLess.get(this.clazz)) {
+                BaseComponent.showOrHideComponets(this.clazz, 'none');
+            } else {
+                BaseComponent.showOrHideComponets(this.clazz, 'block');
+            }
+        }, 200);
         //console.log(this.components);
     }
     
     save() {
         if (this.components.length > 0) {
             let obj = getObject(this.components[0].clazz);
-            BaseComponent.showOrHideComponets(this.clazz, 'none');
+            if (!Configuration.tableLess.get(this.clazz)) {
+                BaseComponent.showOrHideComponets(this.clazz, 'none');
+            } else {
+                BaseComponent.showOrHideComponets(this.clazz, 'block');
+            }
             this.onSave.emit(obj);
         }
     }
@@ -59,7 +68,11 @@ export class CrudComponent extends Observer {
             accept: () => {
                 if (this.components.length > 0) {
                     let obj = getObject(this.components[0].clazz);
-                    BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    if (!Configuration.tableLess.get(this.clazz)) {
+                        BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    } else {
+                        BaseComponent.showOrHideComponets(this.clazz, 'block');
+                    }
                     this.onRemove.emit(obj);
                 }
             }
@@ -73,7 +86,11 @@ export class CrudComponent extends Observer {
             icon: 'fa fa-times',
             accept: () => {
                 if (this.components.length > 0) {
-                    BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    if (!Configuration.tableLess.get(this.clazz)) {
+                        BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    } else {
+                        BaseComponent.showOrHideComponets(this.clazz, 'block');
+                    }
                     this.onCancel.emit();
                 }
             }
