@@ -2,6 +2,8 @@ import * as $ from 'jquery';
 
 export class Configuration {
     public static i18nPath : string = './assets/i18n';
+    public static confirmMessageKey : string;
+    public static confirmTitleMessageKey : string;
 }
 
 export class CrudComponentObj {
@@ -100,10 +102,14 @@ export function getI18nPath() : string {
 
 export function Configure(parameters : any) {
     let i18nPath = parameters['i18nPath'];
+    let confirmMessageKey = parameters['confirmMessageKey'];
+    let confirmTitleMessageKey = parameters['confirmTitleMessageKey'];
     function actualDecorator(constructor: Function) {        
         Object.seal(constructor);
         Object.seal(constructor.prototype);
         Configuration.i18nPath = i18nPath;
+        Configuration.confirmMessageKey = confirmMessageKey;
+        Configuration.confirmTitleMessageKey = confirmTitleMessageKey;
     }
     return actualDecorator;
 }
@@ -117,7 +123,7 @@ export function Table(parameters : any) {
     let pageLinks = parameters['pageLinks'];
     let sortField = parameters['sortField'];
     let sortOrder = parameters['sortOrder'];
-    let emptyMessage = parameters['emptyMessage'];    
+    let emptyMessage = parameters['emptyMessageKey'];    
     function actualDecorator(constructor: Function) {
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
         component.name = name;

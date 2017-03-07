@@ -8,18 +8,18 @@ The use of this component generates a great gain of productivity and flexibility
 All components are created at runtime based on Decorators and Metadatas that provides information such as field positioning, combos content and component configuration.
 
 
-## Prerequisites
+## Libraries dependencies
 
 Installation of dependencies:
 
 1. primeng: http://www.primefaces.org/primeng/#/setup
-2. jquery
-3. ng2-translate
-4. moment
-5. font-awesome
+2. jQuery : https://www.npmjs.com/package/jquery
+3. ng2-translate : https://www.npmjs.com/package/ng2-translate
+4. moment : https://www.npmjs.com/package/moment
+5. font-awesome : https://www.npmjs.com/package/font-awesome
 
 
-## Library's installation
+## Library installation
 
 To install this library, run:
 
@@ -29,10 +29,10 @@ $ npm install crud-restful --save
 
 ## Ho to use
 
-## Describe your model with Decorators. Example:
+### Describe your model with Decorators and Metadatas. Example:
 
 ```javascript
-import { InputType } from 'crud-restful/index';
+import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
 
 @Table({
     name : 'tableUser',
@@ -43,35 +43,40 @@ import { InputType } from 'crud-restful/index';
     sortField : 'id',
     sortOrder : 1,   
     order : 0,
-    emptyMessage : 'MSG.EMPTY_MESSAGE'
+    emptyMessageKey : 'MSG.EMPTY_MESSAGE'
 })
-export class User {
+export class Login {
     @InputType({
-        name : 'Password:',
-        type : 'password',
+        name : 'Id',
+        type : 'text',
+        readOnly : true,
+        disabled : true,
         autoWidth : true,
-        order : 1
-    })
-    public passwordConfirmation;
+        order : 1,
+        tableColumn : 0,
+        sortable : true
+    })    
+    id : number;
 
-    constructor(
-        @InputType({
-            name : 'User:',
-            type : 'text',
-            readOnly : true,
-            disabled : true,            
-            autoWidth : true,
-            order : 0
-        })
-        public username?: string, 
-        @InputType({
-            name : 'Confirmation:',
-            type : 'password',
-            autoWidth : true,
-            order : 2
-        })        
-        public password?:string, 
-        public token?: string) {}
+    @InputType({
+        name : 'Email',
+        type : 'text',
+        autoWidth : true,
+        order : 2,
+        tableColumn : 1,
+        sortable : true
+    })            
+    name : string;
+    
+    @InputType({
+        name : 'Full Name',
+        type : 'text',
+        autoWidth : true,
+        order : 3,
+        tableColumn : 2,
+        sortable : true
+    })    
+    fullname : string;   
 }
 ```
 
@@ -79,30 +84,40 @@ Result:
 
 ![alt tag](https://github.com/cmargulhano/crud-restful/blob/master/demo.gif)
 
-## Import in your module:
+### Import in your module:
 
 ```javascript
 import {CrudModule} from 'crud-restful/index';
-import {User} from 'user';
 ```
 
-## In your HTML template:
+### In your HTML template:
 
 ```html
-<crud [clazz]="'User'" [model]="user" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+<crud [clazz]="'Login'" [model]="login" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove" (onCancel)="handleOnCancel()"></crud>
 ```
+- Inputs:
+1. [clazz] - required - The class name
+2. [model] - optional - The instance of class with default values
 
-## In the component initialize your object model (if necessary) and handle the events of Save and Cancel:
+- Events:
+1. Save
+2. Remove
+3. Cancel
+
+### In the component initialize your object model with default values (if necessary) and handle the events:
 
 ```javascript
     .
     .
     .
 
-    user : User;
+    login : Login;
 
     constructor() {
-        this.user = new User('Cláudio Margulhano');
+        this.login = new Login();
+        this.login.id = 1;
+        this.login.name = 'cmargulhano@gmail.com';
+        this.login.fullname = 'Cláudio Margulhano';
     }
     
     handleOnSave(user : User) {
@@ -116,6 +131,7 @@ import {User} from 'user';
     .
     .
 ```
+
 ## Playground of components: http://localhost:8080
 
 ```bash
@@ -126,7 +142,7 @@ npm start
 
 ## Components
 
-## Table - class decorator
+### Table - class decorator
 
 Example:
 
@@ -149,7 +165,7 @@ export class Login {
 }
 ````
 
-## InputType - property decorator
+### InputType - property decorator
 
 Example:
 
@@ -165,7 +181,7 @@ Example:
 username: string;
 ```
 
-## MultiSelect - property decorator
+### MultiSelect - property decorator
 
 Example:
 
@@ -182,7 +198,7 @@ Example:
 public reports: Report[];
 ```
 
-## Chips - property decorator
+### Chips - property decorator
 
 ```javascript
 @Chips({
@@ -193,7 +209,7 @@ public reports: Report[];
 public mails: string[];
 ```
 
-## Select - property decorator
+### Select - property decorator
 
 Example:
 
@@ -206,7 +222,7 @@ Example:
 public period: string;
 ```
 
-## Calendar - property decorator
+### Calendar - property decorator
 
 Example:
 
@@ -240,7 +256,7 @@ Posible formats:
 2. MM/DD/YYYY
 3. YYYY/MM/DD
 
-## Checkboxes - property decorator
+### Checkboxes - property decorator
 
 Example:
 
@@ -255,10 +271,28 @@ Example:
 public allCarParks : CarPark[];
 ```
 
-## Scheduling (under development)
+### Scheduling (under development)
 
-## Dual List Box (under development)
+### Dual List Box (under development)
 
+## I18N - Crud-restful uses ng2-translate to translate the interface
+
+### Configuration
+
+By default, Crud-restful will search for files in assets/i18n/*.json.
+If you want you can customize this behavior by changing the path (attribute <b>i18nPath</b>) of the files with the decorator <b>@Config</b>, example:
+
+```javascript
+@Configure({
+    i18nPath : './assets/i18n',
+    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
+    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
+})
+```
+
+All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file;
+The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.
+The <b>confirmMessageKey</b> and <b>confirmTitleMessageKey</b> keys are for Confirm Dialog translation.
 
 ## License
 

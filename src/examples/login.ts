@@ -9,7 +9,12 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     sortField : 'id',
     sortOrder : 1,   
     order : 0,
-    emptyMessage : 'MSG.EMPTY_MESSAGE'
+    emptyMessageKey : 'MESSAGE.NO_DATA'
+})
+@Configure({
+    i18nPath : './assets/i18n',
+    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
+    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
 })
 export class Login {
     @InputType({

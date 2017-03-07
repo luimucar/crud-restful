@@ -14,6 +14,8 @@ export class CarPark {
 @Injectable()
 @Configure({
     i18nPath : './assets/i18n',
+    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
+    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
 })
 export class Scheduling {
     constructor() {

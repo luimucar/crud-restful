@@ -1,16 +1,18 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {getObject, setObject, CrudComponentObj} from './index';
+import {getObject, setObject, CrudComponentObj, Configuration} from './index';
 import {Service} from './services/index';
 import {ConcreteSubject} from './components/observer/concrete-subject';
+import {Observer} from './components/observer/observer';
 import {BaseComponent} from './components/base.component';
-import * as $ from 'jquery';
+import {ConfirmationService} from 'primeng/primeng';
+import { TranslateService } from 'ng2-translate';
 
 @Component({
     selector: 'crud',   
     templateUrl : './crud.html',
     providers : [Service]
 })
-export class CrudComponent {
+export class CrudComponent extends Observer {
     @Input()
     clazz : string;
     
@@ -20,11 +22,16 @@ export class CrudComponent {
     components: CrudComponentObj[];
     
     @Output() onSave = new EventEmitter();
+    @Output() onRemove = new EventEmitter();
     @Output() onCancel = new EventEmitter();
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
-    constructor(public service: Service) {
+    showRemove : boolean;
+    
+    constructor(public service: Service, private confirmationService: ConfirmationService, private translate : TranslateService) {
+        super('CRUD-COMPONENT');
+        this.concreteSubject.register(this);
     }
     
     ngOnInit() {
@@ -44,13 +51,37 @@ export class CrudComponent {
         }
     }
     
+    remove() {
+        this.confirmationService.confirm({
+            message: this.translate.instant(Configuration.confirmMessageKey),
+            header: this.translate.instant(Configuration.confirmTitleMessageKey),
+            icon: 'fa fa-trash',
+            accept: () => {
+                if (this.components.length > 0) {
+                    let obj = getObject(this.components[0].clazz);
+                    BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    this.onRemove.emit(obj);
+                }
+            }
+        });
+    }
+    
     cancel() {
-        BaseComponent.showOrHideComponets(this.clazz, 'none');
-        this.onCancel.emit();
+        this.confirmationService.confirm({
+            message: this.translate.instant(Configuration.confirmMessageKey),
+            header: this.translate.instant(Configuration.confirmTitleMessageKey),
+            icon: 'fa fa-times',
+            accept: () => {
+                if (this.components.length > 0) {
+                    BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    this.onCancel.emit();
+                }
+            }
+        });
     }
     
     public notify() {
-        this.concreteSubject.notify("BASE-COMPONENT");
+        this.showRemove = BaseComponent.showRemove;
     }
 }
 

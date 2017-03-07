@@ -7,7 +7,12 @@
         }
     },
     "USERNAME" : "Name",
-    "MSG" : {
-        "EMPTY_MESSAGE" : "Not found"
-    }
+    "MESSAGE": {
+        "WAIT": "Please wait ...",
+        "SUCCESS": "Success",
+        "ERROR": "Error",
+        "NO_DATA" : "No data available.",
+        "CONFIRM" : "Confirmation",        
+        "CONFIRMATION_MSG" : "Are you sure that you want to perform this action?"
+    }    
 }

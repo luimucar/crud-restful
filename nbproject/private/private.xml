@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/claudio/Koradi/projects/crud-restful/README.MD</file>
-            <file>file:/Users/claudio/Koradi/projects/crud-restful/package.json</file>
+            <file>file:/home/claudio/Koradi/Projects/WPS/crud-restful/src/examples/login.ts</file>
+            <file>file:/home/claudio/Koradi/Projects/WPS/crud-restful/src/crud.component.ts</file>
+            <file>file:/home/claudio/Koradi/Projects/WPS/crud-restful/src/crud.html</file>
+            <file>file:/home/claudio/Koradi/Projects/WPS/crud-restful/src/index.ts</file>
         </group>
     </open-files>
 </project-private>

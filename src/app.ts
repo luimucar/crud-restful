@@ -16,7 +16,7 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-        <crud [clazz]="'Login'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
+        <crud [clazz]="'Login'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12">
                 <button pButton type="button" (click)="test()" label="Test"></button>
@@ -34,7 +34,7 @@ export class App {
         translate.addLangs(["en-en", "pt-br"]);
         translate.setDefaultLang('en-en');
         translate.use('en-en');
-
+        /*
         this.scheduling = new Scheduling();
         this.scheduling.name = 'Teste';
         this.scheduling.period = '3';
@@ -44,16 +44,23 @@ export class App {
         this.user = new User('Cláudio');
         this.user.password = '123';
         this.user.passwordConfirmation = '123';
+        */
     }
     
-    handleOnSave(user : User) {
-        console.log(user);
+    handleOnSave(login : Login) {
+        console.log('Save');
+        console.log(login);
     }
     
+    handleOnRemove(login : Login) {
+        console.log('Remove');
+        console.log(login);
+    }
+
     handleOnCancel() {
         console.log('Cancel');
     }
-    
+        
     test() {
         this.translate.use('pt-br');
         this.crudComponent.notify();

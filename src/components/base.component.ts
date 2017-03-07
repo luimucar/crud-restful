@@ -37,6 +37,8 @@ export class BaseComponent extends Observer {
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
+    static showRemove : boolean;
+    
     constructor() {       
         super("BASE-COMPONENT");
         this.concreteSubject.register(this);
@@ -126,5 +128,9 @@ export class BaseComponent extends Observer {
             $("#select"+counter).css("display", display);
             counter++;
         })
+    }
+    
+    public static setShowRemove(value : boolean) {
+        BaseComponent.showRemove = value;
     }
 }

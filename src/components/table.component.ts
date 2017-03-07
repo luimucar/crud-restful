@@ -78,6 +78,8 @@ export class TableComponent extends BaseComponent {
             }
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');
+        BaseComponent.setShowRemove(true);
+        this.concreteSubject.notify('CRUD-COMPONENT');
     }
     
     newItem() {
@@ -86,6 +88,8 @@ export class TableComponent extends BaseComponent {
             $('#' + comp.clazzName + '_' + comp.property).val(null);
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');        
+        BaseComponent.setShowRemove(false);
+        this.concreteSubject.notify('CRUD-COMPONENT');
     }   
 }
 
