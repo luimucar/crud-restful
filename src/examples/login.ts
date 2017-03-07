@@ -12,9 +12,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     emptyMessageKey : 'MESSAGE.NO_DATA'
 })
 @Configure({
-    i18nPath : './assets/i18n',
-    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
-    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
+    i18nPath : './assets/i18n'
 })
 export class Login {
     @InputType({
@@ -34,7 +32,7 @@ export class Login {
         type : 'text',
         autoWidth : true,
         order : 2,
-        tableColumn : 1,
+        tableColumn : 2,
         sortable : true
     })            
     name : string;
@@ -45,7 +43,7 @@ export class Login {
         type : 'text',
         autoWidth : true,
         order : 3,
-        tableColumn : 2,
+        tableColumn : 1,
         sortable : true
     })    
     fullname : string;   

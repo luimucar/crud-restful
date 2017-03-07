@@ -3,9 +3,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 
 @Injectable()
 @Configure({
-    i18nPath : './assets/i18n',
-    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
-    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
+    i18nPath : './assets/i18n'
 })
 export class User {
     @InputType({

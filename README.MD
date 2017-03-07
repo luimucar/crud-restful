@@ -46,9 +46,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     emptyMessageKey : 'MSG.EMPTY_MESSAGE'
 })
 @Configure({
-    i18nPath : './assets/i18n',
-    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
-    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
+    i18nPath : './assets/i18n'
 })
 export class Login {
     @InputType({
@@ -177,8 +175,26 @@ export class Login {
     .
     .
     .
+    @InputType({
+        name : 'Email',
+        type : 'text',
+        autoWidth : true,
+        order : 2,
+        tableColumn : 1,
+        sortable : true
+    })            
+    name : string;
+    .
+    .
+    .
 }
 ````
+
+The decorator @InputType needs to inform news parameters for the table component:
+<br>
+<b>tableColumn</b> parameter defines the order of column in the table.<br>
+<b>sortable</b> parameter defines if the column will be sortable.<br>
+<br>
 
 ### InputType - property decorator
 
@@ -302,15 +318,12 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 
 ```javascript
 @Configure({
-    i18nPath : './assets/i18n',
-    confirmMessageKey : 'MESSAGE.CONFIRMATION_MSG',
-    confirmTitleMessageKey : 'MESSAGE.CONFIRM'
+    i18nPath : './assets/i18n'
 })
 ```
 
 All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file.<br>
 The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.<br>
-The <b>confirmMessageKey</b> and <b>confirmTitleMessageKey</b> keys are for Confirm Dialog translation.
 <br><br>
 If you change the used language of Ng2-Translate you need to refresh the translation in your App. Example:
 <br>

@@ -8,7 +8,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'tableCrudRestful',
     template: `
-        <div class="row" id="table{{clazzName}}{{index}}">
+        <div class="row" id="table{{clazzName}}{{index}}" style="margin-top : 20px; margin-bottom : 20px;">
             <div class="col-md-12">
                 <p-dataTable id="table" [value]="itens" selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" 
                     [rows]="rows" [paginator]="paginator" [pageLinks]="pageLinks" [responsive]="true"
@@ -46,10 +46,22 @@ export class TableComponent extends BaseComponent {
         }, 50);        
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
-            if (comp.tableColumn >= 0) {
-                this.cols.push({ field: comp.property, header: comp.name, sortable: comp.sortable });                
+            if (comp.tableColumn != undefined && comp.tableColumn >= 0) {
+                this.cols.push({ field: comp.property, header: comp.name, sortable: comp.sortable, order : comp.tableColumn });
             }
         });
+        
+        this.cols = this.cols.sort((o1,o2) => {
+            if (o1.order > o2.order) {
+                return 1;
+            }
+
+            if (o1.order < o2.order) {
+                return -1;
+            }
+            return 0;
+        });
+        
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         setTimeout(() => {
             this.getItens(crudComponentObj.url)

@@ -42,16 +42,6 @@ export class CrudComponentObj {
         this.clazzName = clazz.name;
     }
     
-    public sort() {
-        return (left, right): number => {
-            if (left.order < right.order) {
-                return -1;
-            } else if (left.order > right.order) {
-                return 1;
-            }
-            return 0;
-        }
-    }    
     public static getComponents(clazzName: string): CrudComponentObj[] {
         let objs: CrudComponentObj[] = [];
         if (CrudComponentObj.components.length > 0) {
