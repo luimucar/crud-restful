@@ -290,7 +290,9 @@ public allCarParks : CarPark[];
 
 ### Dual List Box (under development)
 
-## I18N - Crud-restful uses ng2-translate to translate the interface
+## I18N
+
+Crud-restful uses Ng2-translate component to translate the interface.
 
 ### Configuration
 
@@ -305,11 +307,12 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 })
 ```
 
-All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file;
-The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.
+All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file.<br>
+The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.<br>
 The <b>confirmMessageKey</b> and <b>confirmTitleMessageKey</b> keys are for Confirm Dialog translation.
-
+<br>
 If you change the used language of Ng2-Translate you need to refresh the translation in your App. Example:
+<br>
 
 ```javascript
 export class App {
