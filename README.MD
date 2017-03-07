@@ -77,7 +77,7 @@ export class User {
 
 Result:
 
-![alt tag](http://url/to/img.png)
+![alt tag](https://github.com/cmargulhano/crud-restful/blob/master/demo.gif)
 
 ## Import in your module:
 
