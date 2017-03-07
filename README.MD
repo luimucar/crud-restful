@@ -18,7 +18,7 @@ Installation of dependencies:
 4. moment : https://www.npmjs.com/package/moment
 5. font-awesome : https://www.npmjs.com/package/font-awesome
 
-
+<br><br>
 ## Library installation
 
 To install this library, run:
@@ -26,7 +26,7 @@ To install this library, run:
 ```bash
 $ npm install crud-restful --save
 ```
-
+<br><br>
 ## Ho to use
 
 ### Describe your model with Decorators and Metadatas. Example:
@@ -146,7 +146,7 @@ Cancel
     .
     .
 ```
-
+<br><br>
 ## Playground of components: http://localhost:8080
 
 ```bash
@@ -154,7 +154,7 @@ git clone https://github.com/cmargulhano/crud-restful.git
 npm install
 npm start
 ```
-
+<br><br>
 ## Components
 
 ### Table - class decorator
@@ -290,7 +290,8 @@ public allCarParks : CarPark[];
 
 ### Dual List Box (under development)
 
-## I18N
+<br><br>
+## Internationalization
 
 Crud-restful uses Ng2-translate component to translate the interface.
 
@@ -325,7 +326,7 @@ export class App {
 ...
 ```
 
-
+<br><br>
 ## License
 
 MIT © [Claudio Margulhano](mailto:cmargulhano@gmail.com)
