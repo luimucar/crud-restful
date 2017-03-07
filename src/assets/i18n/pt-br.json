@@ -2,8 +2,12 @@
     "COMMON": {
         "BUTTON": {
             "SAVE": "Salvar",
-            "CANCEL" : "Cancelar"
+            "CANCEL" : "Cancelar",
+            "REMOVE" : "Remover"
         }
     },
-    "USERNAME" : "Nome"
+    "USERNAME" : "Nome",
+    "MSG" : {
+        "EMPTY_MESSAGE" : "Nao encontrado"
+    }
 }

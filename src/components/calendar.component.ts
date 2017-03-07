@@ -6,12 +6,12 @@ import * as moment from 'moment';
 @Component({
     selector: 'calendarCrudRestful',
     template: `
-        <div class="row">
+        <div class="row" id="calendar">
             <div class="col-md-{{colMdLeft}}">    
-                <label>{{name}}</label>
+                <label id="label_{{id}}">{{name}}</label>
             </div>
             <div class="col-md-{{colMdRigth}}">    
-                <p-calendar [dateFormat]="formatComp" [(ngModel)]="date" [showIcon]="true" (onSelect)="onSelect($event)" [disabled]="disabled" [readonlyInput]="readonly"></p-calendar>
+                <p-calendar id="{{id}}" [dateFormat]="formatComp" [(ngModel)]="date" [showIcon]="true" (onSelect)="onSelect($event)" [disabled]="disabled" [readonlyInput]="readonly"></p-calendar>
             </div>            
         </div>
     `

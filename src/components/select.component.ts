@@ -5,7 +5,7 @@ import { BaseComponent } from './base.component';
 @Component({
     selector: 'selectCrudRestful',
     template: `
-        <div class="row">
+        <div class="row" id="select">
             <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>

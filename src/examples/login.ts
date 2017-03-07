@@ -3,7 +3,13 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 @Table({
     name : 'tableUser',
     url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
-    order : 0
+    rows : 10,
+    paginator : true,
+    pageLinks : 3,
+    sortField : 'id',
+    sortOrder : 1,   
+    order : 0,
+    emptyMessage : 'MSG.EMPTY_MESSAGE'
 })
 export class Login {
     @InputType({

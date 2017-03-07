@@ -9,7 +9,7 @@ import { BaseComponent } from './base.component';
     selector: 'multiSelectCrudRestful',
     providers: [Service],
     template: `
-        <div class="row">
+        <div class="row" id="multiselect">
             <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>

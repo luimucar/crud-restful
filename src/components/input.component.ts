@@ -6,7 +6,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'inputTextCrudRestful',
     template: `
-        <div class="row">
+        <div class="row" id="input{{index}}">
             <div class="col-md-{{colMdLeft}}">
                 <label id="label_{{id}}">{{name}}</label>
             </div>

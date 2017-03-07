@@ -27,6 +27,12 @@ export class CrudComponentObj {
     public translateKey: string = undefined;
     public tableColumn : number;
     public sortable : boolean;
+    public rows : number;
+    public paginator : boolean;
+    public pageLinks : number;
+    public sortField : string;
+    public sortOrder : number;
+    public emptyMessage : string;
     
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -106,11 +112,23 @@ export function Table(parameters : any) {
     let name = parameters['name'];
     let url = parameters['url'];
     let order = parameters['order'];
+    let rows = parameters['rows'];
+    let paginator = parameters['paginator'];
+    let pageLinks = parameters['pageLinks'];
+    let sortField = parameters['sortField'];
+    let sortOrder = parameters['sortOrder'];
+    let emptyMessage = parameters['emptyMessage'];    
     function actualDecorator(constructor: Function) {
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
         component.name = name;
         component.url = url;
         component.order = order;
+        component.rows = rows;
+        component.paginator = paginator;
+        component.pageLinks = pageLinks;
+        component.sortField = sortField;
+        component.sortOrder = sortOrder;
+        component.emptyMessage = emptyMessage;
         CrudComponentObj.components.push(component);        
     }
     return actualDecorator;
@@ -343,5 +361,6 @@ export function Checkboxes(parameters : any) {
         component.translateKey = translateKey;            
         CrudComponentObj.components.push(component);
     }
+
     return actualDecorator;
 }

@@ -3,12 +3,12 @@
 UNDER DEVELOPMENT
 
 This component aims to facilitate the construction of interfaces in Angular 2.
-This component provides high-level interface components using PrimeNG to render the interface.
+This component provides high-level interface components using PrimeNG.
 The use of this component generates a great gain of productivity and flexibility in the construction of the interfaces.
-All components are created at runtime based on Decorators and Metadatas that provide information such as field positioning, combos content and component configuration.
+All components are created at runtime based on Decorators and Metadatas that provides information such as field positioning, combos content and component configuration.
 
 
-## Prerequisite
+## Prerequisites
 
 Installation of dependencies:
 
@@ -34,6 +34,17 @@ $ npm install crud-restful --save
 ```javascript
 import { InputType } from 'crud-restful/index';
 
+@Table({
+    name : 'tableUser',
+    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    rows : 10,
+    paginator : true,
+    pageLinks : 3,
+    sortField : 'id',
+    sortOrder : 1,   
+    order : 0,
+    emptyMessage : 'MSG.EMPTY_MESSAGE'
+})
 export class User {
     @InputType({
         name : 'Password:',
@@ -63,6 +74,10 @@ export class User {
         public token?: string) {}
 }
 ```
+
+Result:
+
+![alt tag](http://url/to/img.png)
 
 ## Import in your module:
 
@@ -218,6 +233,27 @@ public allCarParks : CarPark[];
 ```
 
 ## Table (under development)
+
+Example:
+
+```javascript
+@Table({
+    name : 'tableUser',
+    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    rows : 10,
+    paginator : true,
+    pageLinks : 3,
+    sortField : 'id',
+    sortOrder : 1,   
+    order : 0,
+    emptyMessage : 'MSG.EMPTY_MESSAGE'
+    export class Login {
+        .
+        .
+        .
+    }
+})
+````
 
 ## Scheduling (under development)
 

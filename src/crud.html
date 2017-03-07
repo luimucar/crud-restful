@@ -2,9 +2,10 @@
     <div crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [index]="i"></div>
 </div>
 
-<div class="row" style="padding-top:20px;">
+<div class="row" style="padding-top:20px;" id="buttons">
     <div class="col-md-12">
         <button pButton type="button" (click)="save()" label="{{ 'COMMON.BUTTON.SAVE' | translate }}"></button>    
+        <button pButton type="button" (click)="cancel()" label="{{ 'COMMON.BUTTON.REMOVE' | translate }}"></button>
         <button pButton type="button" (click)="cancel()" label="{{ 'COMMON.BUTTON.CANCEL' | translate }}"></button>
     </div>
 </div>        

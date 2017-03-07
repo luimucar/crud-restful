@@ -17,7 +17,6 @@ import { PrimeNgModule } from './primeng.module';
     template: `
     <div style="width: 50%;">
         <crud [clazz]="'Login'" (onSave)="handleOnSave($event)" (onCancel)="handleOnCancel()"></crud>
-      
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12">
                 <button pButton type="button" (click)="test()" label="Test"></button>

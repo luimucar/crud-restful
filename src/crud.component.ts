@@ -1,7 +1,9 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {getObject, setObject, CrudComponentObj} from './index';
 import {Service} from './services/index';
-import { ConcreteSubject } from './components/observer/concrete-subject';
+import {ConcreteSubject} from './components/observer/concrete-subject';
+import {BaseComponent} from './components/base.component';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'crud',   
@@ -28,17 +30,22 @@ export class CrudComponent {
     ngOnInit() {
         this.components = CrudComponentObj.getComponents(this.clazz);
         setObject(this.clazz, this.model);
+        setTimeout(() => {
+            BaseComponent.showOrHideComponets(this.clazz, 'none');
+        }, 100);
         //console.log(this.components);
     }
     
     save() {
         if (this.components.length > 0) {
             let obj = getObject(this.components[0].clazz);
+            BaseComponent.showOrHideComponets(this.clazz, 'none');
             this.onSave.emit(obj);
         }
     }
     
     cancel() {
+        BaseComponent.showOrHideComponets(this.clazz, 'none');
         this.onCancel.emit();
     }
     

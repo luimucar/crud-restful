@@ -8,9 +8,11 @@ import * as $ from 'jquery';
 @Component({
     selector: 'tableCrudRestful',
     template: `
-        <div class="row">
+        <div class="row" id="table">
             <div class="col-md-12">
-                <p-dataTable id="table" [value]="itens" selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+                <p-dataTable id="table" [value]="itens" selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" 
+                    [rows]="rows" [paginator]="paginator" [pageLinks]="pageLinks" [responsive]="true"
+                    [sortField]="sortField" [sortOrder]="sortOrder">
                     <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="col.sortable"></p-column>
                     <p-footer>
                         <div class="ui-helper-clearfix" style="width:100%">
@@ -38,6 +40,10 @@ export class TableComponent extends BaseComponent {
     
     ngOnInit() {
         this.readCommonsParameters(this.index);
+        setTimeout(() => {
+            let emptyMessage = this.translate.instant(this.emptyMessage);
+            $('.ui-datatable-emptymessage').html(emptyMessage);
+        }, 50);        
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
             if (comp.tableColumn >= 0) {
@@ -45,16 +51,17 @@ export class TableComponent extends BaseComponent {
             }
         });
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-        this.getItens(crudComponentObj.url)
-            .subscribe(itens => {
-                itens.forEach(item => {
-                    this.itens.push(item);
+        setTimeout(() => {
+            this.getItens(crudComponentObj.url)
+                .subscribe(itens => {
+                    itens.forEach(item => {
+                        this.itens.push(item);
+                    });
+                },
+                error => {
+                    console.log(error);
                 });
-            },
-            error => {
-                console.log(error);
-            });
-        
+        }, 100);
     }
     
     getItens(url : string): Observable<any[]> {
@@ -70,13 +77,15 @@ export class TableComponent extends BaseComponent {
                 $('#' + comp.clazzName + '_' + comp.property).val(this.selected[comp.property]);
             }
         });
+        BaseComponent.showOrHideComponets(this.clazzName, 'block');
     }
     
     newItem() {
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
             comp.value = null;
             $('#' + comp.clazzName + '_' + comp.property).val(null);
-        });        
+        });
+        BaseComponent.showOrHideComponets(this.clazzName, 'block');        
     }   
 }
 

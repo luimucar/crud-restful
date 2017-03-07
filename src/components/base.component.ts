@@ -3,6 +3,7 @@ import { CrudComponentObj } from '../index';
 import { TranslateService } from 'ng2-translate';
 import { Observer } from './observer/observer';
 import { ConcreteSubject } from './observer/concrete-subject';
+import * as $ from 'jquery';
 
 export class BaseComponent extends Observer {
     @Input()
@@ -27,6 +28,12 @@ export class BaseComponent extends Observer {
     public colMdRigth : number = 8;      
     public focus : boolean;
     public format : string;
+    public rows : number;
+    public paginator : boolean;
+    public pageLinks : number;  
+    public sortField : string;
+    public sortOrder : number;
+    public emptyMessage : string;  
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -70,6 +77,12 @@ export class BaseComponent extends Observer {
         if (CrudComponentObj.getComponents(this.clazzName)[index].format != undefined) {
             this.format = CrudComponentObj.getComponents(this.clazzName)[index].format;
         }
+        this.rows = CrudComponentObj.getComponents(this.clazzName)[index].rows;
+        this.pageLinks = CrudComponentObj.getComponents(this.clazzName)[index].pageLinks;
+        this.paginator = CrudComponentObj.getComponents(this.clazzName)[index].paginator;
+        this.sortField = CrudComponentObj.getComponents(this.clazzName)[index].sortField;
+        this.sortOrder = CrudComponentObj.getComponents(this.clazzName)[index].sortOrder;
+        this.emptyMessage = CrudComponentObj.getComponents(this.clazzName)[index].emptyMessage;
         this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
@@ -98,5 +111,20 @@ export class BaseComponent extends Observer {
                 this.name = this.translate.instant(translateKey);
             }, 50);
         }
+    }
+
+    
+    public static showOrHideComponets(clazzName : string, display:string) {
+        let counter : number = 0;
+        $("#buttons").css("display", display);
+        CrudComponentObj.getComponents(clazzName).forEach(c => {
+            $("#calendar"+counter).css("display", display);
+            $("#checkboxes"+counter).css("display", display);
+            $("#chips"+counter).css("display", display);
+            $("#input"+counter).css("display", display);
+            $("#multiselect"+counter).css("display", display);
+            $("#select"+counter).css("display", display);
+            counter++;
+        })
     }
 }
