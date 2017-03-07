@@ -102,14 +102,14 @@ import {CrudModule} from 'crud-restful/index';
 ```
 
 <pre>
-- Inputs:
+<b>- Inputs:</b>
 [clazz] - required - The class name
 [model] - optional - The instance of class with default values
 
-- Events:
+<b>- Events:</b>
 Save
 Remove
- Cancel
+Cancel
 </pre>
 
 ### In the component initialize your object model with default values (if necessary) and handle the events:
