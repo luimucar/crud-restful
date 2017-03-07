@@ -5,7 +5,7 @@ import { BaseComponent } from './base.component';
 @Component({
     selector: 'chipsCrudRestful',
     template: `
-        <div class="row" id="chips">
+        <div class="row" id="chips{{clazzName}}{{index}}">
             <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>

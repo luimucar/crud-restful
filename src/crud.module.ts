@@ -16,8 +16,6 @@ import { CheckboxesComponent } from './components/checkboxes.component';
 import { TableComponent } from './components/table.component';
 import { TranslateModule } from 'ng2-translate';
 import { ConcreteSubject } from './components/observer/concrete-subject';
-import { ConfirmationService } from 'primeng/primeng';
-import { TranslateService } from 'ng2-translate';
 
 @NgModule({
     declarations: [CrudComponent, CrudFactoryDirective, InputTextComponent, 
@@ -29,6 +27,6 @@ import { TranslateService } from 'ng2-translate';
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     entryComponents : [InputTextComponent, MultiSelectComponent, ChipsComponent, 
         SelectComponent, CalendarComponent, CheckboxesComponent, TableComponent],
-    providers : [ConcreteSubject, ConfirmationService, TranslateService]
+    providers : [ConcreteSubject]
 })
 export class CrudModule { }

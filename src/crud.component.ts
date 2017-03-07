@@ -4,8 +4,6 @@ import {Service} from './services/index';
 import {ConcreteSubject} from './components/observer/concrete-subject';
 import {Observer} from './components/observer/observer';
 import {BaseComponent} from './components/base.component';
-import {ConfirmationService} from 'primeng/primeng';
-import { TranslateService } from 'ng2-translate';
 
 @Component({
     selector: 'crud',   
@@ -28,8 +26,8 @@ export class CrudComponent extends Observer {
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
     showRemove : boolean;
-    
-    constructor(public service: Service, private confirmationService: ConfirmationService, private translate : TranslateService) {
+       
+    constructor(public service: Service) {
         super('CRUD-COMPONENT');
         this.concreteSubject.register(this);
     }
@@ -61,44 +59,30 @@ export class CrudComponent extends Observer {
     }
     
     remove() {
-        this.confirmationService.confirm({
-            message: this.translate.instant(Configuration.confirmMessageKey),
-            header: this.translate.instant(Configuration.confirmTitleMessageKey),
-            icon: 'fa fa-trash',
-            accept: () => {
-                if (this.components.length > 0) {
-                    let obj = getObject(this.components[0].clazz);
-                    if (!Configuration.tableLess.get(this.clazz)) {
-                        BaseComponent.showOrHideComponets(this.clazz, 'none');
-                    } else {
-                        BaseComponent.showOrHideComponets(this.clazz, 'block');
-                    }
-                    this.onRemove.emit(obj);
-                }
+        if (this.components.length > 0) {
+            let obj = getObject(this.components[0].clazz);
+            if (!Configuration.tableLess.get(this.clazz)) {
+                BaseComponent.showOrHideComponets(this.clazz, 'none');
+            } else {
+                BaseComponent.showOrHideComponets(this.clazz, 'block');
             }
-        });
+            this.onRemove.emit(obj);
+        }
     }
     
     cancel() {
-        this.confirmationService.confirm({
-            message: this.translate.instant(Configuration.confirmMessageKey),
-            header: this.translate.instant(Configuration.confirmTitleMessageKey),
-            icon: 'fa fa-times',
-            accept: () => {
-                if (this.components.length > 0) {
-                    if (!Configuration.tableLess.get(this.clazz)) {
-                        BaseComponent.showOrHideComponets(this.clazz, 'none');
-                    } else {
-                        BaseComponent.showOrHideComponets(this.clazz, 'block');
-                    }
-                    this.onCancel.emit();
-                }
+        if (this.components.length > 0) {
+            if (!Configuration.tableLess.get(this.clazz)) {
+                BaseComponent.showOrHideComponets(this.clazz, 'none');
+            } else {
+                BaseComponent.showOrHideComponets(this.clazz, 'block');
             }
-        });
+            this.onCancel.emit();
+        }
     }
     
     public notify() {
-        this.showRemove = BaseComponent.showRemove;
+        this.showRemove = BaseComponent.showRemove.get(this.clazz);
         this.concreteSubject.notify("BASE-COMPONENT");
     }
 }

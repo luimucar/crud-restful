@@ -6,7 +6,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'calendarCrudRestful',
     template: `
-        <div class="row" id="calendar">
+        <div class="row" id="calendar{{clazzName}}{{index}}">
             <div class="col-md-{{colMdLeft}}">    
                 <label id="label_{{id}}">{{name}}</label>
             </div>

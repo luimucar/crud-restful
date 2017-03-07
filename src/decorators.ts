@@ -5,6 +5,7 @@ export class Configuration {
     public static confirmMessageKey : string;
     public static confirmTitleMessageKey : string;
     public static tableLess : Map<string,boolean> = new Map<string,boolean>();
+    public static lastClazzConfirm : string;
 }
 
 export class CrudComponentObj {

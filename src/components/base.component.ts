@@ -37,7 +37,7 @@ export class BaseComponent extends Observer {
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
-    static showRemove : boolean;
+    static showRemove : Map<string, boolean> = new Map<string, boolean>();
     
     constructor() {       
         super("BASE-COMPONENT");
@@ -115,22 +115,21 @@ export class BaseComponent extends Observer {
         }
     }
 
-    
     public static showOrHideComponets(clazzName : string, display:string) {
         let counter : number = 0;
-        $("#buttons").css("display", display);
+        $("#buttons"+clazzName).css("display", display);
         CrudComponentObj.getComponents(clazzName).forEach(c => {
-            $("#calendar"+counter).css("display", display);
-            $("#checkboxes"+counter).css("display", display);
-            $("#chips"+counter).css("display", display);
-            $("#input"+counter).css("display", display);
-            $("#multiselect"+counter).css("display", display);
-            $("#select"+counter).css("display", display);
+            $("#calendar"+clazzName+counter).css("display", display);
+            $("#checkboxes"+clazzName+counter).css("display", display);
+            $("#chips"+clazzName+counter).css("display", display);
+            $("#input"+clazzName+counter).css("display", display);
+            $("#multiselect"+clazzName+counter).css("display", display);
+            $("#select"+clazzName+counter).css("display", display);
             counter++;
         })
     }
     
-    public static setShowRemove(value : boolean) {
-        BaseComponent.showRemove = value;
+    public static setShowRemove(clazz : string, value : boolean) {
+        BaseComponent.showRemove.set(clazz, value);
     }
 }

@@ -8,7 +8,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'tableCrudRestful',
     template: `
-        <div class="row" id="table">
+        <div class="row" id="table{{clazzName}}{{index}}">
             <div class="col-md-12">
                 <p-dataTable id="table" [value]="itens" selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" 
                     [rows]="rows" [paginator]="paginator" [pageLinks]="pageLinks" [responsive]="true"
@@ -78,7 +78,7 @@ export class TableComponent extends BaseComponent {
             }
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');
-        BaseComponent.setShowRemove(true);
+        BaseComponent.setShowRemove(this.clazzName, true);
         this.concreteSubject.notify('CRUD-COMPONENT');
     }
     
@@ -88,7 +88,7 @@ export class TableComponent extends BaseComponent {
             $('#' + comp.clazzName + '_' + comp.property).val(null);
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');        
-        BaseComponent.setShowRemove(false);
+        BaseComponent.setShowRemove(this.clazzName, false);
         this.concreteSubject.notify('CRUD-COMPONENT');
     }   
 }

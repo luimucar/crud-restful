@@ -5,7 +5,7 @@ import { BaseComponent } from './base.component';
 @Component({
     selector: 'selectCrudRestful',
     template: `
-        <div class="row" id="checkboxes">
+        <div class="row" id="checkboxes{{clazzName}}{{index}}">
             <div class="col-md-{{colMdLeft}}">    
                 <label>{{name}}</label>
             </div>
