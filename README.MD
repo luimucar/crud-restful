@@ -128,11 +128,18 @@ Cancel
         this.login.fullname = 'Cláudio Margulhano';
     }
     
-    handleOnSave(user : User) {
-        console.log(user);
+    handleOnSave(login : Login) {
+        console.log('Save');
+        console.log(login);
     }
+    
+    handleOnRemove(login : Login) {
+        console.log('Remove');
+        console.log(login);
+    }
+
     handleOnCancel() {
-        this.display = false;
+        console.log('Cancel');
     }
 
     .
@@ -301,6 +308,20 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file;
 The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.
 The <b>confirmMessageKey</b> and <b>confirmTitleMessageKey</b> keys are for Confirm Dialog translation.
+
+If you change the used language of Ng2-Translate you need to refresh the translation in your App. Example:
+
+```javascript
+export class App {
+    @ViewChild(CrudComponent) crudComponent : CrudComponent;
+
+    refreshI18N() {
+        this.translate.use('pt-br');
+        this.crudComponent.notify();
+    }
+...
+```
+
 
 ## License
 
