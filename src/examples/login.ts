@@ -41,6 +41,7 @@ export class Login {
     
     @InputType({
         name : 'Full Name',
+        translateKey : 'USERNAME',
         type : 'text',
         autoWidth : true,
         order : 3,

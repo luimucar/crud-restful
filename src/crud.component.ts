@@ -99,6 +99,7 @@ export class CrudComponent extends Observer {
     
     public notify() {
         this.showRemove = BaseComponent.showRemove;
+        this.concreteSubject.notify("BASE-COMPONENT");
     }
 }
 

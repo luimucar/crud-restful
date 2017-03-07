@@ -19,6 +19,7 @@ export class User {
     constructor(
         @InputType({
             name : 'User',
+            translateKey : 'USERNAME',
             type : 'text',
             autoWidth : true,
             order : 1,
