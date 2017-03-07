@@ -101,13 +101,13 @@ import {CrudModule} from 'crud-restful/index';
 <crud [clazz]="'Login'" [model]="login" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove" (onCancel)="handleOnCancel()"></crud>
 ```
 - Inputs:
-1. [clazz] - required - The class name
-2. [model] - optional - The instance of class with default values
+[clazz] - required - The class name
+[model] - optional - The instance of class with default values
 
 - Events:
-1. Save
-2. Remove
-3. Cancel
+Save
+Remove
+ Cancel
 
 ### In the component initialize your object model with default values (if necessary) and handle the events:
 
