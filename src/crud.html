@@ -1,7 +1,15 @@
 <div style="width: 100%;" *ngFor="let comp of components; let i = index" style="padding-top:5px;">
     <div crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [index]="i"></div>
 </div>
-
+<!--
+<table>
+    <tr>
+        <td *ngFor="let comp of components; let i = index">
+            <div *ngIf="comp.type != 'Table'" crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [index]="i"></div>
+        </td>
+    </tr>
+</table>
+-->
 <div class="row" style="padding-top:20px;" id="buttons{{clazz}}">
     <div class="col-md-12">
         <button pButton type="button" icon="fa-check" (click)="save()" label="{{ 'COMMON.BUTTON.SAVE' | translate }}"></button>    

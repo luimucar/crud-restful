@@ -10,8 +10,8 @@ export class Service {
     private header: RequestOptions;
     private body: any;
 
-
     constructor(private http: Http) {
+        //console.log(Configuration.token);
         let header = null;
         if (Configuration.token) {
             header = { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization' : Configuration.token};
