@@ -14,6 +14,7 @@ import { BaseComponent } from './base.component';
                     <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
                 </select>
             </div>
+            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })

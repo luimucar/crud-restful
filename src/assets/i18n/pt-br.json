@@ -7,12 +7,14 @@
         }
     },
     "USERNAME" : "Nome",
+    "FULLNAME" : "Nome completo",
     "MESSAGE": {
         "WAIT": "Por favor aguarde ...",
         "SUCCESS": "Sucesso",
         "ERROR": "Erro",
         "NO_DATA" : "Não há dados disponíveis.",
         "CONFIRM" : "Confirmação",
-        "CONFIRMATION_MSG" : "Você tem certeza que deseja executar essa ação?"        
+        "CONFIRMATION_MSG" : "Você tem certeza que deseja executar essa ação?",
+        "FIELD_REQUIRED" : "campo obrigatório."
     }
 }

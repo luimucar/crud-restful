@@ -11,7 +11,8 @@ import { BaseComponent } from './base.component';
             </div>
             <div class="col-md-{{colMdRigth}}">    
                 <p-chips [style.width]="width" [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
-            </div>            
+            </div>
+            <span id="label_error_{{id}}" style="color: red; display: none;"></span>            
         </div>
     `
 })

@@ -62,24 +62,30 @@ export class Login {
     id : number;
 
     @InputType({
-        name : 'Email',
+        name : 'Name',
+        translateKey : 'NAME',
         type : 'text',
         autoWidth : true,
         order : 2,
         tableColumn : 1,
-        sortable : true
+        sortable : true,
+        required : true,
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
     })            
     name : string;
     
     @InputType({
         name : 'Full Name',
+        translateKey : 'FULLNAME',
         type : 'text',
         autoWidth : true,
         order : 3,
         tableColumn : 2,
-        sortable : true
+        sortable : true,
+        required : true,
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
     })    
-    fullname : string;   
+    fullName : string;   
 }
 ```
 
@@ -176,12 +182,15 @@ export class Login {
     .
     .
     @InputType({
-        name : 'Email',
+        name : 'Name',
+        translateKey : 'NAME',
         type : 'text',
         autoWidth : true,
         order : 2,
         tableColumn : 1,
-        sortable : true
+        sortable : true,
+        required : true,
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
     })            
     name : string;
     .
@@ -202,14 +211,17 @@ Example:
 
 ```javascript
 @InputType({
-    name : 'User:',
+    name : 'Name',
+    translateKey : 'NAME',
     type : 'text',
-    readOnly : true,
-    disabled : true,            
     autoWidth : true,
-    order : 0
-})
-username: string;
+    order : 2,
+    tableColumn : 1,
+    sortable : true,
+    required : true,
+    requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+})            
+name : string;
 ```
 
 ### MultiSelect - property decorator
@@ -323,7 +335,7 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 ```
 
 All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file.<br>
-The exception is the <b>@Table</b> decorator that has the <b>emptyMessageKey</b> parameter that refers to the "Records not found" of table.<br>
+The exception is the <b>@Table</b> decorator that has the parameter <b>emptyMessageKey</b> that refers to the "Records not found" message.<br>
 <br><br>
 If you change the used language of Ng2-Translate you need to refresh the translation in your App. Example:
 <br>

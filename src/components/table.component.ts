@@ -125,6 +125,7 @@ export class TableComponent extends BaseComponent {
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');        
         BaseComponent.setShowRemove(this.clazzName, false);
+        BaseComponent.setHideMsgError(this.clazzName, true);
         this.concreteSubject.notify('CRUD-COMPONENT');
     }   
 }

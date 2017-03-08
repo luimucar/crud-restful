@@ -31,22 +31,27 @@ export class Login {
 
     @InputType({
         name : 'Email',
+        translateKey : 'NAME',
         type : 'text',
         autoWidth : true,
         order : 2,
         tableColumn : 2,
-        sortable : true
+        sortable : true,
+        required : true,
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
     })            
     name : string;
     
     @InputType({
         name : 'Full Name',
-        translateKey : 'USERNAME',
+        translateKey : 'FULLNAME',
         type : 'text',
         autoWidth : true,
         order : 3,
         tableColumn : 1,
-        sortable : true
+        sortable : true,
+        required : true,
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
     })    
     fullname : string;   
 }

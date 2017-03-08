@@ -15,7 +15,8 @@ import { BaseComponent } from './base.component';
             </div>
             <div class="col-md-{{colMdRigth}}">    
                 <p-multiSelect [options]="itens" [(ngModel)]="selectedItem" (onChange)="setValue($event.value)"></p-multiSelect>            
-            </div>            
+            </div>
+            <span id="label_error_{{id}}" style="color: red; display: none;"></span>            
         </div>
     `
 })

@@ -39,6 +39,8 @@ export class CrudComponentObj {
     public emptyMessage : string;
     public fileConfig : string;
     public fileConfigServerKey : string;
+    public required : boolean; 
+    public requiredMsgKey : string;
     
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -177,6 +179,8 @@ export function InputType(parameters : any) {
     let translateKey = parameters['translateKey'];
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
+    let required = parameters['required'];
+    let requiredMsgKey = parameters['requiredMsgKey'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -199,6 +203,8 @@ export function InputType(parameters : any) {
         component.translateKey = translateKey;
         component.tableColumn = tableColumn;
         component.sortable = sortable;
+        component.required = required;
+        component.requiredMsgKey = requiredMsgKey;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

@@ -14,6 +14,7 @@ import { BaseComponent } from './base.component';
                     <input type='checkbox' [name]="item.value" [value]="item.value" (change)="updateCheckedOptions(item, $event)">
                     <label>{{item.name}}</label> 
             </div>
+            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })

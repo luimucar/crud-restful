@@ -6,13 +6,15 @@
             "REMOVE" : "Remove"
         }
     },
-    "USERNAME" : "Name",
+    "NAME" : "Name",
+    "FULLNAME" : "Full name",
     "MESSAGE": {
         "WAIT": "Please wait ...",
         "SUCCESS": "Success",
         "ERROR": "Error",
         "NO_DATA" : "No data available.",
         "CONFIRM" : "Confirmation",        
-        "CONFIRMATION_MSG" : "Are you sure that you want to perform this action?"
-    }    
+        "CONFIRMATION_MSG" : "Are you sure that you want to perform this action?",
+        "FIELD_REQUIRED" : "field is required."  
+    }
 }

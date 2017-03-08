@@ -13,7 +13,7 @@ export class BaseComponent extends Observer {
     clazzName : string;
     
     @Input()
-    translate : TranslateService;
+    public translate : TranslateService;
     
     public id : string;
     public name : string;
@@ -35,11 +35,14 @@ export class BaseComponent extends Observer {
     public sortOrder : number;
     public emptyMessage : string; 
     public fileConfig : string;
-    public fileConfigServerKey : string;     
+    public fileConfigServerKey : string;
+    public required : boolean;
+    public requiredMsgKey : string;     
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
     static showRemove : Map<string, boolean> = new Map<string, boolean>();
+    static hideMsgError : Map<string, boolean> = new Map<string, boolean>()
     
     constructor() {       
         super("BASE-COMPONENT");
@@ -135,5 +138,9 @@ export class BaseComponent extends Observer {
     
     public static setShowRemove(clazz : string, value : boolean) {
         BaseComponent.showRemove.set(clazz, value);
+    }
+
+    public static setHideMsgError(clazz : string, value : boolean) {
+        BaseComponent.hideMsgError.set(clazz, value);
     }
 }

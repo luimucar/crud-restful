@@ -13,6 +13,7 @@ import * as $ from 'jquery';
             <div class="col-md-{{colMdRigth}}">    
                 <input [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
             </div>
+            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })
