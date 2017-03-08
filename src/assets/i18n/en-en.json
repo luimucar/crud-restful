@@ -3,7 +3,8 @@
         "BUTTON": {
             "SAVE": "Save",
             "CANCEL" : "Cancel",
-            "REMOVE" : "Remove"
+            "REMOVE" : "Remove",
+            "ADD" : "Add"
         }
     },
     "NAME" : "Name",

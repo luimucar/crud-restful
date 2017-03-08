@@ -19,7 +19,7 @@ import * as $ from 'jquery';
                         <div class="ui-helper-clearfix" style="width:100%">
                             <button class="btn btn-primary btn-margin-vertical pull-left" type="button" (click)="newItem()" style="margin-top: 5px;">
                                 <strong>
-                                    <i class="fa fa-plus"></i>&nbsp;New
+                                    <i class="fa fa-plus"></i>&nbsp;{{ 'COMMON.BUTTON.ADD' | translate }}
                                 </strong>
                             </button>
                         </div>

@@ -3,7 +3,8 @@
         "BUTTON": {
             "SAVE": "Salvar",
             "CANCEL" : "Cancelar",
-            "REMOVE" : "Remover"
+            "REMOVE" : "Remover",
+            "ADD" : "Adiciona"
         }
     },
     "USERNAME" : "Nome",

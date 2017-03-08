@@ -86,7 +86,7 @@ export function getObject(clazzName: any): any {
     let ret = new clazzName();
     CrudComponentObj.components.forEach(obj => {
         if (obj.clazzName == clazzName.name) {
-            ret[obj.property] = obj.value;
+            ret['\"' + obj.property + '\"'] = obj.value;
         }
     });
     return ret;

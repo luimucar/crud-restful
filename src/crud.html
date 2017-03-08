@@ -10,11 +10,21 @@
     </tr>
 </table>
 -->
-<div class="row" style="padding-top:20px;" id="buttons{{clazz}}">
-    <div class="col-md-12">
-        <button pButton type="button" icon="fa-check" (click)="save()" label="{{ 'COMMON.BUTTON.SAVE' | translate }}"></button>    
-        <button *ngIf="showRemove" pButton type="button" icon="fa-trash" (click)="remove()" label="{{ 'COMMON.BUTTON.REMOVE' | translate }}"></button>
-        <button pButton type="button" icon="fa-times" (click)="cancel()" label="{{ 'COMMON.BUTTON.CANCEL' | translate }}"></button>
-    </div>
-</div>        
+<div class="container-fluid">
+    <div class="row" style="padding-top:20px;" id="buttons{{clazz}}">
+        <div class="col-md-12 text-left">
+            <span class="pull-left" style="margin-right:20px;">
+                <button class="btn btn-primary btn-margin-vertical" type="button" (click)="save()"><strong><i class="fa fa-plus"></i>&nbsp; {{ 'COMMON.BUTTON.SAVE' | translate }}</strong></button>                            
+            </span>        
 
+            <span *ngIf="showRemove" class="pull-left" style="margin-right:20px;">
+                <button class="btn btn-danger btn-margin-vertical" type="button" (click)="remove()"><strong><i class="fa fa-minus"></i>&nbsp; {{ 'COMMON.BUTTON.REMOVE' | translate }}</strong></button>
+            </span>
+
+            <span class="pull-left" style="margin-right:20px;">
+                <button class="btn btn-danger btn-margin-vertical" type="button" (click)="cancel()"><strong><i class="fa fa-backward"></i>&nbsp; {{ 'COMMON.BUTTON.CANCEL' | translate }}</strong></button>                            
+            </span>
+
+        </div>
+    </div>
+</div>
