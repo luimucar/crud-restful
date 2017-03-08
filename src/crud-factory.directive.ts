@@ -1,4 +1,4 @@
-import { Directive, OnChanges, Input, ViewContainerRef, ComponentFactoryResolver, SimpleChange } from '@angular/core';
+import { Directive, OnChanges, Input, ViewContainerRef, ComponentFactoryResolver, SimpleChange, EventEmitter } from '@angular/core';
 import { InputTextComponent } from './components/input.component';
 import { MultiSelectComponent } from './components/multiselect.component';
 import { ChipsComponent } from './components/chips.component';
@@ -12,18 +12,16 @@ import { TranslateService } from 'ng2-translate';
     selector: '[crud-factory]'
 })
 export class CrudFactoryDirective implements OnChanges {
-    @Input()
-    type : string;
+    @Input() type : string;
     
-    @Input()
-    index : number;
+    @Input() index : number;
     
-    @Input()
-    clazzName : string;
+    @Input() clazzName : string;
     
-    @Input()
-    model : any;
-    
+    @Input() model : any;
+
+    @Input() broadcast: EventEmitter<string>;
+            
     componentRef : any;
 
     init = false;
@@ -39,6 +37,7 @@ export class CrudFactoryDirective implements OnChanges {
         (<any>compRef).instance.index = this.index;
         (<any>compRef).instance.clazzName = this.clazzName;
         (<any>compRef).instance.translate = this.translate;
+        (<any>compRef).instance.broadcast = this.broadcast;
         if (this.model != undefined) {
             (<any>compRef).instance.model = this.model;
         }

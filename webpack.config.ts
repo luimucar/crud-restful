@@ -38,7 +38,8 @@ var webpackConfig = {
         }),
         new CopyWebpackPlugin([
             { from: 'src/assets', to: 'assets' },
-            { from: 'config', to: 'config' }
+            { from: 'config', to: 'config' },
+            { from: 'data', to: 'data' }
         ])            
     ],
 

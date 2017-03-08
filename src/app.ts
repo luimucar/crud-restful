@@ -1,4 +1,4 @@
-import { Component, NgModule, ViewChild } from '@angular/core'
+import { Component, NgModule, ViewChild, EventEmitter } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { Http } from '@angular/http';
 import { CrudModule } from './crud.module'
@@ -16,16 +16,18 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-        <crud [clazz]="'Login'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
+        <crud [clazz]="'Login'" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
-                <button pButton type="button" (click)="test()" label="Test"></button>
+                <button pButton type="button" (click)="i18n()" label="i18n"></button>
+                <button pButton type="button" (click)="refresh()" label="Refresh"></button>
             </div>
         </div>        
     </div>
   `,
 })
 export class App {
+    broadcast: EventEmitter<any> = new EventEmitter<any>();
     scheduling : Scheduling;
     user : User;
     @ViewChild(CrudComponent) crudComponent : CrudComponent;
@@ -61,9 +63,13 @@ export class App {
         console.log('Cancel');
     }
         
-    test() {
+    i18n() {
         this.translate.use('pt-br');
         this.crudComponent.notify();
+    }
+    
+    refresh() {
+        this.broadcast.emit();
     }
 }
 
