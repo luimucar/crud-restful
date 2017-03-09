@@ -38,6 +38,10 @@ export class BaseComponent extends Observer {
     public fileConfigServerKey : string;
     public required : boolean;
     public requiredMsgKey : string;     
+    public mask : string;
+    public translateKey : string;
+    public regexp : string;
+    public regexpMessage : string;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -51,6 +55,7 @@ export class BaseComponent extends Observer {
     
     readCommonsParameters(index : number) {
         this.id = this.clazzName + "_" + CrudComponentObj.getComponents(this.clazzName)[index].property;
+        CrudComponentObj.getComponents(this.clazzName)[index].index = this.index;        
         this.loadValue(this.index);
         this.values = CrudComponentObj.getComponents(this.clazzName)[index].values;
         this.name = CrudComponentObj.getComponents(this.clazzName)[index].name;
@@ -92,6 +97,10 @@ export class BaseComponent extends Observer {
         this.emptyMessage = CrudComponentObj.getComponents(this.clazzName)[index].emptyMessage;
         this.fileConfig = CrudComponentObj.getComponents(this.clazzName)[index].fileConfig;
         this.fileConfigServerKey = CrudComponentObj.getComponents(this.clazzName)[index].fileConfigServerKey;
+        this.mask = CrudComponentObj.getComponents(this.clazzName)[index].mask;
+        this.translateKey = CrudComponentObj.getComponents(this.clazzName)[index].translateKey;
+        this.regexp = CrudComponentObj.getComponents(this.clazzName)[index].regexp;
+        this.regexpMessage = CrudComponentObj.getComponents(this.clazzName)[index].regexpMessage;
         this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }

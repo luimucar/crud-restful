@@ -10,6 +10,7 @@ export class Configuration {
 
 export class CrudComponentObj {
     public static components: CrudComponentObj[] = [];
+    public index : number = 0;
     public values: any[] = null;
     public value: any = null;
     public clazzName: string;
@@ -41,7 +42,10 @@ export class CrudComponentObj {
     public fileConfigServerKey : string;
     public required : boolean; 
     public requiredMsgKey : string;
-    
+    public mask : string;
+    public regexp : string;
+    public regexpMessage : string;
+
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
     }
@@ -181,6 +185,9 @@ export function InputType(parameters : any) {
     let sortable = parameters['sortable'];
     let required = parameters['required'];
     let requiredMsgKey = parameters['requiredMsgKey'];
+    let mask = parameters['mask'];
+    let regexp = parameters['regexp'];
+    let regexpMessage = parameters['regexpMessage'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -205,6 +212,9 @@ export function InputType(parameters : any) {
         component.sortable = sortable;
         component.required = required;
         component.requiredMsgKey = requiredMsgKey;
+        component.mask = mask;
+        component.regexp = regexp;
+        component.regexpMessage = regexpMessage;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;

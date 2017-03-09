@@ -38,7 +38,9 @@ export class Login {
         tableColumn : 2,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED',
+        regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+        regexpMessage : 'Email is invalid'
     })            
     name : string;
     

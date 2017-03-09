@@ -175,6 +175,7 @@ export class TableComponent extends BaseComponent {
             comp.value = null;
             $('#' + comp.clazzName + '_' + comp.property).val(null);
         });
+        $('#table' + this.clazzName + this.index).css("display", "none");
         BaseComponent.showOrHideComponets(this.clazzName, 'block');        
         BaseComponent.setShowRemove(this.clazzName, false);
         BaseComponent.setHideMsgError(this.clazzName, true);
