@@ -13,22 +13,23 @@ import { TranslateService } from 'ng2-translate';
     providers : [Service]
 })
 export class CrudComponent extends Observer {
-    @Input()
-    clazz : string;
+    @Input() clazz : string;
+    @Input() model : any;
+    @Input() broadcast: EventEmitter<any>;    
+    @Input() buttons : string;
     
-    @Input()
-    model : any;
-    
-    components: CrudComponentObj[];
-    
+    @Output() onOk = new EventEmitter();
     @Output() onSave = new EventEmitter();
     @Output() onRemove = new EventEmitter();
     @Output() onCancel = new EventEmitter();
-    
-    @Input() broadcast: EventEmitter<any>;
-    
+
+    showOkButton : boolean;
+    showSaveButton : boolean;
+    showRemoveButton : boolean;
+    showCancelButton : boolean;
+            
+    components: CrudComponentObj[];        
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
-    
     showRemove : boolean;
        
     constructor(public service: Service, public translate : TranslateService) {
@@ -46,6 +47,20 @@ export class CrudComponent extends Observer {
                 BaseComponent.showOrHideComponets(this.clazz, 'block');
             }
         }, 200);
+        if (this.buttons != undefined) {
+            let buttons = this.buttons.split(',');
+            buttons.forEach(button => {
+                if (button.toUpperCase() == "OK") {
+                    this.showOkButton = true;                        
+                } else if (button.toUpperCase() == "SAVE") {
+                    this.showSaveButton = true;
+                } else if (button.toUpperCase() == "REMOVE") {
+                    this.showRemoveButton = true;
+                } else if (button.toUpperCase() == "CANCEL") {
+                    this.showCancelButton = true;
+                }
+            });
+        }
     }
 
     hideMsgError() {
@@ -109,6 +124,15 @@ export class CrudComponent extends Observer {
         });
         return ret;
     }
+    
+    ok() {
+        if (this.components.length > 0) {
+            if (this.validate()) {
+                let obj = getObject(this.components[0].clazz);
+                this.onOk.emit(obj);
+            }
+        }        
+    }
 
     save() {
         if (this.components.length > 0) {
@@ -163,7 +187,7 @@ export class CrudComponent extends Observer {
     }
     
     public notify() {
-        this.showRemove = BaseComponent.showRemove.get(this.clazz);
+        this.showRemove = BaseComponent.showRemove.get(this.clazz) && this.showRemoveButton;
         if (BaseComponent.hideMsgError.get(this.clazz)) {
             this.hideMsgError();
         }

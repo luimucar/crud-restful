@@ -4,7 +4,8 @@
             "SAVE": "Save",
             "CANCEL" : "Cancel",
             "REMOVE" : "Remove",
-            "ADD" : "Add"
+            "ADD" : "Add",
+            "OK" : "OK"
         }
     },
     "NAME" : "Name",

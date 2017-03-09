@@ -4,7 +4,8 @@
             "SAVE": "Salvar",
             "CANCEL" : "Cancelar",
             "REMOVE" : "Remover",
-            "ADD" : "Adiciona"
+            "ADD" : "Adiciona",
+            "OK" : "OK"
         }
     },
     "USERNAME" : "Nome",

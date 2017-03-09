@@ -13,15 +13,19 @@
 <div class="container-fluid">
     <div class="row" style="padding-top:20px;" id="buttons{{clazz}}">
         <div class="col-md-12 text-left">
-            <span class="pull-left" style="margin-right:20px;">
+            <span class="pull-left" style="margin-right:20px;" *ngIf="showOkButton">
+                <button class="btn btn-primary btn-margin-vertical" type="button" (click)="ok()"><strong><i class="fa fa-check"></i>&nbsp; {{ 'COMMON.BUTTON.OK' | translate }}</strong></button>                            
+            </span>        
+            
+            <span class="pull-left" style="margin-right:20px;" *ngIf="showSaveButton">
                 <button class="btn btn-primary btn-margin-vertical" type="button" (click)="save()"><strong><i class="fa fa-plus"></i>&nbsp; {{ 'COMMON.BUTTON.SAVE' | translate }}</strong></button>                            
             </span>        
 
-            <span *ngIf="showRemove" class="pull-left" style="margin-right:20px;">
+            <span class="pull-left" style="margin-right:20px;" *ngIf="showRemove">
                 <button class="btn btn-danger btn-margin-vertical" type="button" (click)="remove()"><strong><i class="fa fa-minus"></i>&nbsp; {{ 'COMMON.BUTTON.REMOVE' | translate }}</strong></button>
             </span>
 
-            <span class="pull-left" style="margin-right:20px;">
+            <span class="pull-left" style="margin-right:20px;" *ngIf="showCancelButton">
                 <button class="btn btn-danger btn-margin-vertical" type="button" (click)="cancel()"><strong><i class="fa fa-backward"></i>&nbsp; {{ 'COMMON.BUTTON.CANCEL' | translate }}</strong></button>                            
             </span>
 

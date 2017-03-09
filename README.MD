@@ -107,16 +107,18 @@ import {CrudModule} from 'crud-restful/index';
 ### In your HTML template:
 
 ```html
-<crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
+<crud [buttons]="'Ok,Save,Remove,Cancel'" [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
 ```
 
 <pre>
 <b>- Inputs:</b>
+[buttons] - required : Visible buttons
 [clazz] - required : The class name
 [model] - optional : The instance of class with default values
 [broadcast] - optional : Emit events to update the table
 
 <b>- Events:</b>
+Ok
 Save
 Remove
 Cancel
@@ -151,6 +153,10 @@ Cancel
 
     handleOnCancel() {
         console.log('Cancel');
+    }
+
+    handleOnOk(login : Login) {
+        console.log(login);
     }
 
     refreshTable() {

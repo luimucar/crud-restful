@@ -16,7 +16,7 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
+        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="i18n()" label="i18n"></button>
@@ -50,7 +50,11 @@ export class App {
     handleOnCancel() {
         console.log('Cancel');
     }
-        
+
+    handleOnOk(login : Login) {
+        console.log(login);
+    }
+                
     i18n() {
         this.translate.use('pt-br');
         this.crudComponent.notify();
