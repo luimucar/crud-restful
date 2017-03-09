@@ -52,13 +52,12 @@ export class InputTextComponent extends BaseComponent {
         
         if (this.broadcast != undefined) {
             let id = this.id;
+            let clazzName = this.clazzName;
+            let property = this.property;
             this.broadcast.subscribe((value : any) => {
-                if (value) {
-                    setObject(this.clazzName, value);
-                    let crudComponentObj : CrudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-                    if (value[crudComponentObj.property]) {
-                        $("#" + id).val(value[crudComponentObj.property]);
-                    }
+                if (value != undefined && value[property] != undefined) {
+                    setObject(clazzName, value);
+                    $("#" + id).val(value[property]);
                 }
             });
         }        

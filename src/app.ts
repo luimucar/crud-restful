@@ -58,7 +58,7 @@ export class App {
     
     refresh() {
         this.login.name = 'cmargulhano@gmail.com';
-        this.broadcast.emit();
+        this.broadcast.emit(this.login);
     }
 }
 
