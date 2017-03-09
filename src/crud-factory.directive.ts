@@ -20,7 +20,7 @@ export class CrudFactoryDirective implements OnChanges {
     
     @Input() model : any;
 
-    @Input() broadcast: EventEmitter<string>;
+    @Input() broadcast: EventEmitter<any>;
             
     componentRef : any;
 

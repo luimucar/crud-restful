@@ -16,7 +16,7 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
-        <crud [clazz]="'Login'" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
+        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="i18n()" label="i18n"></button>
@@ -28,25 +28,13 @@ import { PrimeNgModule } from './primeng.module';
 })
 export class App {
     broadcast: EventEmitter<any> = new EventEmitter<any>();
-    scheduling : Scheduling;
-    user : User;
     @ViewChild(CrudComponent) crudComponent : CrudComponent;
+    login : Login = new Login();
 
     constructor(public translate: TranslateService) {
         translate.addLangs(["en-en", "pt-br"]);
         translate.setDefaultLang('en-en');
         translate.use('en-en');
-        /*
-        this.scheduling = new Scheduling();
-        this.scheduling.name = 'Teste';
-        this.scheduling.period = '3';
-        this.scheduling.date1 = '01/01/2017';
-        this.scheduling.date2 = moment("15/05/1979", "DD/MM/YYYY").toDate();
-
-        this.user = new User('Cláudio');
-        this.user.password = '123';
-        this.user.passwordConfirmation = '123';
-        */
     }
     
     handleOnSave(login : Login) {
@@ -69,6 +57,7 @@ export class App {
     }
     
     refresh() {
+        this.login.name = 'cmargulhano@gmail.com';
         this.broadcast.emit();
     }
 }

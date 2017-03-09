@@ -50,13 +50,6 @@ export class TableComponent extends BaseComponent {
             this.broadcast.subscribe(() => {
                 this.readCommonsParameters(this.index);
                 this.loadData();
-                /*
-                if (this.dt != undefined) {
-                    this.dt.reset();
-                    this.dt.sortField = CrudComponentObj.getComponents(this.clazzName)[this.index].sortField;
-                    this.dt.sortOrder = CrudComponentObj.getComponents(this.clazzName)[this.index].sortOrder;
-                }
-                */
             });
         }
     }

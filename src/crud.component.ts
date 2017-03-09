@@ -25,7 +25,7 @@ export class CrudComponent extends Observer {
     @Output() onRemove = new EventEmitter();
     @Output() onCancel = new EventEmitter();
     
-    @Input() broadcast: EventEmitter<string>;
+    @Input() broadcast: EventEmitter<any>;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     

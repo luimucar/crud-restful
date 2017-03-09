@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CrudComponentObj } from '../index';
+import { Component, Input, EventEmitter } from '@angular/core';
+import { CrudComponentObj, setObject } from '../index';
 import { BaseComponent } from './base.component';
 import * as $ from 'jquery';
 
@@ -20,6 +20,8 @@ import * as $ from 'jquery';
 })
 
 export class InputTextComponent extends BaseComponent {
+    @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
+    
     inputType : string;
         
     ngOnInit() {
@@ -47,6 +49,19 @@ export class InputTextComponent extends BaseComponent {
                 $('#'+this.id).attr('checked', 'true');
             }
         }, 50);
+        
+        if (this.broadcast != undefined) {
+            let id = this.id;
+            this.broadcast.subscribe((value : any) => {
+                if (value) {
+                    setObject(this.clazzName, value);
+                    let crudComponentObj : CrudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+                    if (value[crudComponentObj.property]) {
+                        $("#" + id).val(value[crudComponentObj.property]);
+                    }
+                }
+            });
+        }        
     }
 
     setValue(value:string){

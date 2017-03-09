@@ -44,6 +44,7 @@ export class BaseComponent extends Observer {
     public regexpMessage : string;
     public regexpMessageKey : string;    
     public autoHide : boolean;
+    public property : string;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -105,6 +106,7 @@ export class BaseComponent extends Observer {
         this.regexpMessage = CrudComponentObj.getComponents(this.clazzName)[index].regexpMessage;
         this.regexpMessageKey = CrudComponentObj.getComponents(this.clazzName)[index].regexpMessageKey;
         this.autoHide = CrudComponentObj.getComponents(this.clazzName)[index].autoHide;
+        this.property = CrudComponentObj.getComponents(this.clazzName)[index].property;
         this.translateLabel(index);
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
