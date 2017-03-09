@@ -40,14 +40,12 @@ export class CrudComponent extends Observer {
         this.components = CrudComponentObj.getComponents(this.clazz);
         setObject(this.clazz, this.model);        
         setTimeout(() => {
-            //console.log(Configuration.tableLess);
             if (!Configuration.tableLess.get(this.clazz)) {
                 BaseComponent.showOrHideComponets(this.clazz, 'none');
             } else {
                 BaseComponent.showOrHideComponets(this.clazz, 'block');
             }
         }, 200);
-        //console.log(this.components);
     }
 
     hideMsgError() {
@@ -63,14 +61,19 @@ export class CrudComponent extends Observer {
         this.components.forEach(component => {
             if (component.required) {
                 if (component.value == null || component.value.trim() == '') {
-                    let requiredMsg = this.translate.instant(component.requiredMsgKey);
+                    let message = null;
+                    if (component.requiredMessageKey) {
+                        message = this.translate.instant(component.requiredMessageKey);
+                    } else {
+                        message = component.requiredMessage;
+                    }
                     let name = null;
                     if (component.translateKey != undefined) {
                         name = this.translate.instant(component.translateKey);
                     } else {
                         name = component.name;
                     }
-                    let msg = name + ': ' + requiredMsg;
+                    let msg = name + ': ' + message;
                     $("#label_error_"+component.clazzName+"_"+component.property).text(msg);
                     $("#label_error_"+component.clazzName+"_"+component.property).css('color', 'red');
                     $("#label_error_"+component.clazzName+"_"+component.property).css('display', 'block');
@@ -84,14 +87,19 @@ export class CrudComponent extends Observer {
                 if (regexp.test(component.value)) {
                     $("#label_error_"+component.clazzName+"_"+component.property).css('display', 'none');
                 } else {
-                    let requiredMsg = this.translate.instant(component.regexpMessage);
+                    let message = null;
+                    if (component.regexpMessageKey) {
+                        message = this.translate.instant(component.regexpMessageKey);
+                    } else {
+                        message = component.regexpMessage;
+                    }                    
                     let name = null;
                     if (component.translateKey != undefined) {
                         name = this.translate.instant(component.translateKey);
                     } else {
                         name = component.name;
                     }
-                    let msg = name + ': ' + requiredMsg;
+                    let msg = name + ': ' + message;
                     $("#label_error_"+component.clazzName+"_"+component.property).text(msg);
                     $("#label_error_"+component.clazzName+"_"+component.property).css('color', 'red');
                     $("#label_error_"+component.clazzName+"_"+component.property).css('display', 'block');

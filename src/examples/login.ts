@@ -11,7 +11,8 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     sortField : 'id',
     sortOrder : 1,   
     order : 0,
-    emptyMessageKey : 'MESSAGE.NO_DATA'
+    emptyMessageKey : 'MESSAGE.NO_DATA',
+    autoHide : true
 })
 @Configure({
     i18nPath : './assets/i18n'
@@ -38,7 +39,7 @@ export class Login {
         tableColumn : 2,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED',
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
         regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
         regexpMessage : 'Email is invalid'
     })            
@@ -53,7 +54,7 @@ export class Login {
         tableColumn : 1,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED'
     })    
     fullname : string;   
 }

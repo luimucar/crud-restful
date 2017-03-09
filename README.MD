@@ -36,14 +36,17 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 
 @Table({
     name : 'tableUser',
-    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    url : '/data/login.json',
+    fileConfig : '/config/webapp-config.json',
+    fileConfigServerKey : 'server.backend',    
     rows : 10,
     paginator : true,
     pageLinks : 3,
     sortField : 'id',
     sortOrder : 1,   
     order : 0,
-    emptyMessageKey : 'MSG.EMPTY_MESSAGE'
+    emptyMessageKey : 'MESSAGE.NO_DATA',
+    autoHide : true
 })
 @Configure({
     i18nPath : './assets/i18n'
@@ -62,15 +65,17 @@ export class Login {
     id : number;
 
     @InputType({
-        name : 'Name',
+        name : 'Email',
         translateKey : 'NAME',
         type : 'text',
         autoWidth : true,
         order : 2,
-        tableColumn : 1,
+        tableColumn : 2,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+        regexpMessage : 'Email is invalid'
     })            
     name : string;
     
@@ -80,12 +85,12 @@ export class Login {
         type : 'text',
         autoWidth : true,
         order : 3,
-        tableColumn : 2,
+        tableColumn : 1,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED'
     })    
-    fullName : string;   
+    fullname : string;   
 }
 ```
 
@@ -102,13 +107,14 @@ import {CrudModule} from 'crud-restful/index';
 ### In your HTML template:
 
 ```html
-<crud [clazz]="'Login'" [model]="login" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove" (onCancel)="handleOnCancel()"></crud>
+<crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()"></crud>
 ```
 
 <pre>
 <b>- Inputs:</b>
-[clazz] - required - The class name
-[model] - optional - The instance of class with default values
+[clazz] - required : The class name
+[model] - optional : The instance of class with default values
+[broadcast] - optional : Emit events to update the table
 
 <b>- Events:</b>
 Save
@@ -123,6 +129,7 @@ Cancel
     .
     .
 
+    broadcast: EventEmitter<any> = new EventEmitter<any>();
     login : Login;
 
     constructor() {
@@ -146,6 +153,9 @@ Cancel
         console.log('Cancel');
     }
 
+    refreshTable() {
+        this.broadcast.emit();
+    }
     .
     .
     .
@@ -168,29 +178,34 @@ Example:
 ```javascript
 @Table({
     name : 'tableUser',
-    url : 'http://www.mocky.io/v2/58bdc0e10f0000c3255c6857',
+    url : '/data/login.json',
+    fileConfig : '/config/webapp-config.json',
+    fileConfigServerKey : 'server.backend',    
     rows : 10,
     paginator : true,
     pageLinks : 3,
     sortField : 'id',
     sortOrder : 1,   
     order : 0,
-    emptyMessage : 'MSG.EMPTY_MESSAGE'
+    emptyMessageKey : 'MESSAGE.NO_DATA',
+    autoHide : true
 })
 export class Login {
     .
     .
     .
     @InputType({
-        name : 'Name',
+        name : 'Email',
         translateKey : 'NAME',
         type : 'text',
         autoWidth : true,
         order : 2,
-        tableColumn : 1,
+        tableColumn : 2,
         sortable : true,
         required : true,
-        requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+        regexpMessage : 'Email is invalid'
     })            
     name : string;
     .
@@ -211,15 +226,17 @@ Example:
 
 ```javascript
 @InputType({
-    name : 'Name',
+    name : 'Email',
     translateKey : 'NAME',
     type : 'text',
     autoWidth : true,
     order : 2,
-    tableColumn : 1,
+    tableColumn : 2,
     sortable : true,
     required : true,
-    requiredMsgKey : 'MESSAGE.FIELD_REQUIRED'
+    requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+    regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+    regexpMessage : 'Email is invalid'
 })            
 name : string;
 ```
@@ -349,6 +366,20 @@ export class App {
         this.crudComponent.notify();
     }
 ...
+```
+
+<br><br>
+
+## Auth
+
+If you need, use bearer tokens in HTTP requests, example:
+
+```javascript
+import { Configuration } from 'crud-restful/index';
+```
+
+```javascript
+Configuration.token = 'bearer 96549c0e-dab8-4d05-9d62-33cbd320b152';
 ```
 
 <br><br>

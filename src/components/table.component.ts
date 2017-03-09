@@ -165,6 +165,9 @@ export class TableComponent extends BaseComponent {
             }
         });
         BaseComponent.showOrHideComponets(this.clazzName, 'block');
+        if (this.autoHide) {
+            $('#table' + this.clazzName + this.index).css("display", "none");
+        }
         BaseComponent.setShowRemove(this.clazzName, true);
         this.concreteSubject.notify('CRUD-COMPONENT');
     }
@@ -175,7 +178,9 @@ export class TableComponent extends BaseComponent {
             comp.value = null;
             $('#' + comp.clazzName + '_' + comp.property).val(null);
         });
-        $('#table' + this.clazzName + this.index).css("display", "none");
+        if (this.autoHide) {
+            $('#table' + this.clazzName + this.index).css("display", "none");
+        }
         BaseComponent.showOrHideComponets(this.clazzName, 'block');        
         BaseComponent.setShowRemove(this.clazzName, false);
         BaseComponent.setHideMsgError(this.clazzName, true);

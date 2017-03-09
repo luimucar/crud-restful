@@ -41,10 +41,13 @@ export class CrudComponentObj {
     public fileConfig : string;
     public fileConfigServerKey : string;
     public required : boolean; 
-    public requiredMsgKey : string;
+    public requiredMessage : string;
+    public requiredMessageKey : string;
     public mask : string;
     public regexp : string;
     public regexpMessage : string;
+    public regexpMessageKey : string;
+    public autoHide : boolean;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -127,6 +130,7 @@ export function Table(parameters : any) {
     let emptyMessage = parameters['emptyMessageKey'];
     let fileConfig = parameters['fileConfig'];
     let fileConfigServerKey = parameters['fileConfigServerKey'];
+    let autoHide = parameters['autoHide'];
     function actualDecorator(constructor: Function) {
         Configuration.tableLess.set(constructor['name'], false);
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
@@ -141,6 +145,7 @@ export function Table(parameters : any) {
         component.emptyMessage = emptyMessage;
         component.fileConfig = fileConfig;
         component.fileConfigServerKey = fileConfigServerKey;
+        component.autoHide = autoHide;
         CrudComponentObj.components.push(component);        
     }
     return actualDecorator;
@@ -184,10 +189,12 @@ export function InputType(parameters : any) {
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
     let required = parameters['required'];
-    let requiredMsgKey = parameters['requiredMsgKey'];
+    let requiredMessage = parameters['requiredMessage'];
+    let requiredMessageKey = parameters['requiredMessageKey'];
     let mask = parameters['mask'];
     let regexp = parameters['regexp'];
     let regexpMessage = parameters['regexpMessage'];
+    let regexpMessageKey = parameters['regexpMessageKey'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -211,10 +218,12 @@ export function InputType(parameters : any) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.required = required;
-        component.requiredMsgKey = requiredMsgKey;
+        component.requiredMessage = requiredMessage;
+        component.requiredMessageKey = requiredMessageKey;
         component.mask = mask;
         component.regexp = regexp;
         component.regexpMessage = regexpMessage;
+        component.regexpMessageKey = regexpMessageKey;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
