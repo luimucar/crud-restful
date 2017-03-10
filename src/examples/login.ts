@@ -53,7 +53,7 @@ export class Login {
         sortable : true,
         required : true,
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
-        style : 'color: blue;font-style: italic;'
+        style : 'color: blue; font-style : italic;'
     })    
     fullname : string;  
 

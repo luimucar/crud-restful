@@ -114,9 +114,12 @@ export class BaseComponent extends Observer {
         let style = this.style;
         if (style != undefined) {
             setTimeout(() => {
-                style.split(';').forEach(value => {
-                    let kv : any[] = value.split(':');
-                    $("#" + id).css(kv[0], kv[1]);
+                style.split(';').forEach((value:string) => {
+                    value = value.trim();
+                    let kv : string[] = value.split(':');
+                    if (kv.length > 1) {
+                        $("#" + id).css(kv[0].trim(), kv[1].trim());
+                    }
                 });
             }, 50);
         }
