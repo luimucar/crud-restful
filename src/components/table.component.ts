@@ -64,7 +64,13 @@ export class TableComponent extends BaseComponent {
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = [];
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
             if (comp.tableColumn != undefined && comp.tableColumn >= 0) {
-                this.cols.push({ field: comp.property, header: comp.name, sortable: comp.sortable, order : comp.tableColumn });
+                setTimeout(() => {
+                    let name = comp.name;
+                    if (comp.translateKey) {
+                        name = this.translate.instant(comp.translateKey);
+                    }
+                    this.cols.push({ field: comp.property, header: name, sortable: comp.sortable, order : comp.tableColumn });
+                }, 50);                        
             }
         });
         
