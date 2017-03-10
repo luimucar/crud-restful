@@ -61,7 +61,7 @@ export class App {
     }
     
     refresh() {
-        this.login.name = 'cmargulhano@gmail.com';
+        this.login.email = 'cmargulhano@gmail.com';
         this.broadcast.emit(this.login);
     }
 }

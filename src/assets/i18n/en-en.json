@@ -8,7 +8,7 @@
             "OK" : "OK"
         }
     },
-    "NAME" : "Name",
+    "EMAIL" : "E-mail",
     "FULLNAME" : "Full name",
     "MESSAGE": {
         "WAIT": "Please wait ...",

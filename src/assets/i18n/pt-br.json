@@ -8,7 +8,7 @@
             "OK" : "OK"
         }
     },
-    "USERNAME" : "Nome",
+    "EMAIL" : "E-mail",
     "FULLNAME" : "Nome completo",
     "MESSAGE": {
         "WAIT": "Por favor aguarde ...",

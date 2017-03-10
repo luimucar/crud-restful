@@ -42,6 +42,15 @@ export class InputTextComponent extends BaseComponent {
             $("input[name='"+name+"']").each(function() {
                 $(this).width(width);
             });
+            let style = this.style;
+            if (style != undefined) {
+                $("input[name='"+name+"']").each(function() {
+                    style.split(';').forEach(value => {
+                        let kv : any[] = value.split(':');
+                        $(this).css(kv[0], kv[1]);
+                    });
+                });
+            }
         }, 50);  
        
         setTimeout(() => {
@@ -49,9 +58,9 @@ export class InputTextComponent extends BaseComponent {
                 $('#'+this.id).attr('checked', 'true');
             }
         }, 50);
-        
+
+        let id = this.id;        
         if (this.broadcast != undefined) {
-            let id = this.id;
             let clazzName = this.clazzName;
             let property = this.property;
             this.broadcast.subscribe((value : any) => {
@@ -60,7 +69,7 @@ export class InputTextComponent extends BaseComponent {
                     $("#" + id).val(value[property]);
                 }
             });
-        }        
+        }   
     }
 
     setValue(value:string){

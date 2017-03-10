@@ -45,6 +45,7 @@ export class BaseComponent extends Observer {
     public regexpMessageKey : string;    
     public autoHide : boolean;
     public property : string;
+    public style : string;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -107,7 +108,18 @@ export class BaseComponent extends Observer {
         this.regexpMessageKey = CrudComponentObj.getComponents(this.clazzName)[index].regexpMessageKey;
         this.autoHide = CrudComponentObj.getComponents(this.clazzName)[index].autoHide;
         this.property = CrudComponentObj.getComponents(this.clazzName)[index].property;
+        this.style = CrudComponentObj.getComponents(this.clazzName)[index].style;
         this.translateLabel(index);
+        let id = this.id;
+        let style = this.style;
+        if (style != undefined) {
+            setTimeout(() => {
+                style.split(';').forEach(value => {
+                    let kv : any[] = value.split(':');
+                    $("#" + id).css(kv[0], kv[1]);
+                });
+            }, 50);
+        }
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
     

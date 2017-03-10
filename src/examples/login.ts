@@ -2,9 +2,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 
 @Table({
     name : 'tableUser',
-    url : '/data/login.json',
-    fileConfig : '/config/webapp-config.json',
-    fileConfigServerKey : 'server.backend',    
+    url : '/data/login.json',  
     rows : 10,
     paginator : true,
     pageLinks : 3,
@@ -32,7 +30,7 @@ export class Login {
 
     @InputType({
         name : 'Email',
-        translateKey : 'NAME',
+        translateKey : 'EMAIL',
         type : 'text',
         autoWidth : true,
         order : 2,
@@ -43,7 +41,7 @@ export class Login {
         regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
         regexpMessage : 'Email is invalid'
     })            
-    name : string;
+    email : string;
     
     @InputType({
         name : 'Full Name',
@@ -54,7 +52,22 @@ export class Login {
         tableColumn : 1,
         sortable : true,
         required : true,
-        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        style : 'color: blue;font-style: italic;'
     })    
-    fullname : string;   
+    fullname : string;  
+
+    @InputType({
+        name : 'Phone Number',
+        type : 'text',
+        autoWidth : true,
+        order : 4,
+        tableColumn : 3,
+        sortable : true,
+        required : false,
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        mask : '(999) 999-9999',
+        style : 'color: pink;'
+    })    
+    phonenumber : string;      
 }

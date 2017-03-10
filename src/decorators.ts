@@ -48,6 +48,7 @@ export class CrudComponentObj {
     public regexpMessage : string;
     public regexpMessageKey : string;
     public autoHide : boolean;
+    public style : string;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -131,6 +132,7 @@ export function Table(parameters : any) {
     let fileConfig = parameters['fileConfig'];
     let fileConfigServerKey = parameters['fileConfigServerKey'];
     let autoHide = parameters['autoHide'];
+    let style = parameters['style'];
     function actualDecorator(constructor: Function) {
         Configuration.tableLess.set(constructor['name'], false);
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
@@ -146,6 +148,7 @@ export function Table(parameters : any) {
         component.fileConfig = fileConfig;
         component.fileConfigServerKey = fileConfigServerKey;
         component.autoHide = autoHide;
+        component.style = style;
         CrudComponentObj.components.push(component);        
     }
     return actualDecorator;
@@ -195,6 +198,7 @@ export function InputType(parameters : any) {
     let regexp = parameters['regexp'];
     let regexpMessage = parameters['regexpMessage'];
     let regexpMessageKey = parameters['regexpMessageKey'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -224,6 +228,7 @@ export function InputType(parameters : any) {
         component.regexp = regexp;
         component.regexpMessage = regexpMessage;
         component.regexpMessageKey = regexpMessageKey;
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -244,6 +249,7 @@ export function MultiSelect(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];
     let focus = parameters['focus'];
     let translateKey = parameters['translateKey'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -262,6 +268,7 @@ export function MultiSelect(parameters : any) {
         component.colMdRigth = colMdRigth;
         component.focus = focus;
         component.translateKey = translateKey;
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -277,6 +284,7 @@ export function Chips(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];     
     let focus = parameters['focus'];
     let translateKey = parameters['translateKey'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -290,6 +298,7 @@ export function Chips(parameters : any) {
         component.colMdRigth = colMdRigth;  
         component.focus = focus;       
         component.translateKey = translateKey;      
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -309,6 +318,7 @@ export function Select(parameters : any) {
     let translateKey = parameters['translateKey'];
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -326,6 +336,7 @@ export function Select(parameters : any) {
         component.translateKey = translateKey;
         component.tableColumn = tableColumn;
         component.sortable = sortable;
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -344,6 +355,7 @@ export function Calendar(parameters : any) {
     let translateKey = parameters['translateKey'];
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -360,6 +372,7 @@ export function Calendar(parameters : any) {
         component.translateKey = translateKey;
         component.tableColumn = tableColumn;
         component.sortable = sortable;
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -376,6 +389,7 @@ export function Checkboxes(parameters : any) {
     let focus = parameters['focus'];
     let values = parameters['values'];
     let translateKey = parameters['translateKey'];
+    let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
             name = property;
@@ -390,6 +404,7 @@ export function Checkboxes(parameters : any) {
         component.focus = focus;
         component.values = values; 
         component.translateKey = translateKey;            
+        component.style = style;
         CrudComponentObj.components.push(component);
     }
 

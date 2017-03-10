@@ -36,9 +36,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
 
 @Table({
     name : 'tableUser',
-    url : '/data/login.json',
-    fileConfig : '/config/webapp-config.json',
-    fileConfigServerKey : 'server.backend',    
+    url : '/data/login.json',  
     rows : 10,
     paginator : true,
     pageLinks : 3,
@@ -66,7 +64,7 @@ export class Login {
 
     @InputType({
         name : 'Email',
-        translateKey : 'NAME',
+        translateKey : 'EMAIL',
         type : 'text',
         autoWidth : true,
         order : 2,
@@ -88,7 +86,8 @@ export class Login {
         tableColumn : 1,
         sortable : true,
         required : true,
-        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED'
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        style : 'color: blue;font-style: italic;'
     })    
     fullname : string;   
 }
@@ -112,7 +111,7 @@ import {CrudModule} from 'crud-restful/index';
 
 <pre>
 <b>- Inputs:</b>
-[buttons] - required : Visible buttons
+[buttons] - required : Visible buttons : Ok, Save, Remove, Cancel
 [clazz] - required : The class name
 [model] - optional : The instance of class with default values
 [broadcast] - optional : Emit events to update the table
@@ -137,7 +136,7 @@ Cancel
     constructor() {
         this.login = new Login();
         this.login.id = 1;
-        this.login.name = 'cmargulhano@gmail.com';
+        this.login.email = 'cmargulhano@gmail.com';
         this.login.fullname = 'Cláudio Margulhano';
     }
     
@@ -162,6 +161,15 @@ Cancel
     refreshTable() {
         this.broadcast.emit();
     }
+
+    i18n() {
+        this.translate.use('pt-br');
+        this.crudComponent.notify();
+    }    
+
+    changeEmail () {
+        this.broadcast.emit('{"email" : "cmargulhano@hotmail.com"}');
+    }
     .
     .
     .
@@ -184,9 +192,7 @@ Example:
 ```javascript
 @Table({
     name : 'tableUser',
-    url : '/data/login.json',
-    fileConfig : '/config/webapp-config.json',
-    fileConfigServerKey : 'server.backend',    
+    url : '/data/login.json', 
     rows : 10,
     paginator : true,
     pageLinks : 3,
@@ -202,7 +208,7 @@ export class Login {
     .
     @InputType({
         name : 'Email',
-        translateKey : 'NAME',
+        translateKey : 'EMAIL',
         type : 'text',
         autoWidth : true,
         order : 2,
@@ -211,7 +217,8 @@ export class Login {
         required : true,
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
         regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
-        regexpMessage : 'Email is invalid'
+        regexpMessage : 'Email is invalid',
+        style : 'color: blue;font-style: italic;'
     })            
     name : string;
     .
@@ -233,7 +240,7 @@ Example:
 ```javascript
 @InputType({
     name : 'Email',
-    translateKey : 'NAME',
+    translateKey : 'EMAIL',
     type : 'text',
     autoWidth : true,
     order : 2,
@@ -242,9 +249,24 @@ Example:
     required : true,
     requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
     regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
-    regexpMessage : 'Email is invalid'
+    regexpMessage : 'Email is invalid',
+    style : 'color: blue;font-style: italic;'
 })            
-name : string;
+email : string;
+
+    @InputType({
+        name : 'Phone Number',
+        type : 'text',
+        autoWidth : true,
+        order : 4,
+        tableColumn : 3,
+        sortable : true,
+        required : false,
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        style : 'color: pink;'
+        mask : '(999) 999-9999'
+    })    
+    phonenumber : string;
 ```
 
 ### MultiSelect - property decorator
@@ -378,7 +400,7 @@ export class App {
 
 ## Auth
 
-If you need, use bearer tokens in HTTP requests, example:
+If you need, you can use bearer tokens in HTTP requests, for example:
 
 ```javascript
 import { Configuration } from 'crud-restful/index';
