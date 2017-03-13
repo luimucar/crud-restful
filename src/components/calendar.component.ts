@@ -37,6 +37,11 @@ export class CalendarComponent extends BaseComponent {
             let dateStr = CrudComponentObj.getComponents(this.clazzName)[this.index].value;
             this.date = moment(dateStr, this.format).toDate();
         }
+        if (CrudComponentObj.getComponents(this.clazzName)[this.index].typeOfObject == 'Date') {
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = this.date;
+        } else {
+            CrudComponentObj.getComponents(this.clazzName)[this.index].value = moment(this.date, this.format).format(this.format);
+        }
     }
     
     onSelect(newDate : any) {

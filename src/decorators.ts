@@ -49,6 +49,8 @@ export class CrudComponentObj {
     public regexpMessageKey : string;
     public autoHide : boolean;
     public style : string;
+    public typeOfObject : string;
+    public targetProperty : string;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -94,9 +96,14 @@ export function getObject(clazzName: any): any {
     let ret = new clazzName();
     CrudComponentObj.components.forEach(obj => {
         if (obj.clazzName == clazzName.name) {
-            ret[obj.property] = obj.value;
+            if (obj.targetProperty != undefined) {
+                console.log(obj);
+                ret[obj.targetProperty] = obj.value;
+            }
+            ret[obj.property] = obj.value;            
         }
     });
+    
     return Object.assign(new clazzName(), ret);
 }
 
@@ -229,6 +236,8 @@ export function InputType(parameters : any) {
         component.regexpMessage = regexpMessage;
         component.regexpMessageKey = regexpMessageKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -269,6 +278,8 @@ export function MultiSelect(parameters : any) {
         component.focus = focus;
         component.translateKey = translateKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -299,6 +310,8 @@ export function Chips(parameters : any) {
         component.focus = focus;       
         component.translateKey = translateKey;      
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -337,6 +350,8 @@ export function Select(parameters : any) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -373,6 +388,8 @@ export function Calendar(parameters : any) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property)['name'];
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -405,6 +422,45 @@ export function Checkboxes(parameters : any) {
         component.values = values; 
         component.translateKey = translateKey;            
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
+        CrudComponentObj.components.push(component);
+    }
+
+    return actualDecorator;
+}
+
+export function Radioboxes(parameters : any) {
+    let name = parameters['name'];
+    let disabled = parameters['disabled'];
+    let order = parameters['order'];   
+    let autoWidth = parameters['autoWidth'];
+    let width = parameters['width'];     
+    let colMdLeft = parameters['colMdLeft'];
+    let colMdRigth = parameters['colMdRigth'];     
+    let focus = parameters['focus'];
+    let values = parameters['values'];
+    let translateKey = parameters['translateKey'];
+    let style = parameters['style'];
+    let targetProperty = parameters['target'];
+    function actualDecorator(target: Object, property: string): void {
+        if (name == undefined) {
+            name = property;
+        }        
+        let component = new CrudComponentObj(property, name, 'Radioboxes', target.constructor);
+        component.disabled = disabled;
+        component.order = order;
+        component.autoWidth = autoWidth;
+        component.width = width; 
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;  
+        component.focus = focus;
+        component.values = values; 
+        component.translateKey = translateKey;            
+        component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;        
+        component.targetProperty = targetProperty;
         CrudComponentObj.components.push(component);
     }
 

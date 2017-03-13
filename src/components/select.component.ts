@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'selectCrudRestful',
@@ -10,8 +11,8 @@ import { BaseComponent } from './base.component';
                 <label>{{name}}</label>
             </div>
             <div class="col-md-{{colMdRigth}}">    
-                <select [style.width]="width" [ngModel]="value" (ngModelChange)="onChangeObj($event)">
-                    <option [ngValue]="i.value" *ngFor="let i of values">{{i.label}}</option>
+                <select [style.width]="width" (change)="onChangeObj($event.target.value)">
+                    <option id="{{i}}" [value]="item.value" *ngFor="let item of values; let i = index">{{item.label}}</option>
                 </select>
             </div>
             <span id="label_error_{{id}}" style="color: red; display: none;"></span>
@@ -22,11 +23,18 @@ import { BaseComponent } from './base.component';
 export class SelectComponent extends BaseComponent {   
     ngOnInit() {
         this.readCommonsParameters(this.index);
-        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        setTimeout(() => {
+            let i : number =0;
+            this.values.forEach(value => {
+                if (value['value'] == this.value) {
+                    $('#'+i).attr('selected','selected');                
+                }
+                i++;
+            })
+        }, 50);
     }
     
     onChangeObj(value:any) {
-        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
     }
 }    

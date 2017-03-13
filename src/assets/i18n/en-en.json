@@ -8,6 +8,7 @@
             "OK" : "OK"
         }
     },
+    "USERNAME" : "User",
     "EMAIL" : "E-mail",
     "FULLNAME" : "Full name",
     "MESSAGE": {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
+import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Radioboxes, Table } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -54,7 +54,7 @@ export class Scheduling {
     
             
     @MultiSelect({
-        url : 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 
+        url : '/data/report.json', 
         modelSelect : 'reportList',        
         modelSelectClazz : Report, 
         modelSelectValue : 'id',
@@ -72,7 +72,7 @@ export class Scheduling {
     public mails: string[];
     
     @MultiSelect({
-        url : 'http://www.mocky.io/v2/583ecaf7240000f20383b35d', 
+        url : '/data/carpark.json', 
         modelSelectClazz : CarPark, 
         modelSelectValue : 'id', 
         modelSelectLabel : 'name',
@@ -82,7 +82,7 @@ export class Scheduling {
     
     @Select({
         values : [{"value" : '1', "label" : "Value 1"}, {"value" : '2', "label" : "Value 2"}, {"value" : '3', "label" : "Value 3"}],
-        defaultValue : 2,
+        defaultValue : '3',
         order : 7
     })
     public period: string;
@@ -104,12 +104,28 @@ export class Scheduling {
     public date2 : Date;
 
      @Checkboxes({
+        name : 'Car parks:',
         disabled : false,
         autoWidth : true,
+        defaultValue : 1,
         order : 10,
         values : [new CarPark(1, 'Value 1', false),
                   new CarPark(2, 'Value 2', false)]
     })
-    public allCarParks : CarPark[];
+    public allCarParksCheckboxes : CarPark[];
+    
+     @Radioboxes({
+        name : 'Car parks:',
+        disabled : false,
+        autoWidth : true,
+        defaultValue : 1,
+        order : 10,
+        values : [new CarPark(1, 'Value 1', false),
+                  new CarPark(2, 'Value 2', false)],
+        target : 'selectedCarParksRadiobox=id'
+    })
+    public allCarParksRadioboxes : CarPark[];
+    
+    public selectedCarParksRadiobox : number;    
 }
 

@@ -10,7 +10,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     sortOrder : 1,   
     order : 0,
     emptyMessageKey : 'MESSAGE.NO_DATA',
-    autoHide : true
+    autoHide : false
 })
 @Configure({
     i18nPath : './assets/i18n'
@@ -66,7 +66,7 @@ export class Login {
         sortable : true,
         required : false,
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
-        mask : '(999) 999-9999',
+        mask : '(99) 999-9999',
         style : 'color: pink;'
     })    
     phonenumber : string;      

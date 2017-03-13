@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Financeiro",
+    "icon": "iconRevenue",
+    "description": "revenue",
+    "categoryType": "default",
+    "reportList": [
+      {
+        "id": 1,
+        "name": "Revenue",
+        "description": "Revenue Report",
+        "reportType": "default"
+      },
+      {
+        "id": 7,
+        "name": "Payment Method Revenue",
+        "description": "Payment Method Revenue",
+        "reportType": "default"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Estatístico",
+    "icon": "iconStatistics",
+    "description": "statistics",
+    "categoryType": "default",
+    "reportList": [
+      {
+        "id": 6,
+        "name": "Revenue Occupation",
+        "description": "Revenue & Occupation",
+        "reportType": "default"
+      },
+      {
+        "id": 8,
+        "name": "Section Occupation ",
+        "description": "Section Occupation",
+        "reportType": "default"
+      },
+      {
+        "id": 9,
+        "name": "Ocuppation",
+        "description": "Occupation Ratio",
+        "reportType": "default"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Generico",
+    "icon": null,
+    "description": "generic",
+    "categoryType": "default",
+    "reportList": [
+      {
+        "id": 5,
+        "name": "Generic",
+        "description": "Generic",
+        "reportType": "default"
+      },
+      {
+        "id": 10,
+        "name": "Occupation Model",
+        "description": "Occupation Model",
+        "reportType": "default"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Custom Reports",
+    "description": "Custom Reports",
+    "icon": "iconCustom",
+    "path": "custom",
+    "categoryType": "custom",
+    "reportList": [
+      {
+        "id": 11,
+        "name": "Custom Template 1",
+        "description": "Custom Template 1",
+        "icon": "iconParkingDuration",
+        "path": "parking-duration",
+        "reportType": "custom"
+      },
+      {
+        "id": 12,
+        "name": "Custom Template 2",
+        "description": "Custom Template 2",
+        "icon": "iconVisitsPerHour",
+        "path": "visits-per-hour",
+        "reportType": "custom"
+      },
+      {
+        "id": 13,
+        "name": "Custom Template 3",
+        "description": "Custom Template 3",
+        "icon": "iconOccupation",
+        "path": "occupation",
+        "reportType": "custom"
+      }
+    ]
+  }
+]

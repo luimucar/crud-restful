@@ -46,6 +46,7 @@ export class BaseComponent extends Observer {
     public autoHide : boolean;
     public property : string;
     public style : string;
+    public targetProperty : string;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -123,6 +124,7 @@ export class BaseComponent extends Observer {
                 });
             }, 50);
         }
+        this.targetProperty = CrudComponentObj.getComponents(this.clazzName)[index].targetProperty;
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
     
