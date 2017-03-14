@@ -61,6 +61,10 @@ function getObject(clazzName) {
     var ret = new clazzName();
     CrudComponentObj.components.forEach(function (obj) {
         if (obj.clazzName == clazzName.name) {
+            if (obj.targetProperty != undefined) {
+                console.log(obj);
+                ret[obj.targetProperty] = obj.value;
+            }
             ret[obj.property] = obj.value;
         }
     });
@@ -195,6 +199,8 @@ function InputType(parameters) {
         component.regexpMessage = regexpMessage;
         component.regexpMessageKey = regexpMessageKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -235,6 +241,8 @@ function MultiSelect(parameters) {
         component.focus = focus;
         component.translateKey = translateKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -265,6 +273,8 @@ function Chips(parameters) {
         component.focus = focus;
         component.translateKey = translateKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -303,6 +313,8 @@ function Select(parameters) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -339,6 +351,8 @@ function Calendar(parameters) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property)['name'];
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
@@ -371,9 +385,47 @@ function Checkboxes(parameters) {
         component.values = values;
         component.translateKey = translateKey;
         component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 exports.Checkboxes = Checkboxes;
+function Radioboxes(parameters) {
+    var name = parameters['name'];
+    var disabled = parameters['disabled'];
+    var order = parameters['order'];
+    var autoWidth = parameters['autoWidth'];
+    var width = parameters['width'];
+    var colMdLeft = parameters['colMdLeft'];
+    var colMdRigth = parameters['colMdRigth'];
+    var focus = parameters['focus'];
+    var values = parameters['values'];
+    var translateKey = parameters['translateKey'];
+    var style = parameters['style'];
+    var targetProperty = parameters['target'];
+    function actualDecorator(target, property) {
+        if (name == undefined) {
+            name = property;
+        }
+        var component = new CrudComponentObj(property, name, 'Radioboxes', target.constructor);
+        component.disabled = disabled;
+        component.order = order;
+        component.autoWidth = autoWidth;
+        component.width = width;
+        component.colMdLeft = colMdLeft;
+        component.colMdRigth = colMdRigth;
+        component.focus = focus;
+        component.values = values;
+        component.translateKey = translateKey;
+        component.style = style;
+        var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
+        component.typeOfObject = typeOfObject;
+        component.targetProperty = targetProperty;
+        CrudComponentObj.components.push(component);
+    }
+    return actualDecorator;
+}
+exports.Radioboxes = Radioboxes;
 //# sourceMappingURL=decorators.js.map

@@ -39,6 +39,12 @@ var CalendarComponent = (function (_super) {
             var dateStr = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value;
             this.date = moment(dateStr, this.format).toDate();
         }
+        if (index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].typeOfObject == 'Date') {
+            index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value = this.date;
+        }
+        else {
+            index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value = moment(this.date, this.format).format(this.format);
+        }
     };
     CalendarComponent.prototype.onSelect = function (newDate) {
         if (typeof index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value == "object") {

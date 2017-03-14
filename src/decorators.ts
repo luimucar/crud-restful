@@ -51,6 +51,7 @@ export class CrudComponentObj {
     public style : string;
     public typeOfObject : string;
     public targetProperty : string;
+    public targetPropertyValue : string;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -97,8 +98,8 @@ export function getObject(clazzName: any): any {
     CrudComponentObj.components.forEach(obj => {
         if (obj.clazzName == clazzName.name) {
             if (obj.targetProperty != undefined) {
-                console.log(obj);
-                ret[obj.targetProperty] = obj.value;
+                let target = obj.targetProperty.split('=')[0];
+                ret[target] = obj.targetPropertyValue;
             }
             ret[obj.property] = obj.value;            
         }

@@ -99,6 +99,7 @@ var BaseComponent = (function (_super) {
                 });
             }, 50);
         }
+        this.targetProperty = index_1.CrudComponentObj.getComponents(this.clazzName)[index].targetProperty;
         index_1.CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     };
     BaseComponent.prototype.loadValue = function (index) {

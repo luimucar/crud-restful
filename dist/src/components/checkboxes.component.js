@@ -24,6 +24,7 @@ var CheckboxesComponent = (function (_super) {
     CheckboxesComponent.prototype.ngOnInit = function () {
         this.readCommonsParameters(this.index);
         var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
+        crudComponentObj.value = this.values;
     };
     CheckboxesComponent.prototype.updateCheckedOptions = function (item, event) {
         item['checked'] = event.target.checked;

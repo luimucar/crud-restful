@@ -14,7 +14,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var index_1 = require('../index');
 var base_component_1 = require('./base.component');
 var RadioboxesComponent = (function (_super) {
     __extends(RadioboxesComponent, _super);
@@ -23,17 +22,21 @@ var RadioboxesComponent = (function (_super) {
     }
     RadioboxesComponent.prototype.ngOnInit = function () {
         this.readCommonsParameters(this.index);
-        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
     };
-    RadioboxesComponent.prototype.updateCheckedOptions = function (item, event) {
-        item['checked'] = event.target.checked;
-        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
-        crudComponentObj.value = this.values;
+    RadioboxesComponent.prototype.selectValue = function (item) {
+        console.log(item);
+        /*
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        crudComponentObj.values = this.values;
+        crudComponentObj.value = item;
+        CrudComponentObj.getComponents(this.clazzName)[this.index]=crudComponentObj;
+        console.log(crudComponentObj.value);
+        */
     };
     RadioboxesComponent = __decorate([
         core_1.Component({
             selector: 'selectCrudRestful',
-            template: "\n        <div class=\"row\" id=\"checkboxes{{clazzName}}{{index}}\">\n            <div class=\"col-md-{{colMdLeft}}\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-{{colMdRigth}}\">\n                <div *ngFor=\"let item of values\">\n                    <input type='radio' [name]=\"item.value\" [value]=\"item.value\" (change)=\"updateCheckedOptions(item, $event)\">\n                    <label>{{item.name}}</label> \n            </div>\n            <span id=\"label_error_{{id}}\" style=\"color: red; display: none;\"></span>\n        </div>\n    "
+            template: "\n        <div class=\"row\" id=\"radioboxes{{clazzName}}{{index}}\">\n            <div class=\"col-md-{{colMdLeft}}\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-{{colMdRigth}}\">\n                <div *ngFor=\"let item of values\">\n                    <input type=\"radio\" name=\"radiobox\" [value]=\"item.value\" (click)=\"selectValue(item)\">\n                    <label>{{item.name}}</label> \n                </div>\n            </div>\n            <span id=\"label_error_{{id}}\" style=\"color: red; display: none;\"></span>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], RadioboxesComponent);

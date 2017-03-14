@@ -26,14 +26,11 @@ export class RadioboxesComponent extends BaseComponent {
     }
    
     selectValue(item) {
-        console.log(item);
-        /*
+        item['checked'] = event.target['checked'];
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-        crudComponentObj.values = this.values;
-        crudComponentObj.value = item;
-        CrudComponentObj.getComponents(this.clazzName)[this.index]=crudComponentObj;
-        console.log(crudComponentObj.value);
-        */
+        let id = this.targetProperty.split('=')[1];
+        crudComponentObj.targetPropertyValue = item[id];
+        crudComponentObj.value = this.values;
     }
 }
 

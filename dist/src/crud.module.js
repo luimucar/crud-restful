@@ -23,6 +23,7 @@ var chips_component_1 = require('./components/chips.component');
 var select_component_1 = require('./components/select.component');
 var calendar_component_1 = require('./components/calendar.component');
 var checkboxes_component_1 = require('./components/checkboxes.component');
+var radioboxes_component_1 = require('./components/radioboxes.component');
 var table_component_1 = require('./components/table.component');
 var ng2_translate_1 = require('ng2-translate');
 var concrete_subject_1 = require('./components/observer/concrete-subject');
@@ -33,13 +34,15 @@ var CrudModule = (function () {
         core_1.NgModule({
             declarations: [crud_component_1.CrudComponent, crud_factory_directive_1.CrudFactoryDirective, input_component_1.InputTextComponent,
                 multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent, select_component_1.SelectComponent,
-                calendar_component_1.CalendarComponent, checkboxes_component_1.CheckboxesComponent, table_component_1.TableComponent],
+                calendar_component_1.CalendarComponent, checkboxes_component_1.CheckboxesComponent, radioboxes_component_1.RadioboxesComponent,
+                table_component_1.TableComponent],
             imports: [forms_2.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, platform_browser_1.BrowserModule, router_1.RouterModule, primeng_module_1.PrimeNgModule.forRoot(), ng2_translate_1.TranslateModule,
             ],
             exports: [crud_component_1.CrudComponent],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             entryComponents: [input_component_1.InputTextComponent, multiselect_component_1.MultiSelectComponent, chips_component_1.ChipsComponent,
-                select_component_1.SelectComponent, calendar_component_1.CalendarComponent, checkboxes_component_1.CheckboxesComponent, table_component_1.TableComponent],
+                select_component_1.SelectComponent, calendar_component_1.CalendarComponent, checkboxes_component_1.CheckboxesComponent, radioboxes_component_1.RadioboxesComponent,
+                table_component_1.TableComponent],
             providers: [concrete_subject_1.ConcreteSubject]
         }), 
         __metadata('design:paramtypes', [])

@@ -16,23 +16,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var index_1 = require('../index');
 var base_component_1 = require('./base.component');
+var $ = require('jquery');
 var SelectComponent = (function (_super) {
     __extends(SelectComponent, _super);
     function SelectComponent() {
         _super.apply(this, arguments);
     }
     SelectComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.readCommonsParameters(this.index);
-        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
+        setTimeout(function () {
+            var i = 0;
+            _this.values.forEach(function (value) {
+                if (value['value'] == _this.value) {
+                    $('#' + i).attr('selected', 'selected');
+                }
+                i++;
+            });
+        }, 50);
     };
     SelectComponent.prototype.onChangeObj = function (value) {
-        var crudComponentObj = index_1.CrudComponentObj.getComponents(this.clazzName)[this.index];
         index_1.CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
     };
     SelectComponent = __decorate([
         core_1.Component({
             selector: 'selectCrudRestful',
-            template: "\n        <div class=\"row\" id=\"select{{clazzName}}{{index}}\">\n            <div class=\"col-md-{{colMdLeft}}\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-{{colMdRigth}}\">    \n                <select [style.width]=\"width\" [ngModel]=\"value\" (ngModelChange)=\"onChangeObj($event)\">\n                    <option [ngValue]=\"i.value\" *ngFor=\"let i of values\">{{i.label}}</option>\n                </select>\n            </div>\n            <span id=\"label_error_{{id}}\" style=\"color: red; display: none;\"></span>\n        </div>\n    "
+            template: "\n        <div class=\"row\" id=\"select{{clazzName}}{{index}}\">\n            <div class=\"col-md-{{colMdLeft}}\">    \n                <label>{{name}}</label>\n            </div>\n            <div class=\"col-md-{{colMdRigth}}\">    \n                <select [style.width]=\"width\" (change)=\"onChangeObj($event.target.value)\">\n                    <option id=\"{{i}}\" [value]=\"item.value\" *ngFor=\"let item of values; let i = index\">{{item.label}}</option>\n                </select>\n            </div>\n            <span id=\"label_error_{{id}}\" style=\"color: red; display: none;\"></span>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], SelectComponent);
