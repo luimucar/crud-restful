@@ -72,7 +72,7 @@ export class CrudComponent extends Observer {
     }
     
     validate() {
-        let ret = true;
+        let ret : boolean = true;
         this.components.forEach(component => {
             if (component.required) {
                 if (component.value == null || component.value.trim() == '') {
@@ -99,30 +99,45 @@ export class CrudComponent extends Observer {
             }
             if (component.regexp) {
                 var regexp = eval(component.regexp);
-                if (regexp.test(component.value)) {
-                    $("#label_error_"+component.clazzName+"_"+component.property).css('display', 'none');
-                } else {
-                    let message = null;
-                    if (component.regexpMessageKey) {
-                        message = this.translate.instant(component.regexpMessageKey);
-                    } else {
-                        message = component.regexpMessage;
-                    }                    
-                    let name = null;
-                    if (component.translateKey != undefined) {
-                        name = this.translate.instant(component.translateKey);
-                    } else {
-                        name = component.name;
-                    }
-                    let msg = name + ': ' + message;
-                    $("#label_error_"+component.clazzName+"_"+component.property).text(msg);
-                    $("#label_error_"+component.clazzName+"_"+component.property).css('color', 'red');
-                    $("#label_error_"+component.clazzName+"_"+component.property).css('display', 'block');
-                    ret = false;
+                if (component.value instanceof Array && component.value != undefined && component.value.length > 0) {
+                    component.value.forEach(value => {
+                        if (!this.validateRegexp(regexp, component.name, value, component.property, component.clazzName, component.translateKey, component.regexpMessageKey, component.regexpMessage)) {
+                            ret = false;
+                            return;
+                        }
+                    });                   
+                }
+                if (!(component.value instanceof Array) && component.value != undefined && component.value != '') {
+                    ret = this.validateRegexp(regexp, component.name, component.value, component.property, component.clazzName, component.translateKey, component.regexpMessageKey, component.regexpMessage);
                 }
             }
         });
         return ret;
+    }
+    
+    validateRegexp(regexp, name, value, property, clazzName, translateKey, regexpMessageKey, regexpMessage) : boolean {
+        if (regexp.test(value)) {
+            $("#label_error_"+clazzName+"_"+property).css('display', 'none');
+            return true;
+        } else {
+            let message = null;
+            if (regexpMessageKey) {
+                message = this.translate.instant(regexpMessageKey);
+            } else {
+                message = regexpMessage;
+            }                    
+            let componentName = null;
+            if (translateKey != undefined) {
+                componentName = this.translate.instant(translateKey);
+            } else {
+                componentName = name;
+            }
+            let msg = componentName + ': ' + message;
+            $("#label_error_"+clazzName+"_"+property).text(msg);
+            $("#label_error_"+clazzName+"_"+property).css('color', 'red');
+            $("#label_error_"+clazzName+"_"+property).css('display', 'block');
+            return false;
+        }        
     }
     
     ok() {

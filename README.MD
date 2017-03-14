@@ -235,7 +235,7 @@ The decorator @InputType needs to inform news parameters for the table component
 
 ### InputType - property decorator
 
-Example:
+Examples:
 
 ```javascript
 @InputType({
@@ -254,19 +254,19 @@ Example:
 })            
 email : string;
 
-    @InputType({
-        name : 'Phone Number',
-        type : 'text',
-        autoWidth : true,
-        order : 4,
-        tableColumn : 3,
-        sortable : true,
-        required : false,
-        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
-        style : 'color: pink;'
-        mask : '(999) 999-9999'
-    })    
-    phonenumber : string;
+@InputType({
+    name : 'Phone Number',
+    type : 'text',
+    autoWidth : true,
+    order : 4,
+    tableColumn : 3,
+    sortable : true,
+    required : false,
+    requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+    style : 'color: pink;'
+    mask : '(99) 999-9999'
+})    
+phonenumber : string;
 ```
 
 ### MultiSelect - property decorator
@@ -275,13 +275,13 @@ Example:
 
 ```javascript
 @MultiSelect({
-    url : 'http://www.mocky.io/v2/58822b002800002d05cbd40d', 
+    url : '/data/report.json', 
     modelSelect : 'reportList',        
     modelSelectClazz : Report, 
     modelSelectValue : 'id',
     modelSelectLabel : 'name',
     disabled : true,
-    order : 3
+    order : 4
 })
 public reports: Report[];
 ```
@@ -290,9 +290,12 @@ public reports: Report[];
 
 ```javascript
 @Chips({
+    name : 'Email',
     disabled : false,
-    autoWidth : true,
-    order : 4
+    autoWidth : true,       
+    regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+    regexpMessage : 'Email is invalid'        
+    order : 5
 })
 public mails: string[];
 ```
@@ -326,7 +329,7 @@ Using string object:
 public date : string;
 ```
 
-Or using Date object:
+You can also use Date object instead of string:
 
 ```javascript
 @Calendar({
@@ -350,13 +353,36 @@ Example:
 
 ```javascript
 @Checkboxes({
+    name : 'Itens:',
     disabled : false,
     autoWidth : true,
-    order : 8,
-    values : [new CarPark(1, 'Value 1', false),
-              new CarPark(2, 'Value 2', false)]
+    defaultValue : 1,
+    order : 10,
+    values : [new Item(1, 'Value 1', true),
+              new Item(2, 'Value 2', false),
+              new Item(3, 'Value 3', true)]
 })
-public allCarParks : CarPark[];
+public itensCheckboxes : Item[];
+```
+
+### Radioboxes - property decorator
+
+Example:
+
+```javascript
+@Radioboxes({
+    name : 'Itens:',
+    disabled : false,
+    autoWidth : true,
+    defaultValue : 1,
+    order : 10,
+    values : [new Item(1, 'Value 1', true),
+              new Item(2, 'Value 2', false)],
+    target : 'selectedRadiobox'
+})
+public itensRadioboxes : Item[];
+
+public selectedRadiobox : number;
 ```
 
 ### Scheduling (under development)

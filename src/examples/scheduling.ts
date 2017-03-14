@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Radioboxes, Table } from '../index';
+import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Radioboxes, Table, Item } from '../index';
 
 export class Report {
     constructor(public id: string) {
@@ -65,8 +65,11 @@ export class Scheduling {
     public reports: Report[];
     
     @Chips({
+        name : 'Email',
         disabled : false,
-        autoWidth : true,
+        autoWidth : true,       
+        regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
+        regexpMessage : 'Email is invalid',
         order : 5
     })
     public mails: string[];
@@ -103,29 +106,30 @@ export class Scheduling {
     })
     public date2 : Date;
 
-     @Checkboxes({
-        name : 'Car parks:',
+    @Checkboxes({
+        name : 'Itens:',
         disabled : false,
         autoWidth : true,
         defaultValue : 1,
         order : 10,
-        values : [new CarPark(1, 'Value 1', false),
-                  new CarPark(2, 'Value 2', false)]
+        values : [new Item(1, 'Value 1', true),
+                  new Item(2, 'Value 2', false),
+                  new Item(3, 'Value 3', true)]
     })
-    public allCarParksCheckboxes : CarPark[];
+    public itensCheckboxes : Item[];
     
-     @Radioboxes({
-        name : 'Car parks:',
+    @Radioboxes({
+        name : 'Itens:',
         disabled : false,
         autoWidth : true,
         defaultValue : 1,
         order : 10,
-        values : [new CarPark(1, 'Value 1', false),
-                  new CarPark(2, 'Value 2', false)],
-        target : 'selectedCarParksRadiobox=id'
+        values : [new Item(1, 'Value 1', true),
+                  new Item(2, 'Value 2', false)],
+        target : 'selectedRadiobox'
     })
-    public allCarParksRadioboxes : CarPark[];
+    public itensRadioboxes : Item[];
     
-    public selectedCarParksRadiobox : number;    
+    public selectedRadiobox : number;    
 }
 

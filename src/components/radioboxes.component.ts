@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'selectCrudRestful',
@@ -11,8 +12,8 @@ import { BaseComponent } from './base.component';
             </div>
             <div class="col-md-{{colMdRigth}}">
                 <div *ngFor="let item of values">
-                    <input type="radio" name="radiobox" [value]="item.value" (click)="selectValue(item)">
-                    <label>{{item.name}}</label> 
+                    <input id="radiobox{{item.value}}" type="radio" name="radiobox" [value]="item.value" (click)="selectValue(item)">
+                    <label>{{item.label}}</label> 
                 </div>
             </div>
             <span id="label_error_{{id}}" style="color: red; display: none;"></span>
@@ -23,13 +24,22 @@ import { BaseComponent } from './base.component';
 export class RadioboxesComponent extends BaseComponent {
     ngOnInit() {
         this.readCommonsParameters(this.index);
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        crudComponentObj.value = this.values;
+        this.values.forEach(item => {
+            if (item['checked'] == true) {
+                setTimeout(() => {
+                    $('#radiobox' + item['value']).prop('checked', true);
+                    crudComponentObj.targetPropertyValue = item['value'];
+                }, 50);                        
+            }
+        });        
     }
    
     selectValue(item) {
-        item['checked'] = event.target['checked'];
+        item['checked'] = true;
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-        let id = this.targetProperty.split('=')[1];
-        crudComponentObj.targetPropertyValue = item[id];
+        crudComponentObj.targetPropertyValue = item['value'];
         crudComponentObj.value = this.values;
     }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'chipsCrudRestful',
@@ -35,6 +36,7 @@ export class ChipsComponent extends BaseComponent {
             }
         }
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = myArray;
+        $("#label_error_"+this.clazzName+"_"+this.property).css('display', 'none');
     }
 }
 

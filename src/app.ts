@@ -5,7 +5,6 @@ import { CrudModule } from './crud.module'
 import { CrudComponent } from './crud.component'
 import {TranslateService} from 'ng2-translate';
 import { Scheduling } from './examples/scheduling'
-import { User } from './examples/user'
 import { Login } from './examples/login'
 import * as moment from 'moment';
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
@@ -16,13 +15,23 @@ import { PrimeNgModule } from './primeng.module';
     selector: 'my-app',
     template: `
     <div style="width: 50%;">
+        <h3>Example 1</h3>
+        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
+        <div class="row" style="padding-top:20px;">
+            <div class="col-md-12" style="padding-top:20px;">
+                <button pButton type="button" (click)="refresh()" label="Refresh"></button>
+            </div>
+        </div>         
+        <br><hr>
+        <h3>Example 2</h3>
         <crud [clazz]="'Scheduling'" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
+        <br><hr>        
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="i18n()" label="i18n"></button>
-                <button pButton type="button" (click)="refresh()" label="Refresh"></button>
             </div>
-        </div>        
+        </div> 
+        
     </div>
   `,
 })
@@ -80,7 +89,7 @@ export function createTranslateLoader(http: Http) {
     ],
     declarations: [App],
     bootstrap: [App],
-    providers: [Scheduling, User, Login]
+    providers: [Scheduling, Login]
 })
 export class AppModule {
 }

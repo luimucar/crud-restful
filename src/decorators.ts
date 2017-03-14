@@ -1,5 +1,10 @@
 import * as $ from 'jquery';
 
+export class Item {
+    constructor (public value : number, public label : string, public checked? : boolean) {
+    }    
+}
+
 export class Configuration {
     public static i18nPath : string = './assets/i18n';
     public static confirmMessageKey : string;
@@ -98,7 +103,7 @@ export function getObject(clazzName: any): any {
     CrudComponentObj.components.forEach(obj => {
         if (obj.clazzName == clazzName.name) {
             if (obj.targetProperty != undefined) {
-                let target = obj.targetProperty.split('=')[0];
+                let target = obj.targetProperty;
                 ret[target] = obj.targetPropertyValue;
             }
             ret[obj.property] = obj.value;            
@@ -296,6 +301,12 @@ export function Chips(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];     
     let focus = parameters['focus'];
     let translateKey = parameters['translateKey'];
+    let required = parameters['required'];
+    let requiredMessage = parameters['requiredMessage'];
+    let requiredMessageKey = parameters['requiredMessageKey'];    
+    let regexp = parameters['regexp'];
+    let regexpMessage = parameters['regexpMessage'];
+    let regexpMessageKey = parameters['regexpMessageKey'];    
     let style = parameters['style'];
     function actualDecorator(target: Object, property: string): void {
         if (name == undefined) {
@@ -309,7 +320,13 @@ export function Chips(parameters : any) {
         component.colMdLeft = colMdLeft;
         component.colMdRigth = colMdRigth;  
         component.focus = focus;       
-        component.translateKey = translateKey;      
+        component.translateKey = translateKey;
+        component.required = required;
+        component.requiredMessage = requiredMessage;
+        component.requiredMessageKey = requiredMessageKey;              
+        component.regexp = regexp;
+        component.regexpMessage = regexpMessage;
+        component.regexpMessageKey = regexpMessageKey;        
         component.style = style;
         var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
         component.typeOfObject = typeOfObject;        
