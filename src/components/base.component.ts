@@ -160,6 +160,7 @@ export class BaseComponent extends Observer {
         CrudComponentObj.getComponents(clazzName).forEach(c => {
             $("#calendar"+clazzName+counter).css("display", display);
             $("#checkboxes"+clazzName+counter).css("display", display);
+            $("#radioboxes"+clazzName+counter).css("display", display);
             $("#chips"+clazzName+counter).css("display", display);
             $("#input"+clazzName+counter).css("display", display);
             $("#multiselect"+clazzName+counter).css("display", display);
