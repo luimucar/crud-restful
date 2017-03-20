@@ -18,6 +18,7 @@ export class CrudComponent extends Observer {
     @Input() broadcast: EventEmitter<any>;
     @Input() buttons : string;
     @Input() onTableLoaded: EventEmitter<any>;
+    @Input() onTableRowSelected: EventEmitter<any>;
     
     @Output() onOk = new EventEmitter();
     @Output() onSave = new EventEmitter();

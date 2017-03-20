@@ -38,7 +38,8 @@ export class TableComponent extends BaseComponent {
     dt : DataTable;
     
     @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
-    @Input() onTableLoaded: EventEmitter<any> = new EventEmitter<any>();
+    @Input() onTableLoaded: EventEmitter<any>;
+    @Input() onTableRowSelected: EventEmitter<any>;
     
     constructor(public service: Service, private http: Http) {
         super();
@@ -176,6 +177,9 @@ export class TableComponent extends BaseComponent {
         }
         BaseComponent.setShowRemove(this.clazzName, true);
         this.concreteSubject.notify('CRUD-COMPONENT');
+        if (this.onTableRowSelected != undefined) {
+            this.onTableRowSelected.emit(event);
+        }
     }
     
     newItem(dt : DataTable) {

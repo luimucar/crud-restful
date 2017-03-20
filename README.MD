@@ -108,7 +108,7 @@ import {CrudModule} from 'crud-restful/index';
 ### In your HTML template:
 
 ```html
-<crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded"></crud>
+<crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected"></crud>
 ```
 
 <pre>
@@ -118,6 +118,7 @@ import {CrudModule} from 'crud-restful/index';
 [model] - optional : The instance of class with default values
 [broadcast] - optional : Emit event to update the table
 [onTableLoaded] - optional : Emit event after table loaded
+[onTableRowSelected] - optional : Emit event after table loaded
 
 <b>- Events:</b>
 Ok
@@ -146,6 +147,10 @@ Cancel
         this.onTableLoaded.subscribe(() => {
             console.log('table loaded');
         })
+
+        this.onTableRowSelected.subscribe((event : any) => {
+            console.log(event);
+        });
     }
     
     handleOnSave(login : Login) {

@@ -16,7 +16,7 @@ import { PrimeNgModule } from './primeng.module';
     template: `
     <div style="width: 50%;">
         <h3>Example 1</h3>
-        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded"></crud>
+        <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected"></crud>
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="refresh()" label="Refresh"></button>
@@ -38,6 +38,7 @@ import { PrimeNgModule } from './primeng.module';
 export class App {
     broadcast: EventEmitter<any> = new EventEmitter<any>();
     onTableLoaded: EventEmitter<any> = new EventEmitter<any>();
+    onTableRowSelected: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild(CrudComponent) crudComponent : CrudComponent;
     login : Login = new Login();
 
@@ -48,6 +49,10 @@ export class App {
         
         this.onTableLoaded.subscribe(() => {
             console.log('table loaded');
+        });
+        
+        this.onTableRowSelected.subscribe((event : any) => {
+            console.log(event);
         });
     }
     
