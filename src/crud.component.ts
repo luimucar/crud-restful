@@ -15,8 +15,9 @@ import { TranslateService } from 'ng2-translate';
 export class CrudComponent extends Observer {
     @Input() clazz : string;
     @Input() model : any;
-    @Input() broadcast: EventEmitter<any>;    
+    @Input() broadcast: EventEmitter<any>;
     @Input() buttons : string;
+    @Input() onTableLoaded: EventEmitter<any>;
     
     @Output() onOk = new EventEmitter();
     @Output() onSave = new EventEmitter();

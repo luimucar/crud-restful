@@ -22,6 +22,8 @@ export class CrudFactoryDirective implements OnChanges {
     @Input() model : any;
 
     @Input() broadcast: EventEmitter<any>;
+    
+    @Input() onTableLoaded: EventEmitter<any>;
             
     componentRef : any;
 
@@ -39,6 +41,9 @@ export class CrudFactoryDirective implements OnChanges {
         (<any>compRef).instance.clazzName = this.clazzName;
         (<any>compRef).instance.translate = this.translate;
         (<any>compRef).instance.broadcast = this.broadcast;
+        if (this.onTableLoaded != undefined) {
+            (<any>compRef).instance.onTableLoaded = this.onTableLoaded;
+        }
         if (this.model != undefined) {
             (<any>compRef).instance.model = this.model;
         }

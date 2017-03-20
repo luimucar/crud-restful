@@ -19,6 +19,7 @@ Installation of dependencies:
 5. font-awesome : https://www.npmjs.com/package/font-awesome
 
 <br><br>
+
 ## Library installation
 
 To install this library, run:
@@ -27,6 +28,7 @@ To install this library, run:
 $ npm install crud-restful --save
 ```
 <br><br>
+
 ## Ho to use
 
 ### Describe your model with Decorators and Metadatas. Example:
@@ -106,7 +108,7 @@ import {CrudModule} from 'crud-restful/index';
 ### In your HTML template:
 
 ```html
-<crud [buttons]="'Ok,Save,Remove,Cancel'" [clazz]="'Login'" [model]="login" [broadcast]="broadcast" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
+<crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded"></crud>
 ```
 
 <pre>
@@ -114,7 +116,8 @@ import {CrudModule} from 'crud-restful/index';
 [buttons] - required : Visible buttons : Ok, Save, Remove, Cancel
 [clazz] - required : The class name
 [model] - optional : The instance of class with default values
-[broadcast] - optional : Emit events to update the table
+[broadcast] - optional : Emit event to update the table
+[onTableLoaded] - optional : Emit event after table loaded
 
 <b>- Events:</b>
 Ok
@@ -131,6 +134,7 @@ Cancel
     .
 
     broadcast: EventEmitter<any> = new EventEmitter<any>();
+    onTableLoaded: EventEmitter<any> = new EventEmitter<any>();
     login : Login;
 
     constructor() {
@@ -138,6 +142,10 @@ Cancel
         this.login.id = 1;
         this.login.email = 'cmargulhano@gmail.com';
         this.login.fullname = 'Cláudio Margulhano';
+
+        this.onTableLoaded.subscribe(() => {
+            console.log('table loaded');
+        })
     }
     
     handleOnSave(login : Login) {
@@ -175,6 +183,7 @@ Cancel
     .
 ```
 <br><br>
+
 ## Playground of components: http://localhost:8080
 
 ```bash
@@ -183,6 +192,7 @@ npm install
 npm start
 ```
 <br><br>
+
 ## Components
 
 ### Table - class decorator
@@ -390,6 +400,7 @@ public selectedRadiobox : number;
 ### Dual List Box (under development)
 
 <br><br>
+
 ## Internationalization
 
 Crud-restful uses Ng2-translate component to translate the interface.
@@ -408,6 +419,7 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 All decorators have the <b>translateKey</b> parameter which refers to the translation key of the json file.<br>
 The exception is the <b>@Table</b> decorator that has the parameter <b>emptyMessageKey</b> that refers to the "Records not found" message.<br>
 <br><br>
+
 If you change the used language of Ng2-Translate you need to refresh the translation in your App. Example:
 <br>
 
@@ -437,6 +449,7 @@ Configuration.token = 'bearer 96549c0e-dab8-4d05-9d62-33cbd320b152';
 ```
 
 <br><br>
+
 ## License
 
 MIT © [Claudio Margulhano](mailto:cmargulhano@gmail.com)

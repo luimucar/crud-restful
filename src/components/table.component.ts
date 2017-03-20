@@ -38,6 +38,7 @@ export class TableComponent extends BaseComponent {
     dt : DataTable;
     
     @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
+    @Input() onTableLoaded: EventEmitter<any> = new EventEmitter<any>();
     
     constructor(public service: Service, private http: Http) {
         super();
@@ -110,6 +111,9 @@ export class TableComponent extends BaseComponent {
                             },
                             () => {
                                 this.sort(crudComponentObj);
+                                if (this.onTableLoaded != undefined) {
+                                    this.onTableLoaded.emit();
+                                }                                
                             });                                        
                     });                
             } else {
@@ -124,6 +128,9 @@ export class TableComponent extends BaseComponent {
                     },
                     () => {
                         this.sort(crudComponentObj);
+                        if (this.onTableLoaded != undefined) {
+                            this.onTableLoaded.emit();
+                        }                        
                     });
             }                        
         }, 100);
