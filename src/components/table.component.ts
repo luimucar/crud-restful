@@ -120,6 +120,8 @@ export class TableComponent extends BaseComponent {
         //console.log(url);
         this.itens = [];
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        crudComponentObj.fileConfig = undefined;
+        crudComponentObj.url = url;
         this.getItens(url)
             .subscribe(itens => {
                 itens.forEach(item => {
