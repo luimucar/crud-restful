@@ -169,7 +169,7 @@ export function Table(parameters : any) {
 
 export function Id(parameters : any) {
     let order = parameters['order'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', target.constructor);
         component.order = order;
         CrudComponentObj.components.push(component);
@@ -265,7 +265,7 @@ export function MultiSelect(parameters : any) {
     let focus = parameters['focus'];
     let translateKey = parameters['translateKey'];
     let style = parameters['style'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        
@@ -308,7 +308,7 @@ export function Chips(parameters : any) {
     let regexpMessage = parameters['regexpMessage'];
     let regexpMessageKey = parameters['regexpMessageKey'];    
     let style = parameters['style'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        
@@ -350,7 +350,7 @@ export function Select(parameters : any) {
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
     let style = parameters['style'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        
@@ -389,7 +389,7 @@ export function Calendar(parameters : any) {
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
     let style = parameters['style'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        
@@ -425,7 +425,7 @@ export function Checkboxes(parameters : any) {
     let values = parameters['values'];
     let translateKey = parameters['translateKey'];
     let style = parameters['style'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        
@@ -461,7 +461,7 @@ export function Radioboxes(parameters : any) {
     let translateKey = parameters['translateKey'];
     let style = parameters['style'];
     let targetProperty = parameters['target'];
-    function actualDecorator(target: Object, property: string): void {
+    function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
         }        

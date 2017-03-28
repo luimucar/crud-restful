@@ -16,13 +16,12 @@ export class CarPark {
     i18nPath : './assets/i18n'
 })
 export class Scheduling {
-    constructor() {
+    constructor(
+        @Id({
+            order : 0
+        })
+        public id: number) {
     }
-    
-    @Id( {
-        order : 0
-    })
-    public id: number;
     
     @InputType({
         name : 'User:',

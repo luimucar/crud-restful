@@ -49,9 +49,16 @@ export class TableComponent extends BaseComponent {
         this.readCommonsParameters(this.index);
         this.loadData();
         if (this.broadcast != undefined) {
-            this.broadcast.subscribe(() => {
+            this.broadcast.subscribe(data => {
                 this.readCommonsParameters(this.index);
-                this.loadData();
+                if (data == undefined) {
+                    this.loadData();
+                } else {
+                    let url = JSON.parse(data);
+                    if (url.url) {
+                        this.loadDataFromUrl(url.url);
+                    }
+                }
             });
         }
     }
@@ -101,40 +108,34 @@ export class TableComponent extends BaseComponent {
                                 server = server[key];
                             }
                         });
-                        this.getItens(server + crudComponentObj.url)
-                            .subscribe(itens => {
-                                itens.forEach(item => {
-                                    this.itens.push(item);
-                                });
-                            },
-                            error => {
-                                console.log(error);
-                            },
-                            () => {
-                                this.sort(crudComponentObj);
-                                if (this.onTableLoaded != undefined) {
-                                    this.onTableLoaded.emit();
-                                }                                
-                            });                                        
+                        this.loadDataFromUrl(server + crudComponentObj.url);
                     });                
             } else {
-                this.getItens(crudComponentObj.url)
-                    .subscribe(itens => {
-                        itens.forEach(item => {
-                            this.itens.push(item);
-                        });
-                    },
-                    error => {
-                        console.log(error);
-                    },
-                    () => {
-                        this.sort(crudComponentObj);
-                        if (this.onTableLoaded != undefined) {
-                            this.onTableLoaded.emit();
-                        }                        
-                    });
+                this.loadDataFromUrl(crudComponentObj.url);
             }                        
         }, 100);
+    }
+    
+    loadDataFromUrl(url:string) {
+        //console.log(url);
+        this.itens = [];
+        let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+        this.getItens(url)
+            .subscribe(itens => {
+                itens.forEach(item => {
+                    this.itens.push(item);
+                });
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.sort(crudComponentObj);
+                if (this.onTableLoaded != undefined) {
+                    this.onTableLoaded.emit();
+                }                                
+            });                                        
+        
     }
     
     sort(crudComponentObj : CrudComponentObj) {

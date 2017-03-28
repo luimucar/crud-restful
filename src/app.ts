@@ -20,6 +20,7 @@ import { PrimeNgModule } from './primeng.module';
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="refresh()" label="Refresh"></button>
+                <button pButton type="button" (click)="changeLogin()" label="Change Login"></button>
             </div>
         </div>         
         <br><hr>
@@ -80,8 +81,12 @@ export class App {
     }
     
     refresh() {
+        this.broadcast.emit('{"url": "/data/login.json"}');
+    }
+    
+    changeLogin() {
         this.login.email = 'cmargulhano@gmail.com';
-        this.broadcast.emit(this.login);
+        this.broadcast.emit(this.login);        
     }
 }
 
