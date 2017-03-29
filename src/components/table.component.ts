@@ -65,7 +65,6 @@ export class TableComponent extends BaseComponent {
     
     loadData() {
         this.cols = [];
-        this.itens = [];
         setTimeout(() => {
             let emptyMessage = this.translate.instant(this.emptyMessage);
             $('.ui-datatable-emptymessage').html(emptyMessage);
@@ -118,21 +117,22 @@ export class TableComponent extends BaseComponent {
     
     loadDataFromUrl(url:string) {
         //console.log(url);
-        this.itens = [];
+        let newItens : any[] = [];
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         crudComponentObj.fileConfig = undefined;
         crudComponentObj.url = url;
         this.getItens(url)
             .subscribe(itens => {
                 itens.forEach(item => {
-                    this.itens.push(item);
+                    newItens.push(item);
                 });
             },
             error => {
                 console.log(error);
             },
             () => {
-                this.sort(crudComponentObj);
+                this.sort(crudComponentObj, newItens);
+                this.itens = newItens;
                 if (this.onTableLoaded != undefined) {
                     this.onTableLoaded.emit();
                 }                                
@@ -140,8 +140,8 @@ export class TableComponent extends BaseComponent {
         
     }
     
-    sort(crudComponentObj : CrudComponentObj) {
-        this.itens.sort((o1,o2) => {
+    sort(crudComponentObj : CrudComponentObj, newItens : any[]) {
+        newItens.sort((o1,o2) => {
             if (crudComponentObj.sortOrder == 1) {
                 if (o1[crudComponentObj.sortField] > o2[crudComponentObj.sortField]) {
                     return 1;
