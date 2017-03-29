@@ -60,6 +60,9 @@ export class CrudComponentObj {
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
+        if (name == undefined) {
+            this.name = property;
+        }
     }
     
     public static getComponents(clazzName: string): CrudComponentObj[] {
