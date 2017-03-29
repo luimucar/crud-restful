@@ -173,7 +173,12 @@ export function Table(parameters : any) {
 export function Id(parameters : any) {
     let order = parameters['order'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
-        let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', target.constructor);
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }                
+        let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', construct);
         component.order = order;
         CrudComponentObj.components.push(component);
     }
@@ -272,7 +277,12 @@ export function MultiSelect(parameters : any) {
         if (name == undefined) {
             name = property;
         }        
-        let component = new CrudComponentObj(property, name, 'MultiSelect', target.constructor)
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }        
+        let component = new CrudComponentObj(property, name, 'MultiSelect', construct)
         component.url = url;
         component.selectItemArray = selectItemArray;
         component.selectItemLabel = selectItemLabel;
@@ -314,8 +324,13 @@ export function Chips(parameters : any) {
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
-        }        
-        let component = new CrudComponentObj(property, name, 'Chips', target.constructor);
+        }
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }
+        let component = new CrudComponentObj(property, name, 'Chips', construct);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -356,8 +371,13 @@ export function Select(parameters : any) {
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
-        }        
-        let component = new CrudComponentObj(property, name, 'Select', target.constructor);
+        }
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }
+        let component = new CrudComponentObj(property, name, 'Select', construct);
         component.values = values;
         component.disabled = disabled;
         component.defaultValue = defaultValue;
@@ -395,8 +415,13 @@ export function Calendar(parameters : any) {
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
-        }        
-        let component = new CrudComponentObj(property, name, 'Calendar', target.constructor);
+        }
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }
+        let component = new CrudComponentObj(property, name, 'Calendar', construct);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -431,8 +456,13 @@ export function Checkboxes(parameters : any) {
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
-        }        
-        let component = new CrudComponentObj(property, name, 'Checkboxes', target.constructor);
+        }
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }
+        let component = new CrudComponentObj(property, name, 'Checkboxes', construct);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -447,7 +477,6 @@ export function Checkboxes(parameters : any) {
         component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);
     }
-
     return actualDecorator;
 }
 
@@ -467,8 +496,13 @@ export function Radioboxes(parameters : any) {
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
-        }        
-        let component = new CrudComponentObj(property, name, 'Radioboxes', target.constructor);
+        }
+        let construct : any = target.constructor
+        if (property == undefined) {
+            property = getProperty(target, parameterIndex);            
+            construct = target;
+        }
+        let component = new CrudComponentObj(property, name, 'Radioboxes', construct);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
