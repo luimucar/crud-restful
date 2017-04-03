@@ -166,7 +166,7 @@ export class BaseComponent extends Observer {
             $("#multiselect"+clazzName+counter).css("display", display);
             $("#select"+clazzName+counter).css("display", display);
             counter++;
-        })
+        });
     }
     
     public static setShowRemove(clazz : string, value : boolean) {
