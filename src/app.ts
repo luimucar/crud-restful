@@ -14,6 +14,7 @@ import { PrimeNgModule } from './primeng.module';
 @Component({
     selector: 'my-app',
     template: `
+    
     <div style="width: 50%;">
         <h3>Example 1</h3>
         <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected"></crud>
@@ -42,6 +43,7 @@ export class App {
     onTableRowSelected: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild(CrudComponent) crudComponent : CrudComponent;
     login : Login = new Login();
+    displayLogin : boolean = false;
 
     constructor(public translate: TranslateService) {
         translate.addLangs(["en-en", "pt-br"]);

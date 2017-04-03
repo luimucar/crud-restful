@@ -15,20 +15,25 @@ import { TreeModule } from 'primeng/primeng';
 import { ToggleButtonModule } from 'primeng/primeng';
 import { InputSwitchModule } from 'primeng/primeng';
 import { AccordionModule } from 'primeng/primeng';
-import { InputTextModule } from 'primeng/primeng';
-import { ButtonModule } from 'primeng/primeng';
+import { SplitButtonModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
+import { OverlayPanelModule } from 'primeng/primeng';
+import { AutoCompleteModule } from 'primeng/primeng';
+import { FieldsetModule } from 'primeng/primeng';
 import { ChipsModule } from 'primeng/primeng';
 
 @NgModule({
     imports: [CalendarModule, DropdownModule, CheckboxModule, SliderModule, InplaceModule, 
         InputMaskModule, TabViewModule, ConfirmDialogModule, DataTableModule, SharedModule, 
         MultiSelectModule, PanelModule, TreeModule, ToggleButtonModule, InputSwitchModule,
-        AccordionModule, InputTextModule, ButtonModule, ChipsModule],
+        AccordionModule, SplitButtonModule, DialogModule, OverlayPanelModule,
+        AutoCompleteModule, FieldsetModule, ChipsModule],
         
     exports: [CalendarModule, DropdownModule, CheckboxModule, SliderModule, InplaceModule, 
         InputMaskModule, TabViewModule, ConfirmDialogModule, DataTableModule, SharedModule, 
         MultiSelectModule, PanelModule, TreeModule, ToggleButtonModule, InputSwitchModule,
-        AccordionModule, InputTextModule, ButtonModule, ChipsModule],
+        AccordionModule, SplitButtonModule, DialogModule, OverlayPanelModule,
+        AutoCompleteModule, FieldsetModule, ChipsModule],
         
     providers: [ConfirmationService]
 })

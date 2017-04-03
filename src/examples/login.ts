@@ -21,7 +21,7 @@ export class Login {
         type : 'text',
         readOnly : true,
         disabled : true,
-        autoWidth : true,
+        width : '300px',
         order : 1,
         tableColumn : 0,
         sortable : true
@@ -32,14 +32,14 @@ export class Login {
         name : 'Email',
         translateKey : 'EMAIL',
         type : 'text',
-        autoWidth : true,
+        width : '300px',
         order : 2,
         tableColumn : 2,
         sortable : true,
         required : true,
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
         regexp : "/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i",
-        regexpMessage : 'Email is invalid'
+        regexpMessage : 'Email is invalid'        
     })            
     email : string;
     
@@ -47,7 +47,7 @@ export class Login {
         name : 'Full Name',
         translateKey : 'FULLNAME',
         type : 'text',
-        autoWidth : true,
+        width : '300px',
         order : 3,
         tableColumn : 1,
         sortable : true,
@@ -60,7 +60,7 @@ export class Login {
     @InputType({
         name : 'Phone Number',
         type : 'text',
-        autoWidth : true,
+        width : '300px',
         order : 4,
         tableColumn : 3,
         sortable : true,

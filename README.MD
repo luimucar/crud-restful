@@ -134,6 +134,7 @@ Cancel
     .
     .
 
+    @ViewChild(CrudComponent) crudComponent : CrudComponent;
     broadcast: EventEmitter<any> = new EventEmitter<any>();
     onTableLoaded: EventEmitter<any> = new EventEmitter<any>();
     login : Login;
@@ -197,6 +198,20 @@ npm install
 npm start
 ```
 <br><br>
+
+## Helper functions
+
+### To hide / show table:
+
+this.crudComponent.showTable('none'); // hide
+this.crudComponent.showTable('block'); // show
+
+### To hide / show buttons:
+
+this.crudComponent.showOkButton = false; // true to show
+this.crudComponent.showSaveButton = false; 
+this.crudComponent.showRemoveButton = false;
+this.crudComponent.showCancelButton = false;
 
 ## Components
 

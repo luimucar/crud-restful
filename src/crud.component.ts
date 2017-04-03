@@ -44,9 +44,9 @@ export class CrudComponent extends Observer {
         setObject(this.clazz, this.model);        
         setTimeout(() => {
             if (!Configuration.tableLess.get(this.clazz)) {
-                BaseComponent.showOrHideComponets(this.clazz, 'none');
+                BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
-                BaseComponent.showOrHideComponets(this.clazz, 'block');
+                BaseComponent.showOrHideComponents(this.clazz, 'block');
             }
         }, 200);
         if (this.buttons != undefined) {
@@ -63,6 +63,7 @@ export class CrudComponent extends Observer {
                 }
             });
         }
+        
     }
 
     hideMsgError() {
@@ -156,11 +157,11 @@ export class CrudComponent extends Observer {
             if (this.validate()) {
                 let obj = getObject(this.components[0].clazz);
                 if (!Configuration.tableLess.get(this.clazz)) {
-                    BaseComponent.showOrHideComponets(this.clazz, 'none');
+                    BaseComponent.showOrHideComponents(this.clazz, 'none');
                 } else {
-                    BaseComponent.showOrHideComponets(this.clazz, 'block');
+                    BaseComponent.showOrHideComponents(this.clazz, 'block');
                 }
-                this.showTable();
+                this.showTable('block');
                 this.onSave.emit(obj);
             }
         }
@@ -171,22 +172,29 @@ export class CrudComponent extends Observer {
             this.hideMsgError();
             let obj = getObject(this.components[0].clazz);
             if (!Configuration.tableLess.get(this.clazz)) {
-                BaseComponent.showOrHideComponets(this.clazz, 'none');
+                BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
-                BaseComponent.showOrHideComponets(this.clazz, 'block');
+                BaseComponent.showOrHideComponents(this.clazz, 'block');
             }
-            this.showTable();
+            this.showTable('block');
             this.onRemove.emit(obj);
         }
     }
 
-    showTable() {
+    showTable(display : string) {
         if (this.components.length > 0) {
             this.components.forEach(comp => {
                 if (comp.type == 'Table') {
-                    $('#table' + comp.clazzName + comp.index).css("display", "block");
+                    $('#table' + comp.clazzName + comp.index).css("display", display);
                 }
             });
+        }
+    }
+    
+    showComponents(display : string) {
+        if (this.components.length > 0) {
+            this.hideMsgError();
+            BaseComponent.showOrHideComponents(this.clazz, display);
         }
     }
     
@@ -194,11 +202,11 @@ export class CrudComponent extends Observer {
         if (this.components.length > 0) {
             this.hideMsgError();
             if (!Configuration.tableLess.get(this.clazz)) {
-                BaseComponent.showOrHideComponets(this.clazz, 'none');
+                BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
-                BaseComponent.showOrHideComponets(this.clazz, 'block');
+                BaseComponent.showOrHideComponents(this.clazz, 'block');
             }
-            this.showTable();
+            this.showTable('block');
             this.onCancel.emit();
         }
     }

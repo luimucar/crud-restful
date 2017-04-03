@@ -54,9 +54,11 @@ export class TableComponent extends BaseComponent {
                 if (data == undefined) {
                     this.loadData();
                 } else {
-                    let url = JSON.parse(data);
-                    if (url.url) {
-                        this.loadDataFromUrl(url.url);
+                    if (typeof data == 'string') {
+                        let url = JSON.parse(data);
+                        if (url.url) {
+                            this.loadDataFromUrl(url.url);
+                        }                        
                     }
                 }
             });
@@ -174,7 +176,7 @@ export class TableComponent extends BaseComponent {
                 $('#' + comp.clazzName + '_' + comp.property).val(this.selected[comp.property]);
             }
         });
-        BaseComponent.showOrHideComponets(this.clazzName, 'block');
+        BaseComponent.showOrHideComponents(this.clazzName, 'block');
         if (this.autoHide) {
             $('#table' + this.clazzName + this.index).css("display", "none");
         }
@@ -194,7 +196,7 @@ export class TableComponent extends BaseComponent {
         if (this.autoHide) {
             $('#table' + this.clazzName + this.index).css("display", "none");
         }
-        BaseComponent.showOrHideComponets(this.clazzName, 'block');        
+        BaseComponent.showOrHideComponents(this.clazzName, 'block');        
         BaseComponent.setShowRemove(this.clazzName, false);
         BaseComponent.setHideMsgError(this.clazzName, true);
         this.concreteSubject.notify('CRUD-COMPONENT');

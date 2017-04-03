@@ -154,7 +154,7 @@ export class BaseComponent extends Observer {
         }
     }
 
-    public static showOrHideComponets(clazzName : string, display:string) {
+    public static showOrHideComponents(clazzName : string, display:string) {
         let counter : number = 0;
         $("#buttons"+clazzName).css("display", display);
         CrudComponentObj.getComponents(clazzName).forEach(c => {
