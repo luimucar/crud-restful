@@ -1,15 +1,7 @@
-<div style="width: 100%;" *ngFor="let comp of components; let i = index" style="padding-top:5px;">
-    <div crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [broadcast]="broadcast" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected" [index]="i"></div>
+<div style="width: 100%;" *ngFor="let comp of components; let i = index">
+    <div crud-factory style="padding-top:5px;" [type]="comp.type" [clazzName]="comp.clazzName" [broadcast]="broadcast" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected" [index]="i"></div>
 </div>
-<!--
-<table>
-    <tr>
-        <td *ngFor="let comp of components; let i = index">
-            <div *ngIf="comp.type != 'Table'" crud-factory [type]="comp.type" [clazzName]="comp.clazzName" [index]="i"></div>
-        </td>
-    </tr>
-</table>
--->
+
 <div class="container-fluid">
     <div class="row" style="padding-top:20px;" id="buttons{{clazz}}">
         <div class="col-md-12 text-left">
