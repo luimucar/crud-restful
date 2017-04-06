@@ -66,7 +66,7 @@ export class TableComponent extends BaseComponent {
     }
     
     public notify(): void {        
-        this.loadData();
+        //this.loadData();
     }    
     
     loadData() {
