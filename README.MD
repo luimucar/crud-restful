@@ -203,15 +203,19 @@ npm start
 
 ### To hide / show table:
 
+```javascript
 this.crudComponent.showTable('none'); // hide
 this.crudComponent.showTable('block'); // show
+```
 
 ### To hide / show buttons:
 
+```javascript
 this.crudComponent.showOkButton = false; // true to show
 this.crudComponent.showSaveButton = false; 
 this.crudComponent.showRemoveButton = false;
 this.crudComponent.showCancelButton = false;
+```
 
 ## Components
 

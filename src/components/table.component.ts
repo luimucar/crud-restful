@@ -65,6 +65,10 @@ export class TableComponent extends BaseComponent {
         }
     }
     
+    public notify(): void {        
+        this.loadData();
+    }    
+    
     loadData() {
         this.cols = [];
         setTimeout(() => {
@@ -119,6 +123,9 @@ export class TableComponent extends BaseComponent {
     
     loadDataFromUrl(url:string) {
         //console.log(url);
+        if ($('#table' + this.clazzName + this.index).css("display") == 'none') {
+            return;
+        }
         let newItens : any[] = [];
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         crudComponentObj.fileConfig = undefined;
