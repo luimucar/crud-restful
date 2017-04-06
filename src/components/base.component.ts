@@ -47,6 +47,7 @@ export class BaseComponent extends Observer {
     public property : string;
     public style : string;
     public targetProperty : string;
+    public translateKeyByValue : boolean;
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
@@ -125,6 +126,7 @@ export class BaseComponent extends Observer {
             }, 50);
         }
         this.targetProperty = CrudComponentObj.getComponents(this.clazzName)[index].targetProperty;
+        this.translateKeyByValue = CrudComponentObj.getComponents(this.clazzName)[index].translateKeyByValue;
         CrudComponentObj.getComponents(this.clazzName)[index].value = this.value;
     }
     

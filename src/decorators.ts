@@ -57,6 +57,7 @@ export class CrudComponentObj {
     public typeOfObject : string;
     public targetProperty : string;
     public targetPropertyValue : string;
+    public translateKeyByValue : boolean;
 
     constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
         this.clazzName = clazz.name;
@@ -368,6 +369,7 @@ export function Select(parameters : any) {
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
     let style = parameters['style'];
+    let translateKeyByValue = parameters['translateKeyByValue'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -391,6 +393,7 @@ export function Select(parameters : any) {
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;
+        component.translateKeyByValue = translateKeyByValue;
         var typeOfObject = window['Reflect'].getMetadata("design:type", target, property);
         component.typeOfObject = typeOfObject;        
         CrudComponentObj.components.push(component);

@@ -19,5 +19,10 @@
         "CONFIRM" : "Confirmation",        
         "CONFIRMATION_MSG" : "Are you sure that you want to perform this action?",
         "FIELD_REQUIRED" : "field is required."  
+    },
+    "SELECT" : {
+        "VALUE_01" : "Value 1",
+        "VALUE_02" : "Value 2",
+        "VALUE_03" : "Value 3"
     }
 }

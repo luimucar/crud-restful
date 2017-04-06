@@ -83,9 +83,10 @@ export class Scheduling {
     public carParks: CarPark[];
     
     @Select({
-        values : [{"value" : '1', "label" : "Value 1"}, {"value" : '2', "label" : "Value 2"}, {"value" : '3', "label" : "Value 3"}],
+        values : [{"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
         defaultValue : '3',
-        order : 7
+        order : 7,
+        translateKeyByValue : true
     })
     public period: string;
     

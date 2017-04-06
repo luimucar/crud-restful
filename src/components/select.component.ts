@@ -23,9 +23,13 @@ import * as $ from 'jquery';
 export class SelectComponent extends BaseComponent {   
     ngOnInit() {
         this.readCommonsParameters(this.index);
+        
         setTimeout(() => {
-            let i : number =0;
+            let i : number = 0;
             this.values.forEach(value => {
+                if (this.translateKeyByValue) {
+                    value['label'] = this.translate.instant(value['label']);
+                }
                 if (value['value'] == this.value) {
                     $('#'+i).attr('selected','selected');                
                 }

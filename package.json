@@ -1,6 +1,6 @@
 {
   "name": "crud-restful",
-  "version": "1.0.98",
+  "version": "1.0.99",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "test": "tsc && karma start",
