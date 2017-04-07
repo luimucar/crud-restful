@@ -36,6 +36,7 @@ export class TableComponent extends BaseComponent {
     itens: any[] = [];
     selected : any;
     dt : DataTable;
+    lang : string;
     
     @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
     @Input() onTableLoaded: EventEmitter<any>;
@@ -43,6 +44,9 @@ export class TableComponent extends BaseComponent {
     
     constructor(public service: Service, private http: Http) {
         super();
+        setTimeout(() => {
+            this.lang = this.translate.currentLang;
+        }, 50);        
     }
     
     ngOnInit() {
@@ -65,8 +69,13 @@ export class TableComponent extends BaseComponent {
         }
     }
     
-    public notify(): void {        
-        this.loadData(true);
+    public notify(): void {
+        setTimeout(() => {
+            if (this.lang != this.translate.currentLang) {
+                this.lang = this.translate.currentLang;
+                this.loadData(true);
+            }
+        }, 50);
     }    
     
     loadData(onlyCols : boolean = false) {
@@ -184,7 +193,18 @@ export class TableComponent extends BaseComponent {
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
             if (this.selected[comp.property]) {
                 comp.value = this.selected[comp.property];
-                $('#' + comp.clazzName + '_' + comp.property).val(this.selected[comp.property]);
+                if (comp.mask != undefined) {
+                    $("input[name='" + comp.name +"']").val(this.selected[comp.property]);
+                } else {
+                    $('#' + comp.clazzName + '_' + comp.property).val(this.selected[comp.property]);                    
+                }
+            } else {
+                comp.value = null;
+                if (comp.mask != undefined) {
+                    $("input[name='" + comp.name +"']").val(null);
+                } else {
+                    $('#' + comp.clazzName + '_' + comp.property).val(null);
+                }
             }
         });
         BaseComponent.showOrHideComponents(this.clazzName, 'block');

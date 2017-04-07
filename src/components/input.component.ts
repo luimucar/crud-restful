@@ -11,7 +11,7 @@ import * as $ from 'jquery';
                 <label id="label_{{id}}">{{name}}</label>
             </div>
             <div class="col-md-{{colMdRigth}}">    
-                <p-inputMask *ngIf="mask" name="{{name}}" id="{{id}}" [style.width]="width" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput [mask]="mask" [placeholder]="mask"></p-inputMask>
+                <p-inputMask *ngIf="mask" name="{{name}}" [inputId]="id" [style.width]="width" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput [mask]="mask" [placeholder]="mask"></p-inputMask>
                 <input *ngIf="!mask" [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
             </div>
             <span id="label_error_{{id}}" style="color: red; display: none;"></span>

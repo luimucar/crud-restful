@@ -1,5 +1,5 @@
 [
-    {"id": 2, "email" : "giovanna@gmail.com", "fullname" : "Giovanna Margulhano"},
+    {"id": 2, "email" : "giovanna@gmail.com", "fullname" : "Giovanna Margulhano", "phonenumber" : "(22) 222-2222"},
     {"id": 3, "email" : "isis@gmail.com", "fullname" : "Ísis Margulhano"},
-    {"id": 1, "email" : "cmargulhano@gmail.com", "fullname" : "Cláudio Margulhano"}    
+    {"id": 1, "email" : "cmargulhano@gmail.com", "fullname" : "Cláudio Margulhano", "phonenumber" : "(11) 111-1111"}    
 ]

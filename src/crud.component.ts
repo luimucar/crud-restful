@@ -39,7 +39,24 @@ export class CrudComponent extends Observer {
         this.concreteSubject.register(this);
     }
     
+    googleAnalyticsObject() {
+        window['GoogleAnalyticsObject'] = 'ga';
+        window['ga'] = window['ga'] || function() {
+            (window['ga'].q = window['ga'].q || []).push(arguments)
+        },
+            window['ga'].l = new Date();
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a['async'] = true;
+        a.src = '//www.google-analytics.com/analytics.js';
+        m.parentNode.insertBefore(a, m);
+        
+        window['ga']('create', 'UA-11176624-8', 'auto');
+        window['ga']('send', 'pageview');        
+    };
+    
     ngOnInit() {
+        this.googleAnalyticsObject();
         this.components = CrudComponentObj.getComponents(this.clazz);
         setObject(this.clazz, this.model);        
         setTimeout(() => {
