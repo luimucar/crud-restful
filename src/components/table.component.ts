@@ -66,10 +66,10 @@ export class TableComponent extends BaseComponent {
     }
     
     public notify(): void {        
-        //this.loadData();
+        this.loadData(true);
     }    
     
-    loadData() {
+    loadData(onlyCols : boolean = false) {
         this.cols = [];
         setTimeout(() => {
             let emptyMessage = this.translate.instant(this.emptyMessage);
@@ -98,6 +98,10 @@ export class TableComponent extends BaseComponent {
             }
             return 0;
         });
+        
+        if (onlyCols) {
+            return;
+        }
         
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         setTimeout(() => {            

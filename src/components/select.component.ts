@@ -23,23 +23,35 @@ import * as $ from 'jquery';
 export class SelectComponent extends BaseComponent {   
     ngOnInit() {
         this.readCommonsParameters(this.index);
-        
+        this.loadData();        
+    }
+    
+    loadData() {
         setTimeout(() => {
             let i : number = 0;
             this.values.forEach(value => {
                 if (this.translateKeyByValue) {
-                    value['label'] = this.translate.instant(value['label']);
+                    if (value['labelTranslateKey'] == undefined) {
+                        value['labelTranslateKey'] = value['label'];
+                        value['label'] = this.translate.instant(value['label']);
+                    } else {
+                        value['label'] = this.translate.instant(value['labelTranslateKey']);
+                    }
                 }
                 if (value['value'] == this.value) {
                     $('#'+i).attr('selected','selected');                
                 }
                 i++;
             })
-        }, 50);
+        }, 50);        
     }
     
     onChangeObj(value:any) {
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
+    }
+    
+    public notify(): void {
+        this.loadData();
     }
 }    
 
