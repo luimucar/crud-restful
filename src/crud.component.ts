@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {getObject, setObject, CrudComponentObj, Configuration} from './index';
+import {getObject, setObject, CrudComponentObj, Configuration, getValueFromMap} from './index';
 import {Service} from './services/index';
 import {ConcreteSubject} from './components/observer/concrete-subject';
 import {Observer} from './components/observer/observer';
@@ -60,7 +60,7 @@ export class CrudComponent extends Observer {
         this.components = CrudComponentObj.getComponents(this.clazz);
         setObject(this.clazz, this.model);        
         setTimeout(() => {
-            if (!Configuration.tableLess.get(this.clazz)) {
+            if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                 BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
                 BaseComponent.showOrHideComponents(this.clazz, 'block');
@@ -173,7 +173,7 @@ export class CrudComponent extends Observer {
         if (this.components.length > 0) {
             if (this.validate()) {
                 let obj = getObject(this.components[0].clazz);
-                if (!Configuration.tableLess.get(this.clazz)) {
+                if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                     BaseComponent.showOrHideComponents(this.clazz, 'none');
                 } else {
                     BaseComponent.showOrHideComponents(this.clazz, 'block');
@@ -188,7 +188,7 @@ export class CrudComponent extends Observer {
         if (this.components.length > 0) {
             this.hideMsgError();
             let obj = getObject(this.components[0].clazz);
-            if (!Configuration.tableLess.get(this.clazz)) {
+            if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                 BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
                 BaseComponent.showOrHideComponents(this.clazz, 'block');
@@ -218,7 +218,7 @@ export class CrudComponent extends Observer {
     cancel() {
         if (this.components.length > 0) {
             this.hideMsgError();
-            if (!Configuration.tableLess.get(this.clazz)) {
+            if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                 BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {
                 BaseComponent.showOrHideComponents(this.clazz, 'block');
@@ -229,8 +229,8 @@ export class CrudComponent extends Observer {
     }
     
     public notify() {
-        this.showRemove = BaseComponent.showRemove.get(this.clazz) && this.showRemoveButton;
-        if (BaseComponent.hideMsgError.get(this.clazz)) {
+        this.showRemove = getValueFromMap(BaseComponent.showRemove, this.clazz) && this.showRemoveButton;
+        if (getValueFromMap(BaseComponent.hideMsgError, this.clazz)) {
             this.hideMsgError();
         }
         this.concreteSubject.notify("BASE-COMPONENT");

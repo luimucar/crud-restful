@@ -1,16 +1,32 @@
 import * as $ from 'jquery';
+import { Map } from 'typescript';
 
 export class Item {
     constructor (public value : number, public label : string, public checked? : boolean) {
     }    
 }
 
+export class MapClass {
+    constructor(public key : string, public value : boolean) {        
+    }
+}
+
+export function getValueFromMap(array : MapClass[], key : string) : boolean {
+    let ret : boolean = false;
+    array.forEach((data : MapClass) => {
+        if (data.key == key) {
+            ret = data.value;
+        }            
+    });
+    return ret;
+}
+
 export class Configuration {
     public static i18nPath : string = './assets/i18n';
-    public static confirmMessageKey : string;
-    public static confirmTitleMessageKey : string;
-    public static tableLess : Map<string,boolean> = new Map<string,boolean>();
-    public static token : string;
+    public static confirmMessageKey : string = null;
+    public static confirmTitleMessageKey : string = null;
+    public static tableLess : MapClass[] = []; 
+    public static token : string = null;
 }
 
 export class CrudComponentObj {
@@ -114,7 +130,7 @@ export function getObject(clazzName: any): any {
         }
     });
     
-    return Object.assign(new clazzName(), ret);
+    return (<any>Object).assign(new clazzName(), ret);
 }
 
 export function getI18nPath() : string {
@@ -131,7 +147,7 @@ export function Configure(parameters : any) {
         Configuration.i18nPath = i18nPath;
         Configuration.confirmMessageKey = confirmMessageKey;
         Configuration.confirmTitleMessageKey = confirmTitleMessageKey;
-        Configuration.tableLess.set(constructor['name'], true);
+        Configuration.tableLess.push(new MapClass(constructor['name'], true));
     }
     return actualDecorator;
 }
@@ -151,7 +167,7 @@ export function Table(parameters : any) {
     let autoHide = parameters['autoHide'];
     let style = parameters['style'];
     function actualDecorator(constructor: Function) {
-        Configuration.tableLess.set(constructor['name'], false);
+        Configuration.tableLess.push(new MapClass(constructor['name'], false));
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
         component.name = name;
         component.url = url;

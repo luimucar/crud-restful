@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
 import { getI18nPath } from './decorators';
 import { PrimeNgModule } from './primeng.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @Component({
     selector: 'my-app',
@@ -97,7 +98,7 @@ export function createTranslateLoader(http: Http) {
 }
 
 @NgModule({
-    imports: [BrowserModule, CrudModule, PrimeNgModule.forRoot(),
+    imports: [BrowserAnimationsModule, BrowserModule, CrudModule, PrimeNgModule.forRoot(),
         TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: (createTranslateLoader),

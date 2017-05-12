@@ -3,7 +3,7 @@ import {Subject} from './subject';
 
 @Injectable()
 export class ConcreteSubject extends Subject {
-    static instance : ConcreteSubject;
+    static instance : ConcreteSubject = null;
     
     public static getInstance() : ConcreteSubject {
         if (ConcreteSubject.instance == null) {

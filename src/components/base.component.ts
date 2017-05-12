@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { CrudComponentObj } from '../index';
+import { CrudComponentObj, MapClass, getValueFromMap } from '../index';
 import { TranslateService } from 'ng2-translate';
 import { Observer } from './observer/observer';
 import { ConcreteSubject } from './observer/concrete-subject';
@@ -51,8 +51,8 @@ export class BaseComponent extends Observer {
     
     concreteSubject: ConcreteSubject = ConcreteSubject.getInstance();
     
-    static showRemove : Map<string, boolean> = new Map<string, boolean>();
-    static hideMsgError : Map<string, boolean> = new Map<string, boolean>()
+    static showRemove : MapClass[] = [];
+    static hideMsgError : MapClass[] = [];
     
     constructor() {       
         super("BASE-COMPONENT");
@@ -172,10 +172,10 @@ export class BaseComponent extends Observer {
     }
     
     public static setShowRemove(clazz : string, value : boolean) {
-        BaseComponent.showRemove.set(clazz, value);
+        BaseComponent.showRemove.push(new MapClass(clazz, value));
     }
 
     public static setHideMsgError(clazz : string, value : boolean) {
-        BaseComponent.hideMsgError.set(clazz, value);
+        BaseComponent.hideMsgError.push(new MapClass(clazz, value));
     }
 }
