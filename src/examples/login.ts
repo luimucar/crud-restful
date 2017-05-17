@@ -16,17 +16,21 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     i18nPath : './assets/i18n'
 })
 export class Login {
-    @InputType({
-        name : 'Id',
-        type : 'text',
-        readOnly : true,
-        disabled : true,
-        width : '300px',
-        order : 1,
-        tableColumn : 0,
-        sortable : true
-    })    
-    id : number;
+
+    constructor(
+        @InputType({
+            name : 'Id',
+            property : 'id', //when use in a constructor, set property value with the name of atribute. See: https://github.com/Microsoft/TypeScript/issues/15904
+            type : 'text',
+            readOnly : true,
+            disabled : true,
+            width : '300px',
+            order : 1,
+            tableColumn : 0,
+            sortable : true
+        })    
+        public id? : number) {
+    }
 
     @InputType({
         name : 'Email',
