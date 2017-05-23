@@ -13,7 +13,7 @@ import * as $ from 'jquery';
             <div class="col-md-{{colMdRigth}}">    
                 <p-chips [style.width]="width" [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
             </div>
-            <span id="label_error_{{id}}" style="color: red; display: none;"></span>            
+            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>            
         </div>
     `
 })

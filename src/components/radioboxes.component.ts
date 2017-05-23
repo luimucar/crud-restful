@@ -16,7 +16,7 @@ import * as $ from 'jquery';
                     <label>{{item.label}}</label> 
                 </div>
             </div>
-            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
+            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })

@@ -15,7 +15,7 @@ import * as $ from 'jquery';
                     <input id="checkbox{{item.value}}" type='checkbox' [name]="item.value" [value]="item.value" (change)="updateCheckedOptions(item, $event)">
                     <label>{{item.label}}</label> 
             </div>
-            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
+            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })

@@ -13,7 +13,7 @@ import * as moment from 'moment';
             <div class="col-md-{{colMdRigth}}">    
                 <p-calendar id="{{id}}" [dateFormat]="formatComp" [(ngModel)]="date" [showIcon]="true" (onSelect)="onSelect($event)" [disabled]="disabled" [readonlyInput]="readonly"></p-calendar>
             </div>   
-            <span id="label_error_{{id}}" style="color: red; display: none;"></span>         
+            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>         
         </div>
     `
 })

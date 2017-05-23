@@ -15,7 +15,7 @@ import * as $ from 'jquery';
                     <option id="{{i}}" [value]="item.value" *ngFor="let item of values; let i = index">{{item.label}}</option>
                 </select>
             </div>
-            <span id="label_error_{{id}}" style="color: red; display: none;"></span>
+            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })
