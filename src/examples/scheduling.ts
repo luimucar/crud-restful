@@ -13,17 +13,20 @@ export class CarPark {
 
 @Injectable()
 @Configure({
+    clazz : 'Scheduling',
     i18nPath : './assets/i18n'
 })
 export class Scheduling {
     constructor(
         @Id({
+            clazz : 'Scheduling',
             order : 0
         })
-        public id: number) {
+        public id?: number) {
     }
     
     @InputType({
+        clazz : 'Scheduling',
         name : 'User:',
         translateKey : 'USERNAME',
         type : 'text',
@@ -35,6 +38,7 @@ export class Scheduling {
     public name: string;
 
     @InputType({
+        clazz : 'Scheduling',
         name : 'Password:',
         type : 'password',
         defaultValue : '123',
@@ -44,6 +48,7 @@ export class Scheduling {
     public password: string;
     
     @InputType({
+        clazz : 'Scheduling',
         name : 'Admin:',
         type : 'checkbox',
         defaultValue : true,
@@ -53,6 +58,7 @@ export class Scheduling {
     
             
     @MultiSelect({
+        clazz : 'Scheduling',
         url : '/data/report.json', 
         modelSelect : 'reportList',        
         modelSelectClazz : Report, 
@@ -64,6 +70,7 @@ export class Scheduling {
     public reports: Report[];
     
     @Chips({
+        clazz : 'Scheduling',
         name : 'Email',
         disabled : false,
         autoWidth : true,       
@@ -74,6 +81,7 @@ export class Scheduling {
     public mails: string[];
     
     @MultiSelect({
+        clazz : 'Scheduling',
         url : '/data/carpark.json', 
         modelSelectClazz : CarPark, 
         modelSelectValue : 'id', 
@@ -83,6 +91,7 @@ export class Scheduling {
     public carParks: CarPark[];
     
     @Select({
+        clazz : 'Scheduling',
         values : [{"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
         defaultValue : '3',
         order : 7,
@@ -91,6 +100,7 @@ export class Scheduling {
     public period: string;
     
     @Calendar({
+        clazz : 'Scheduling',
         disabled : false,
         autoWidth : true,
         order : 8,
@@ -99,6 +109,7 @@ export class Scheduling {
     public date1 : string;
     
     @Calendar({
+        clazz : 'Scheduling',
         disabled : false,
         autoWidth : true,
         order : 9,
@@ -107,6 +118,7 @@ export class Scheduling {
     public date2 : Date;
 
     @Checkboxes({
+        clazz : 'Scheduling',
         name : 'Itens:',
         disabled : false,
         autoWidth : true,
@@ -119,6 +131,7 @@ export class Scheduling {
     public itensCheckboxes : Item[];
     
     @Radioboxes({
+        clazz : 'Scheduling',
         name : 'Itens:',
         disabled : false,
         autoWidth : true,

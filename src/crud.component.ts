@@ -163,7 +163,7 @@ export class CrudComponent extends Observer {
     ok() {
         if (this.components.length > 0) {
             if (this.validate()) {
-                let obj = getObject(this.components[0].clazz);
+                let obj = getObject(this.components[0].clazz, this.model);
                 this.onOk.emit(obj);
             }
         }        
@@ -172,7 +172,7 @@ export class CrudComponent extends Observer {
     save() {
         if (this.components.length > 0) {
             if (this.validate()) {
-                let obj = getObject(this.components[0].clazz);
+                let obj = getObject(this.components[0].clazz, this.model);
                 if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                     BaseComponent.showOrHideComponents(this.clazz, 'none');
                 } else {
@@ -187,7 +187,7 @@ export class CrudComponent extends Observer {
     remove() {
         if (this.components.length > 0) {
             this.hideMsgError();
-            let obj = getObject(this.components[0].clazz);
+            let obj = getObject(this.components[0].clazz, this.model);
             if (!getValueFromMap(Configuration.tableLess, this.clazz)) {
                 BaseComponent.showOrHideComponents(this.clazz, 'none');
             } else {

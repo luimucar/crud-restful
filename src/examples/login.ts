@@ -1,6 +1,7 @@
 import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
 
 @Table({
+    clazz : 'Login',
     name : 'tableUser',
     url : '/data/login.json',  
     rows : 10,
@@ -13,12 +14,14 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     autoHide : false
 })
 @Configure({
+    clazz : 'Scheduling',
     i18nPath : './assets/i18n'
 })
 export class Login {
 
     constructor(
         @InputType({
+            clazz : 'Login',
             name : 'Id',
             property : 'id', //when use in a constructor, set property value with the name of atribute. See: https://github.com/Microsoft/TypeScript/issues/15904
             type : 'text',
@@ -33,6 +36,7 @@ export class Login {
     }
 
     @InputType({
+        clazz : 'Login',
         name : 'Email',
         translateKey : 'EMAIL',
         type : 'text',
@@ -48,6 +52,7 @@ export class Login {
     email : string;
     
     @InputType({
+        clazz : 'Login',
         name : 'Full Name',
         translateKey : 'FULLNAME',
         type : 'text',
@@ -62,6 +67,7 @@ export class Login {
     fullname : string;  
 
     @InputType({
+        clazz : 'Login',
         name : 'Phone Number',
         type : 'text',
         width : '300px',

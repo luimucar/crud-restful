@@ -2,7 +2,7 @@
 
 UNDER DEVELOPMENT
 
-This component aims to facilitate the construction of interfaces in Angular 2.
+This component aims to facilitate the construction of user interfaces in Angular 2.
 This component provides high-level interface components using PrimeNG.
 The use of this component generates a great gain of productivity and flexibility in the construction of the interfaces.
 All components are created at runtime based on Decorators and Metadatas that provides information such as field positioning, combos content and component configuration.
@@ -12,7 +12,7 @@ All components are created at runtime based on Decorators and Metadatas that pro
 
 Installation of dependencies:
 
-1. primeng: http://www.primefaces.org/primeng/#/setup
+1. PrimeNG: http://www.primefaces.org/primeng/#/setup
 2. jQuery : https://www.npmjs.com/package/jquery
 3. ng2-translate : https://www.npmjs.com/package/ng2-translate
 4. moment : https://www.npmjs.com/package/moment
@@ -37,6 +37,7 @@ $ npm install crud-restful --save
 import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkboxes, Table } from '../index';
 
 @Table({
+	clazz : 'Login',
     name : 'tableUser',
     url : '/data/login.json',  
     rows : 10,
@@ -49,10 +50,12 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     autoHide : true
 })
 @Configure({
+    clazz : 'Login',
     i18nPath : './assets/i18n'
 })
 export class Login {
     @InputType({
+    	clazz : 'Login',
         name : 'Id',
         type : 'text',
         readOnly : true,
@@ -65,6 +68,7 @@ export class Login {
     id : number;
 
     @InputType({
+    	clazz : 'Login',
         name : 'Email',
         translateKey : 'EMAIL',
         type : 'text',
@@ -80,6 +84,7 @@ export class Login {
     name : string;
     
     @InputType({
+    	clazz : 'Login',
         name : 'Full Name',
         translateKey : 'FULLNAME',
         type : 'text',
@@ -113,10 +118,10 @@ import {CrudModule} from 'crud-restful/index';
 
 <pre>
 <b>- Inputs:</b>
-[buttons] - required : Visible buttons : Ok, Save, Remove, Cancel
+[model] - required : Object instance
 [clazz] - required : The class name
-[model] - optional : The instance of class with default values
 [broadcast] - optional : Emit event to update the table
+[buttons] - required : Visible buttons : Ok, Save, Remove, Cancel
 [onTableLoaded] - optional : Emit event after table loaded
 [onTableRowSelected] - optional : Emit event after table loaded
 
@@ -127,7 +132,7 @@ Remove
 Cancel
 </pre>
 
-### In the component initialize your object model with default values (if necessary) and handle the events:
+### In the component, initialize your object model with default values (if necessary) and handle the events:
 
 ```javascript
     .
@@ -225,6 +230,7 @@ Example:
 
 ```javascript
 @Table({
+	clazz : 'Login',
     name : 'tableUser',
     url : '/data/login.json', 
     rows : 10,
@@ -241,6 +247,7 @@ export class Login {
     .
     .
     @InputType({
+    	clazz : 'Login',
         name : 'Email',
         translateKey : 'EMAIL',
         type : 'text',
@@ -273,6 +280,7 @@ Examples:
 
 ```javascript
 @InputType({
+	clazz : 'Login',
     name : 'Email',
     translateKey : 'EMAIL',
     type : 'text',
@@ -289,6 +297,7 @@ Examples:
 email : string;
 
 @InputType({
+	clazz : 'Login',
     name : 'Phone Number',
     type : 'text',
     autoWidth : true,
@@ -309,6 +318,7 @@ Example:
 
 ```javascript
 @MultiSelect({
+	clazz : 'Scheduling',
     url : '/data/report.json', 
     modelSelect : 'reportList',        
     modelSelectClazz : Report, 
@@ -324,6 +334,7 @@ public reports: Report[];
 
 ```javascript
 @Chips({
+	clazz : 'Scheduling',
     name : 'Email',
     disabled : false,
     autoWidth : true,       
@@ -340,6 +351,7 @@ Example:
 
 ```javascript
 @Select({
+	clazz : 'Scheduling',
     values : [{"value" : 1, "label" : "Value 1"}, {"value" : 2, "label" : "Value 2"}, {"value" : 3, "label" : "Value 3"}],
     defaultValue : 2,
     order : 5
@@ -355,6 +367,7 @@ Using string object:
 
 ```javascript
 @Calendar({
+	clazz : 'Scheduling',
     disabled : false,
     autoWidth : true,
     order : 7,
@@ -367,6 +380,7 @@ You can also use Date object instead of string:
 
 ```javascript
 @Calendar({
+	clazz : 'Scheduling',
     disabled : false,
     autoWidth : true,
     order : 7,
@@ -387,6 +401,7 @@ Example:
 
 ```javascript
 @Checkboxes({
+	clazz : 'Scheduling',
     name : 'Itens:',
     disabled : false,
     autoWidth : true,
@@ -405,6 +420,7 @@ Example:
 
 ```javascript
 @Radioboxes({
+	clazz : 'Scheduling',
     name : 'Itens:',
     disabled : false,
     autoWidth : true,
@@ -436,6 +452,7 @@ If you want you can customize this behavior by changing the path (attribute <b>i
 
 ```javascript
 @Configure({
+    clazz : 'Login',
     i18nPath : './assets/i18n'
 })
 ```

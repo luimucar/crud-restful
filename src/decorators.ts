@@ -75,8 +75,8 @@ export class CrudComponentObj {
     public targetPropertyValue : string;
     public translateKeyByValue : boolean;
 
-    constructor(public property: string, public name: string, public type: string, public clazz : any, public defaultValue? : any) {
-        this.clazzName = clazz.name;
+    constructor(public property: string, public name: string, public type: string, public clazz : string, public defaultValue? : any) {
+        this.clazzName = clazz;
         if (name == undefined) {
             this.name = property;
         }
@@ -112,25 +112,23 @@ export function setObject(clazzName: any, object : any) {
                 if (object[obj.property]) {
                     obj['value'] = object[obj.property];
                 }
-                //console.log(obj);
             }
         });
     }
 }
 
-export function getObject(clazzName: any): any {
-    let ret = new clazzName();
+export function getObject(clazzName: any, objectInstance : any): any {
     CrudComponentObj.components.forEach(obj => {
-        if (obj.clazzName == clazzName.name) {
+        if (obj.clazzName == clazzName) {
             if (obj.targetProperty != undefined) {
                 let target = obj.targetProperty;
-                ret[target] = obj.targetPropertyValue;
+                objectInstance[target] = obj.targetPropertyValue;
             }
-            ret[obj.property] = obj.value;            
+            objectInstance[obj.property] = obj.value;            
         }
     });
     
-    return (<any>Object).assign(new clazzName(), ret);
+    return (<any>Object).assign(objectInstance, objectInstance);
 }
 
 export function getI18nPath() : string {
@@ -138,6 +136,7 @@ export function getI18nPath() : string {
 }
 
 export function Configure(parameters : any) {
+    let clazz = parameters['clazz'];
     let i18nPath = parameters['i18nPath'];
     let confirmMessageKey = parameters['confirmMessageKey'];
     let confirmTitleMessageKey = parameters['confirmTitleMessageKey'];
@@ -147,12 +146,13 @@ export function Configure(parameters : any) {
         Configuration.i18nPath = i18nPath;
         Configuration.confirmMessageKey = confirmMessageKey;
         Configuration.confirmTitleMessageKey = confirmTitleMessageKey;
-        Configuration.tableLess.push(new MapClass(constructor['name'], true));
+        Configuration.tableLess.push(new MapClass(clazz, true));
     }
     return actualDecorator;
 }
 
 export function Table(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let url = parameters['url'];
@@ -169,7 +169,7 @@ export function Table(parameters : any) {
     let style = parameters['style'];
     function actualDecorator(constructor: Function) {
         Configuration.tableLess.push(new MapClass(constructor['name'], false));
-        let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', constructor);
+        let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', clazz);
         component.name = name;
         component.url = url;
         component.order = order;
@@ -188,38 +188,23 @@ export function Table(parameters : any) {
     return actualDecorator;
 }
 
-/*
-function getProperty(target: Object, parameterIndex: number) {
-    let parametersConstructor = target.toString();
-    let parametersArray = parametersConstructor.substring(parametersConstructor.indexOf('{') + 1, parametersConstructor.indexOf('}')).trim().replace(/\n/g, '').split(';');
-    let parametersArrayClean : string [] = [];
-    parametersArray.forEach(parameter => {
-        if (parameter != "") {
-            parametersArrayClean.push(parameter.trim());
-        }
-    });
-    return parametersArrayClean[parameterIndex].substring(parametersArrayClean[parameterIndex].indexOf('=') + 1).trim();
-}
-*/
-
 export function Id(parameters : any) {
+    let clazz = parameters['clazz'];
     let order = parameters['order'];
     let propertyValue = parameters['property'];
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;            
-            construct = target;
         }                
-        let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', construct);
+        let component : CrudComponentObj = new CrudComponentObj(property, property, 'Id', clazz);
         component.order = order;
         CrudComponentObj.components.push(component);
     }
     return actualDecorator;
 }
 
-export function InputType(parameters : any) {
+export function InputType(parameters : any) {   
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let inputType = parameters['type'];
@@ -247,13 +232,10 @@ export function InputType(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;
-            construct = target;
         }
-        let component : CrudComponentObj = new CrudComponentObj(property, name, 'InputType', construct, defaultValue);
+        let component : CrudComponentObj = new CrudComponentObj(property, name, 'InputType', clazz, defaultValue);
         component.inputType = inputType;
         component.readOnly = readOnly;
         component.disabled = disabled;
@@ -282,6 +264,7 @@ export function InputType(parameters : any) {
 }
 
 export function MultiSelect(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let url = parameters['url'];
@@ -302,13 +285,10 @@ export function MultiSelect(parameters : any) {
         if (name == undefined) {
             name = property;
         }        
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;            
-            construct = target;
         }        
-        let component = new CrudComponentObj(property, name, 'MultiSelect', construct)
+        let component = new CrudComponentObj(property, name, 'MultiSelect', clazz)
         component.url = url;
         component.selectItemArray = selectItemArray;
         component.selectItemLabel = selectItemLabel;
@@ -331,6 +311,7 @@ export function MultiSelect(parameters : any) {
 }
 
 export function Chips(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let disabled = parameters['disabled'];
@@ -352,13 +333,10 @@ export function Chips(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);            
             property = propertyValue;
-            construct = target;
         }
-        let component = new CrudComponentObj(property, name, 'Chips', construct);
+        let component = new CrudComponentObj(property, name, 'Chips', clazz);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -382,6 +360,7 @@ export function Chips(parameters : any) {
 }
 
 export function Select(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let values = parameters['values'];
@@ -402,13 +381,10 @@ export function Select(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;            
-            construct = target;
         }
-        let component = new CrudComponentObj(property, name, 'Select', construct);
+        let component = new CrudComponentObj(property, name, 'Select', clazz);
         component.values = values;
         component.disabled = disabled;
         component.defaultValue = defaultValue;
@@ -431,6 +407,7 @@ export function Select(parameters : any) {
 }
 
 export function Calendar(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let disabled = parameters['disabled'];
@@ -449,13 +426,10 @@ export function Calendar(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);            
             property = propertyValue;
-            construct = target;
         }
-        let component = new CrudComponentObj(property, name, 'Calendar', construct);
+        let component = new CrudComponentObj(property, name, 'Calendar', clazz);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -476,6 +450,7 @@ export function Calendar(parameters : any) {
 }
 
 export function Checkboxes(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let disabled = parameters['disabled'];
@@ -492,13 +467,10 @@ export function Checkboxes(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;            
-            construct = target;
         }
-        let component = new CrudComponentObj(property, name, 'Checkboxes', construct);
+        let component = new CrudComponentObj(property, name, 'Checkboxes', clazz);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;
@@ -517,6 +489,7 @@ export function Checkboxes(parameters : any) {
 }
 
 export function Radioboxes(parameters : any) {
+    let clazz = parameters['clazz'];
     let name = parameters['name'];
     let propertyValue = parameters['property'];
     let disabled = parameters['disabled'];
@@ -534,13 +507,10 @@ export function Radioboxes(parameters : any) {
         if (name == undefined) {
             name = property;
         }
-        let construct : any = target.constructor
         if (property == undefined) {
-            //property = getProperty(target, parameterIndex);
             property = propertyValue;            
-            construct = target;
         }
-        let component = new CrudComponentObj(property, name, 'Radioboxes', construct);
+        let component = new CrudComponentObj(property, name, 'Radioboxes', clazz);
         component.disabled = disabled;
         component.order = order;
         component.autoWidth = autoWidth;

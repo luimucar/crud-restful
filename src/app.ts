@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     template: `
     
     <div style="width: 50%;">
+        
         <h3>Example 1</h3>
         <crud [clazz]="'Login'" [model]="login" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)" [onTableLoaded]="onTableLoaded" [onTableRowSelected]="onTableRowSelected"></crud>
         <div class="row" style="padding-top:20px;">
@@ -24,17 +25,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
                 <button pButton type="button" (click)="refresh()" label="Refresh"></button>
                 <button pButton type="button" (click)="changeLogin()" label="Change Login"></button>
             </div>
-        </div>         
+        </div>
+         
         <br><hr>
         <h3>Example 2</h3>
-        <crud [clazz]="'Scheduling'" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
+        <crud [clazz]="'Scheduling'" [model]="scheduling" [broadcast]="broadcast" [buttons]="'Save,Remove,Cancel'" (onSave)="handleOnSave($event)" (onRemove)="handleOnRemove($event)" (onCancel)="handleOnCancel()" (onOk)="handleOnOk($event)"></crud>
         <br><hr>        
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="i18n()" label="i18n"></button>
             </div>
         </div> 
-        
+
     </div>
   `,
 })
@@ -45,6 +47,7 @@ export class App {
     @ViewChild(CrudComponent) crudComponent : CrudComponent;
     login : Login = new Login();
     displayLogin : boolean = false;
+    scheduling : Scheduling = new Scheduling();
 
     constructor(public translate: TranslateService) {
         translate.addLangs(["en-en", "pt-br"]);
