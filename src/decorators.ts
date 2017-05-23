@@ -168,7 +168,7 @@ export function Table(parameters : any) {
     let autoHide = parameters['autoHide'];
     let style = parameters['style'];
     function actualDecorator(constructor: Function) {
-        Configuration.tableLess.push(new MapClass(constructor['name'], false));
+        Configuration.tableLess.push(new MapClass(clazz, false));
         let component : CrudComponentObj = new CrudComponentObj(name, name, 'Table', clazz);
         component.name = name;
         component.url = url;
