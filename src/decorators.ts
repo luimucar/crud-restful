@@ -109,7 +109,7 @@ export function setObject(clazzName: any, object : any) {
     if (object != undefined) {
         CrudComponentObj.components.forEach(obj => {
             if (obj.clazzName == clazzName) {
-                if (object[obj.property]) {
+                if (object[obj.property] != undefined) {
                     obj['value'] = object[obj.property];
                 }
             }
