@@ -11,4 +11,4 @@ npm run build
 npm publish
 npm run clean
 
-./gitmerge.sh master 'Initial version'
+#./gitmerge.sh master 'Initial version'
