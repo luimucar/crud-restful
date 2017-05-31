@@ -68,6 +68,7 @@ export class InputTextComponent extends BaseComponent {
                     setObject(clazzName, value);
                     $("#" + id).val(value[property]);
                     if (this.inputType == 'checkbox') {
+                        console.log(this.value);
                         $('#'+this.id).attr('checked', this.value);
                     }
                 }
