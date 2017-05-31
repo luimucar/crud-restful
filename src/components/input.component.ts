@@ -55,7 +55,7 @@ export class InputTextComponent extends BaseComponent {
        
         setTimeout(() => {
             if (this.value) {
-                $('#'+this.id).attr('checked', 'true');
+                $('#'+this.id).prop('checked', 'true');
             }
         }, 50);
 
@@ -69,7 +69,7 @@ export class InputTextComponent extends BaseComponent {
                     $("#" + id).val(value[property]);
                     if (this.inputType == 'checkbox') {
                         this.value = value[property];
-                        $('#'+this.id).attr('checked', value[property]);
+                        $('#'+this.id).prop('checked', value[property]);
                     }
                 }
             });
