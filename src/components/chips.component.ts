@@ -12,8 +12,8 @@ import * as $ from 'jquery';
             </div>
             <div class="col-md-{{colMdRigth}}">    
                 <p-chips [style.width]="width" [(ngModel)]="values" (onAdd)="add($event.value)" (onRemove)="remove($event.value)" [disabled]="disabled"></p-chips>
+                <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>            
             </div>
-            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>            
         </div>
     `
 })

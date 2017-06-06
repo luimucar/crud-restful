@@ -14,8 +14,8 @@ import * as $ from 'jquery';
                 <select [style.width]="width" (change)="onChangeObj($event.target.value)">
                     <option id="{{i}}" [value]="item.value" *ngFor="let item of values; let i = index">{{item.label}}</option>
                 </select>
+                <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
             </div>
-            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })

@@ -15,8 +15,8 @@ import * as $ from 'jquery';
                     <input id="radiobox{{item.value}}" type="radio" name="radiobox" [value]="item.value" (click)="selectValue(item)">
                     <label>{{item.label}}</label> 
                 </div>
+                <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
             </div>
-            <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>
         </div>
     `
 })
