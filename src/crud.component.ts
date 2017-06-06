@@ -235,5 +235,16 @@ export class CrudComponent extends Observer {
         }
         this.concreteSubject.notify("BASE-COMPONENT");
     }
+
+    getComponent(clazz : string, name : string) : CrudComponentObj { 
+        console.log(this.components);
+        let crudComponentObj : CrudComponentObj;
+        this.components.forEach(component => {
+            if (component.clazzName == clazz && component.name == name) {
+                crudComponentObj = component;
+            }
+        });
+        return crudComponentObj;
+    }
 }
 

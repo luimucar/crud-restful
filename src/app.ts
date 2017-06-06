@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="refresh()" label="Refresh"></button>
                 <button pButton type="button" (click)="changeLogin()" label="Change Login"></button>
+                <button pButton type="button" (click)="removeRequired()" label="Remove required"></button>
             </div>
         </div>
          
@@ -93,6 +94,11 @@ export class App {
     changeLogin() {
         this.login.email = 'cmargulhano@gmail.com';
         this.broadcast.emit(this.login);        
+    }
+
+    removeRequired() {
+        this.crudComponent.hideMsgError();
+        this.crudComponent.getComponent('Login', 'Email').required=false;
     }
 }
 
