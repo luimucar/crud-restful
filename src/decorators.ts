@@ -373,6 +373,9 @@ export function Select(parameters : any) {
     let colMdRigth = parameters['colMdRigth'];  
     let focus = parameters['focus'];       
     let translateKey = parameters['translateKey'];
+    let required = parameters['required'];
+    let requiredMessage = parameters['requiredMessage'];
+    let requiredMessageKey = parameters['requiredMessageKey'];        
     let tableColumn = parameters['tableColumn'];
     let sortable = parameters['sortable'];
     let style = parameters['style'];
@@ -395,6 +398,9 @@ export function Select(parameters : any) {
         component.colMdRigth = colMdRigth;        
         component.focus = focus;
         component.translateKey = translateKey;
+        component.required = required;
+        component.requiredMessage = requiredMessage;
+        component.requiredMessageKey = requiredMessageKey;                      
         component.tableColumn = tableColumn;
         component.sortable = sortable;
         component.style = style;

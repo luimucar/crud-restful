@@ -27,7 +27,7 @@ export class Scheduling {
     
     @InputType({
         clazz : 'Scheduling',
-        name : 'User:',
+        name : 'User',
         translateKey : 'USERNAME',
         type : 'text',
         defaultValue : 'Cláudio Margulhano',
@@ -39,9 +39,10 @@ export class Scheduling {
 
     @InputType({
         clazz : 'Scheduling',
-        name : 'Password:',
+        name : 'Password',
         type : 'password',
-        defaultValue : '123',
+        required : true,
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
         autoWidth : true,
         order : 2
     })
@@ -92,8 +93,12 @@ export class Scheduling {
     
     @Select({
         clazz : 'Scheduling',
-        values : [{"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
-        defaultValue : '3',
+        name: 'Period',
+        property: 'period',
+        values : [{"value" : null, "label" : "...::: Select :::..."}, {"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
+        required : true,
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        defaultValue : null,
         order : 7,
         translateKeyByValue : true
     })
@@ -119,7 +124,7 @@ export class Scheduling {
 
     @Checkboxes({
         clazz : 'Scheduling',
-        name : 'Itens:',
+        name : 'Itens',
         disabled : false,
         autoWidth : true,
         defaultValue : 1,
@@ -132,7 +137,7 @@ export class Scheduling {
     
     @Radioboxes({
         clazz : 'Scheduling',
-        name : 'Itens:',
+        name : 'Itens',
         disabled : false,
         autoWidth : true,
         defaultValue : 1,

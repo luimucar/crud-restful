@@ -35,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
         <div class="row" style="padding-top:20px;">
             <div class="col-md-12" style="padding-top:20px;">
                 <button pButton type="button" (click)="i18n()" label="i18n"></button>
+                <button pButton type="button" (click)="setSelectValue()" label="Change Select"></button>
             </div>
         </div> 
 
@@ -99,6 +100,11 @@ export class App {
     removeRequired() {
         this.crudComponent.hideMsgError();
         this.crudComponent.getComponent('Login', 'Email').required=false;
+    }
+
+    setSelectValue() {
+        this.scheduling.period = '1';
+        this.crudComponent.broadcast.emit(this.scheduling);
     }
 }
 
