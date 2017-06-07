@@ -29,23 +29,14 @@ export class SelectComponent extends BaseComponent {
 
         if (this.broadcast != undefined) {
             this.broadcast.subscribe((value : any) => {
-                let clazzName = this.clazzName;
-                let property = this.property;                
                 let newValue = value[this.property];
-                let index : number = 0;
-                this.values.forEach(value => {
-                    if (value['value'] == newValue) {
-                        $('#select_'+this.clazzName + '_' + +index).attr('selected','selected');
-                    }
-                    index++;
-                });                    
+                $("#"+this.id).val(newValue).change();
             });
         }   
     }
     
     loadData() {
         setTimeout(() => {
-            let index : number = 0;
             this.values.forEach(value => {
                 if (this.translateKeyByValue) {
                     if (value['labelTranslateKey'] == undefined) {
@@ -55,10 +46,7 @@ export class SelectComponent extends BaseComponent {
                         value['label'] = this.translate.instant(value['labelTranslateKey']);
                     }
                 }
-                if (value['value'] == this.value) {
-                    $('#select_'+this.clazzName + '_' + +index).attr('selected','selected');                
-                }
-                index++;
+                $("#"+this.id).val(this.value).change();
             })
         }, 100);        
     }

@@ -103,7 +103,7 @@ export class App {
     }
 
     setSelectValue() {
-        this.scheduling.period = '1';
+        this.scheduling.period = '3';
         this.crudComponent.broadcast.emit(this.scheduling);
     }
 }
