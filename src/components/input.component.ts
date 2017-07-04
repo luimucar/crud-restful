@@ -11,7 +11,7 @@ import * as $ from 'jquery';
                 <label id="label_{{id}}">{{name}}</label>
             </div>
             <div class="col-md-{{colMdRigth}}">    
-                <p-inputMask *ngIf="mask" name="{{name}}" [inputId]="id" [style.width]="width" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput [mask]="mask"></p-inputMask>
+                <p-inputMask *ngIf="mask" name="{{name}}" [inputId]="id" [style.width]="width" [(ngModel)]="value" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput [mask]="mask"></p-inputMask>
                 <input *ngIf="!mask" [style.width]="width" pInputText id="{{id}}" type="{{inputType}}" name="{{name}}" [value]="value" (click)="setValue(myInput.value)" (keypress)="setValue(myInput.value)" (blur)="setValue(myInput.value)" [readonly]="readonly" [disabled]="disabled" #myInput>
                 <span class="crudRestfulLabelError" id="label_error_{{id}}" style="color: red; display: none;"></span>                
             </div>
@@ -23,6 +23,8 @@ export class InputTextComponent extends BaseComponent {
     @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
     
     inputType : string;
+
+    value : string;
         
     ngOnInit() {
         this.readCommonsParameters(this.index);
@@ -80,8 +82,11 @@ export class InputTextComponent extends BaseComponent {
         if (this.inputType == 'checkbox') {
             CrudComponentObj.getComponents(this.clazzName)[this.index].value = $('#'+this.id).is(':checked');
         } else {
-            CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
-        }
+            if (this.mask) {
+                CrudComponentObj.getComponents(this.clazzName)[this.index].value = this.value;
+            } else {
+                CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
+            }        }
     }
 }
 
