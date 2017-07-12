@@ -1,6 +1,6 @@
 {
   "name": "crud-restful",
-  "version": "1.0.134",
+  "version": "1.0.135",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "test": "tsc && karma start",
@@ -33,10 +33,10 @@
     "jquery": "3.1.1",
     "moment": "2.17.1",
     "ng2-translate": "4.0.1",
-    "primeng": "4.0.0"
+    "primeng": "^4.1.0"
   },
   "devDependencies": {
-    "@angular/animations": "4.1.2",  
+    "@angular/animations": "4.1.2",
     "@angular/common": "4.1.2",
     "@angular/compiler": "4.1.2",
     "@angular/compiler-cli": "4.1.2",
