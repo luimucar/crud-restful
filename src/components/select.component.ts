@@ -51,27 +51,24 @@ export class SelectComponent extends BaseComponent {
             let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
             if (this.values == null) {
                 if (crudComponentObj.url) {
-                    this.values = [];
-                    this.getSelectValues(crudComponentObj.url)
-                        .subscribe(values => {
-                            let field = crudComponentObj.selectItemLabel;
-                            values = values.sort((left, right): number => {
-                                if (left[field] < right[field]) {
-                                    return -1;
-                                } else if (left[field] > right[field]) {
-                                    return 1;
-                                }
-                                return 0;
+                    if (crudComponentObj.fileConfig != undefined) {
+                        this.http.get(this.fileConfig).map(res => res.json())
+                            .subscribe(config => {
+                                let keys: string[] = this.fileConfigServerKey.split('.');
+                                let server: any = null;
+                                keys.forEach(key => {
+                                    if (server == null) {
+                                        server = config[key];
+                                    } else {
+                                        server = server[key];
+                                    }
+                                });
+                                crudComponentObj.url = server + crudComponentObj.url;
+                                this.loadDataFromUrl(crudComponentObj);
                             });
-                            values.forEach(val => {
-                                this.values.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });
-                            });
-                            $("#" + this.id).val(crudComponentObj.defaultValue).change();
-                        },
-                        error => {
-                            console.log(error);
-                        });
-
+                    } else {
+                        this.loadDataFromUrl(crudComponentObj);
+                    }
                 } else {
                     this.values.forEach(value => {
                         if (this.translateKeyByValue) {
@@ -87,6 +84,29 @@ export class SelectComponent extends BaseComponent {
                 }
             }
         }, 100);
+    }
+
+    loadDataFromUrl(crudComponentObj: CrudComponentObj) {
+        this.values = [];
+        this.getSelectValues(crudComponentObj.url)
+            .subscribe(values => {
+                let field = crudComponentObj.selectItemLabel;
+                values = values.sort((left, right): number => {
+                    if (left[field] < right[field]) {
+                        return -1;
+                    } else if (left[field] > right[field]) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                values.forEach(val => {
+                    this.values.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });
+                });
+                $("#" + this.id).val(crudComponentObj.defaultValue).change();
+            },
+            error => {
+                console.log(error);
+            });
     }
 
     onChangeObj(value: any) {

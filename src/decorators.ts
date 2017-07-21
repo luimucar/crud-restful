@@ -383,6 +383,8 @@ export function Select(parameters : any) {
     let url = parameters['url'];
     let selectItemLabel = parameters['modelSelectLabel'];
     let selectItemValue = parameters['modelSelectValue'];
+    let fileConfig = parameters['fileConfig'];
+    let fileConfigServerKey = parameters['fileConfigServerKey'];
     
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
@@ -393,6 +395,8 @@ export function Select(parameters : any) {
         }
         let component = new CrudComponentObj(property, name, 'Select', clazz);
         component.url = url;
+        component.fileConfig = fileConfig;
+        component.fileConfigServerKey = fileConfigServerKey;        
         component.selectItemValue = selectItemValue;
         component.selectItemLabel = selectItemLabel;
         component.values = values;
