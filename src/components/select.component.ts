@@ -40,8 +40,10 @@ export class SelectComponent extends BaseComponent {
 
         if (this.broadcast != undefined) {
             this.broadcast.subscribe((value: any) => {
-                let newValue = value[this.property];
-                $("#" + this.id).val(newValue).change();
+                if (value) {
+                    let newValue = value[this.property];
+                    $("#" + this.id).val(newValue).change();
+                }
             });
         }
     }

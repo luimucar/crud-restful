@@ -90,7 +90,7 @@ export class Login {
         modelSelectValue : 'id', 
         modelSelectLabel : 'name',        
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
-        defaultValue : '1',
+        defaultValue : '2',
         order : 4,
         translateKeyByValue : true
     })
