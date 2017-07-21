@@ -221,8 +221,13 @@ export class TableComponent extends BaseComponent {
     newItem(dt : DataTable) {
         this.dt = dt;
         CrudComponentObj.getComponents(this.clazzName).forEach(comp => {
-            comp.value = null;
-            $('#' + comp.clazzName + '_' + comp.property).val(null);
+            if (comp.defaultValue) {
+                comp.value = comp.defaultValue;
+                $('#' + comp.clazzName + '_' + comp.property).val(comp.value);
+            } else {
+                comp.value = null;
+                $('#' + comp.clazzName + '_' + comp.property).val(null);
+            }
         });
         if (this.autoHide) {
             $('#table' + this.clazzName + this.index).css("display", "none");

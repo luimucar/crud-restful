@@ -380,6 +380,10 @@ export function Select(parameters : any) {
     let sortable = parameters['sortable'];
     let style = parameters['style'];
     let translateKeyByValue = parameters['translateKeyByValue'];
+    let url = parameters['url'];
+    let selectItemLabel = parameters['modelSelectLabel'];
+    let selectItemValue = parameters['modelSelectValue'];
+    
     function actualDecorator(target: Object, property: string, parameterIndex?: number): void {
         if (name == undefined) {
             name = property;
@@ -388,6 +392,9 @@ export function Select(parameters : any) {
             property = propertyValue;            
         }
         let component = new CrudComponentObj(property, name, 'Select', clazz);
+        component.url = url;
+        component.selectItemValue = selectItemValue;
+        component.selectItemLabel = selectItemLabel;
         component.values = values;
         component.disabled = disabled;
         component.defaultValue = defaultValue;

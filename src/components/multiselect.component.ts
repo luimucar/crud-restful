@@ -4,6 +4,7 @@ import { SelectItem } from 'primeng/primeng';
 import { Service } from '../services/index';
 import { Observable } from 'rxjs/Rx';
 import { BaseComponent } from './base.component';
+import { Util } from './util'
 
 @Component({
     selector: 'multiSelectCrudRestful',
@@ -35,6 +36,7 @@ export class MultiSelectComponent extends BaseComponent {
         let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
         this.getMultiSelectValues(crudComponentObj.url)
             .subscribe(values => {
+                values = values.sort(Util.sortBy(crudComponentObj.selectItemLabel));
                 values.forEach(val => {
                     if (crudComponentObj.selectItemArray == undefined) {
                         this.itens.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });

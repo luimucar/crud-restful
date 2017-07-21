@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input } from '@angular/core';
 import { CrudComponentObj } from '../index';
 import { BaseComponent } from './base.component';
+import { Service } from '../services/index';
+import { Observable } from 'rxjs/Rx';
+import { Http } from '@angular/http';
 import * as $ from 'jquery';
+import { Util } from './util'
 
 @Component({
     selector: 'selectCrudRestful',
@@ -20,45 +24,76 @@ import * as $ from 'jquery';
     `
 })
 
-export class SelectComponent extends BaseComponent {   
+export class SelectComponent extends BaseComponent {
+    lang: string;
     @Input() broadcast: EventEmitter<any> = new EventEmitter<any>();
+
+    constructor(public service: Service, private http: Http) {
+        super();
+        setTimeout(() => {
+            this.lang = this.translate.currentLang;
+        }, 50);
+    }
 
     ngOnInit() {
         this.readCommonsParameters(this.index);
-        this.loadData();      
+        this.loadData();
 
         if (this.broadcast != undefined) {
-            this.broadcast.subscribe((value : any) => {
+            this.broadcast.subscribe((value: any) => {
                 let newValue = value[this.property];
-                $("#"+this.id).val(newValue).change();
+                $("#" + this.id).val(newValue).change();
             });
-        }   
+        }
     }
-    
+
     loadData() {
         setTimeout(() => {
-            this.values.forEach(value => {
-                if (this.translateKeyByValue) {
-                    if (value['labelTranslateKey'] == undefined) {
-                        value['labelTranslateKey'] = value['label'];
-                        value['label'] = this.translate.instant(value['label']);
-                    } else {
-                        value['label'] = this.translate.instant(value['labelTranslateKey']);
-                    }
+            let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
+            if (this.values == null) {
+                if (crudComponentObj.url) {
+                    this.values = [];
+                    this.getSelectValues(crudComponentObj.url)
+                        .subscribe(values => {
+                            values = values.sort(Util.sortBy(crudComponentObj.selectItemLabel));
+                            values.forEach(val => {
+                                this.values.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });                            
+                            });
+                            $("#" + this.id).val(crudComponentObj.defaultValue).change();
+                        },
+                        error => {
+                            console.log(error);
+                        });
+
+                } else {
+                    this.values.forEach(value => {
+                        if (this.translateKeyByValue) {
+                            if (value['labelTranslateKey'] == undefined) {
+                                value['labelTranslateKey'] = value['label'];
+                                value['label'] = this.translate.instant(value['label']);
+                            } else {
+                                value['label'] = this.translate.instant(value['labelTranslateKey']);
+                            }
+                        }
+                        $("#" + this.id).val(this.value).change();
+                    })
                 }
-                $("#"+this.id).val(this.value).change();
-            })
-        }, 100);        
+            }
+        }, 100);
     }
-    
-    onChangeObj(value:any) {
+
+    onChangeObj(value: any) {
         CrudComponentObj.getComponents(this.clazzName)[this.index].value = value;
     }
-    
+
     public notify(): void {
         this.loadData();
     }
-}    
+
+    getSelectValues(url: string): Observable<any[]> {
+        return this.service.get(url);
+    }
+}
 
 
 

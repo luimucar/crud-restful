@@ -14,7 +14,7 @@ import { Configure, Id, InputType, MultiSelect, Chips, Select, Calendar, Checkbo
     autoHide : false
 })
 @Configure({
-    clazz : 'Scheduling',
+    clazz : 'Login',
     i18nPath : './assets/i18n'
 })
 export class Login {
@@ -79,5 +79,20 @@ export class Login {
         mask : '(99) 999-9999',
         style : 'color: pink;'
     })    
-    phonenumber : string;      
+    phonenumber : string;
+    
+    @Select({
+        clazz : 'Login',
+        name: 'Language',
+        property: 'language',
+        required : true,
+        url : '/data/language.json', 
+        modelSelectValue : 'id', 
+        modelSelectLabel : 'name',        
+        requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
+        defaultValue : '1',
+        order : 4,
+        translateKeyByValue : true
+    })
+    public language: string;    
 }
