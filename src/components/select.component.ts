@@ -5,7 +5,6 @@ import { Service } from '../services/index';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import * as $ from 'jquery';
-import { Util } from './util'
 
 @Component({
     selector: 'selectCrudRestful',
@@ -55,9 +54,17 @@ export class SelectComponent extends BaseComponent {
                     this.values = [];
                     this.getSelectValues(crudComponentObj.url)
                         .subscribe(values => {
-                            values = values.sort(Util.sortBy(crudComponentObj.selectItemLabel));
+                            let field = crudComponentObj.selectItemLabel;
+                            values = values.sort((left, right): number => {
+                                if (left[field] < right[field]) {
+                                    return -1;
+                                } else if (left[field] > right[field]) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
                             values.forEach(val => {
-                                this.values.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });                            
+                                this.values.push({ label: val[crudComponentObj.selectItemLabel], value: val[crudComponentObj.selectItemValue] });
                             });
                             $("#" + this.id).val(crudComponentObj.defaultValue).change();
                         },
@@ -94,8 +101,3 @@ export class SelectComponent extends BaseComponent {
         return this.service.get(url);
     }
 }
-
-
-
-
-
