@@ -63,8 +63,7 @@ export class SelectComponent extends BaseComponent {
                                         server = server[key];
                                     }
                                 });
-                                crudComponentObj.url = server + crudComponentObj.url;
-                                this.loadDataFromUrl(crudComponentObj);
+                                this.loadDataFromUrl(crudComponentObj, server);
                             });
                     } else {
                         this.loadDataFromUrl(crudComponentObj);
@@ -86,9 +85,15 @@ export class SelectComponent extends BaseComponent {
         }, 100);
     }
 
-    loadDataFromUrl(crudComponentObj: CrudComponentObj) {
+    loadDataFromUrl(crudComponentObj: CrudComponentObj, server? : string) {
         this.values = [];
-        this.getSelectValues(crudComponentObj.url)
+        let url;
+        if (server) {
+            url = server + crudComponentObj.url;
+        } else {
+            url = crudComponentObj.url;
+        }
+        this.getSelectValues(url)
             .subscribe(values => {
                 let field = crudComponentObj.selectItemLabel;
                 values = values.sort((left, right): number => {
