@@ -95,10 +95,10 @@ export class Scheduling {
         clazz : 'Scheduling',
         name: 'Period',
         property: 'period',
-        values : [{"value" : null, "label" : "...::: Select :::..."}, {"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
+        values : [{"value" : "0", "label" : "...::: Select :::..."}, {"value" : '1', "label" : "SELECT.VALUE_01"}, {"value" : '2', "label" : "SELECT.VALUE_02"}, {"value" : '3', "label" : "SELECT.VALUE_03"}],
         required : true,
         requiredMessageKey : 'MESSAGE.FIELD_REQUIRED',
-        defaultValue : null,
+        defaultValue : "0",
         order : 7,
         translateKeyByValue : true
     })

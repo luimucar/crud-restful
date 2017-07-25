@@ -51,38 +51,36 @@ export class SelectComponent extends BaseComponent {
     loadData() {
         setTimeout(() => {
             let crudComponentObj = CrudComponentObj.getComponents(this.clazzName)[this.index];
-            if (this.values == null) {
-                if (crudComponentObj.url) {
-                    if (crudComponentObj.fileConfig != undefined) {
-                        this.http.get(this.fileConfig).map(res => res.json())
-                            .subscribe(config => {
-                                let keys: string[] = this.fileConfigServerKey.split('.');
-                                let server: any = null;
-                                keys.forEach(key => {
-                                    if (server == null) {
-                                        server = config[key];
-                                    } else {
-                                        server = server[key];
-                                    }
-                                });
-                                this.loadDataFromUrl(crudComponentObj, server);
+            if (crudComponentObj.url) {
+                if (crudComponentObj.fileConfig != undefined) {
+                    this.http.get(this.fileConfig).map(res => res.json())
+                        .subscribe(config => {
+                            let keys: string[] = this.fileConfigServerKey.split('.');
+                            let server: any = null;
+                            keys.forEach(key => {
+                                if (server == null) {
+                                    server = config[key];
+                                } else {
+                                    server = server[key];
+                                }
                             });
-                    } else {
-                        this.loadDataFromUrl(crudComponentObj);
-                    }
+                            this.loadDataFromUrl(crudComponentObj, server);
+                        });
                 } else {
-                    this.values.forEach(value => {
-                        if (this.translateKeyByValue) {
-                            if (value['labelTranslateKey'] == undefined) {
-                                value['labelTranslateKey'] = value['label'];
-                                value['label'] = this.translate.instant(value['label']);
-                            } else {
-                                value['label'] = this.translate.instant(value['labelTranslateKey']);
-                            }
-                        }
-                        $("#" + this.id).val(this.value).change();
-                    })
+                    this.loadDataFromUrl(crudComponentObj);
                 }
+            } else {
+                this.values.forEach(value => {
+                    if (this.translateKeyByValue) {
+                        if (value['labelTranslateKey'] == undefined) {
+                            value['labelTranslateKey'] = value['label'];
+                            value['label'] = this.translate.instant(value['label']);
+                        } else {
+                            value['label'] = this.translate.instant(value['labelTranslateKey']);
+                        }
+                    }
+                    $("#" + this.id).val(this.value).change();
+                })
             }
         }, 100);
     }
